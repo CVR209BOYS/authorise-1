@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const UserModel = require("./models/Users"); //importing the schemas required
 const cors = require("cors");
 const axios= require("axios");
+const userRoutes= require("./routes/users.js")
+
+// import userRoutes from './routes/users.js';
 
 const app = express();
 
@@ -37,12 +40,17 @@ app.get("/getusers", async (req, res) => {
   //     });
 });
 
+// code for saving users using gauth.....................................................................
+
 app.post("/createusers", async (req, res) => {
+
   const user = req.body;
+  
   const public = await UserModel.find();
   let c= false;
+  let users;
+  let bherror=true;
  
-  console.log(user.tokenResponse.access_token);
  
   const response = await axios
     .get(
@@ -54,27 +62,41 @@ app.post("/createusers", async (req, res) => {
         },
       }
     )
-    .then((res) => {
-      console.log(res.data);
+    .then(async (res) => {
+      users= {
+        name: res.data.name,
+        email:res.data.email,
+        picture:res.data.picture
+      } 
+      console.log(users);
       public.forEach(function (item, index) {
-        if("Manas"===res.data.given_name){
+        if(item.email===res.data.email){
              c=true;
-        }
+      }
     });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      bherror=false;
+      console.log(err);
+    });
 
     if(c){
         console.log("user exist, welcome");
     }
-    else{
-      //const newUser = new UserModel(user);
-  //await newUser.save();
-    }
-
-  
-  
+    else {
+      if(bherror){
+        const newUser = new UserModel(users);
+        await newUser.save();
+         console.log("user added");
+      }
+      else{
+        console.log("error occured, user cant be added");
+      }
+      
+    } 
 });
+
+//.........................................................................................................................
 
 //backend port is 3001
 app.listen(3001, () => {
