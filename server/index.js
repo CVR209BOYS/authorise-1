@@ -2,10 +2,10 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const UserModel = require("./models/Users"); //importing the schemas required
+const UserModel = require("./models/user"); //importing the schemas required
 const cors = require("cors");
 const axios= require("axios");
-const userRoutes= require("./routes/users.js")
+const userRoutes= require("./routes/user.js");
 
 // import userRoutes from './routes/users.js';
 
@@ -24,79 +24,30 @@ mongoose.connect(
 // use req to take info from client to server
 // use res to take info from  server to client
 
-app.get("/getusers", async (req, res) => {
-  //method 1
-  const output = await UserModel.find();
-  console.log(output);
-  res.json(output);
+// app.get("/getusers", async (req, res) => {
+//   //method 1
+//   const output = await UserModel.find();
+//   console.log(output);
+//   res.json(output);
 
-  //method 2
-  // Model.find()
-  //     .then(function (models) {
-  //         console.log(models);
-  //     })
-  //     .catch(function (err) {
-  //         console.log(err);
-  //     });
-});
+//   //method 2
+//   // Model.find()
+//   //     .then(function (models) {
+//   //         console.log(models);
+//   //     })
+//   //     .catch(function (err) {
+//   //         console.log(err);
+//   //     });
+// });
+
+
 
 // code for saving users using gauth.....................................................................
 
-app.post("/createusers", async (req, res) => {
-
-  const user = req.body;
-  
-  const public = await UserModel.find();
-  let c= false;
-  let users;
-  let bherror=true;
- 
- 
-  const response = await axios
-    .get(
-      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.tokenResponse.access_token}`,
-      {
-        headers: {
-          Authorization: `Bearer ${user.access_token}`,
-          Accept: "application/json",
-        },
-      }
-    )
-    .then(async (res) => {
-      users= {
-        name: res.data.name,
-        email:res.data.email,
-        picture:res.data.picture
-      } 
-      console.log(users);
-      public.forEach(function (item, index) {
-        if(item.email===res.data.email){
-             c=true;
-      }
-    });
-    })
-    .catch((err) => {
-      bherror=false;
-      console.log(err);
-    });
-
-    if(c){
-        console.log("user exist, welcome");
-    }
-    else {
-      if(bherror){
-        const newUser = new UserModel(users);
-        await newUser.save();
-         console.log("user added");
-      }
-      else{
-        console.log("error occured, user cant be added");
-      }
-      
-    } 
-});
+app.use('/createusers',userRoutes);
 
 //.........................................................................................................................
+
 
 //backend port is 3001
 app.listen(3001, () => {
