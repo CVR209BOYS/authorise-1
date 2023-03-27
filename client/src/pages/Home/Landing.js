@@ -1,4 +1,3 @@
-import background from "../images/bg.png";
 
 function Landing() {
   return (
