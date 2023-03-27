@@ -24,6 +24,7 @@ const createusers= async(req,res)=>{
       }
     )
     .then(async (res) => {
+      
       users= {
         name: res.data.name,
         email:res.data.email,
