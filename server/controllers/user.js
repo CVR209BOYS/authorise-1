@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const UserModel = require("../models/user");
 const axios= require("axios");
+const session = require("express-session");
 
 
 const createusers= async(req,res)=>{
@@ -24,6 +25,7 @@ const createusers= async(req,res)=>{
       }
     )
     .then(async (res) => {
+
       users= {
         name: res.data.name,
         email:res.data.email,
@@ -54,7 +56,10 @@ const createusers= async(req,res)=>{
         console.log("error occured, user cant be added");
       }
       
-    } 
+    }
+    
 }
+
+
 
 module.exports = createusers;

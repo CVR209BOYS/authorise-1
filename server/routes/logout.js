@@ -1,9 +1,11 @@
 const express = require("express");
-const createusers = require("../controllers/user.js");
+
+const logouts = require("../controllers/logout.js");
+
 
 const router= express.Router();
 
-router.post('/use',createusers);
+router.get('/',logouts);
 
 
 

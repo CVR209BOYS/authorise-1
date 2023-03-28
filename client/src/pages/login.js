@@ -16,7 +16,7 @@ function LoginPage(props) {
             console.log(tokenResponse.access_token);
             axios({
                 method: 'post',
-                url: 'http://localhost:3001/createusers',
+                url: 'http://localhost:3001/createusers/use',
                 data: {
                   tokenResponse
                 }
