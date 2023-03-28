@@ -10,6 +10,7 @@ const logoutRoutes= require("./routes/logout.js");
 const session = require('express-session');
 const cookieParser = require("cookie-parser");
 
+
 // import userRoutes from './routes/users.js';
 
 const app = express();
@@ -23,6 +24,9 @@ app.use(cors());
 mongoose.connect(
   "mongodb+srv://CVR209:CVR209@cluster0.6miwwwz.mongodb.net/AUTHORISE?retryWrites=true&w=majority"
 );
+
+
+
 
 // API requests
 // use req to take info from client to server
