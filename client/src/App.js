@@ -8,6 +8,8 @@ import Landing from "./pages/Home/Landing";
 import Nav from "./pages/Common/Nav";
 import Market from "./pages/Home/Market";
 import Footer from "./pages/Common/Footer";
+import Profile from "./pages/Profile";
+
 
 export const Context = createContext();
 
@@ -21,9 +23,12 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Landing />} />
             </Routes>
+            <Routes>
+              <Route exact path="/profile" element={<Profile />} />
+            </Routes>
           </Router>
-          <Market />
-          <Footer />
+          {/* <Market />
+          <Footer /> */}
         </div>
       </GoogleOAuthProvider>
     </Context.Provider>

@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 // import { Context } from "../App";
+
 import axios from "axios";
 
 function LoginPage(props) {
@@ -14,6 +15,7 @@ function LoginPage(props) {
         redirect_uri: "http://localhost:3000",
         onSuccess: (tokenResponse) => {
             console.log(tokenResponse.access_token);
+           
             axios({
                 method: 'post',
                 url: 'http://localhost:3001/createusers/use',
@@ -21,6 +23,8 @@ function LoginPage(props) {
                   tokenResponse
                 }
               });
+              
+
             //navigate("/Home", { state: tokenResponse });
         },
         // onCompleted: (user) => {
