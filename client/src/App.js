@@ -8,6 +8,7 @@ import Landing from "./pages/Home/Landing";
 import Nav from "./pages/Common/Nav";
 import Market from "./pages/Home/Market";
 import Footer from "./pages/Common/Footer";
+import SIdebar from "./pages/Home/SIdebar";
 
 export const Context = createContext();
 
@@ -16,14 +17,20 @@ function App() {
     <Context.Provider value={{}}>
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div className="App">
-          <Nav />
+          
+            
+          
+           
+          
           <Router>
             <Routes>
               <Route exact path="/" element={<Landing />} />
             </Routes>
           </Router>
-          <Market />
-          <Footer />
+          <div className="">
+
+          
+          </div>
         </div>
       </GoogleOAuthProvider>
     </Context.Provider>

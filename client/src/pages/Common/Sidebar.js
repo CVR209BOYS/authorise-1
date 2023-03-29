@@ -1,7 +1,7 @@
 function Sidebar({ open }) {
   return (
     <div>
-      <div className="w-[390%] h-screen bg-[#948d7a] text-white sticky top-0 z-10 ">
+      <div className="w-[390%] h-screen bg-[#948d7a] text-white sticky top-[50px] z-10 ">
         <h1>side barrrrr</h1>
         <h1>side barrrrr</h1>
         <h1>side barrrrr</h1>

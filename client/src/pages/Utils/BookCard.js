@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 
-const BookCard = ({ coverPageUrl, title, authors, genres, stars, open }) => {
+const BookCard = ({ coverPageUrl, title, authors, genres, stars}) => {
   const getFilteredItem = (query, item) => {
     if (!query) {
       return item;
@@ -24,35 +24,14 @@ const BookCard = ({ coverPageUrl, title, authors, genres, stars, open }) => {
 
   // console.log(filtered);
   
-  const [arr,setarr]=useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  useEffect(()=>{
-    
-      if (open[2]==true) {
-        setarr(arr=>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-      }
-      if (open[1]==true) {
-        setarr(arr=>[1, 2, 3, 4]);
-      }
-      if (open[0]==true) {
-        setarr(arr=>[1, 2]);
-      }
-    }, [])
+  
 
 
   
-  console.log(arr);
+ let arr=[1];
   return (
     <>
-      <div>
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search ..."
-          onChange={(e) => {
-            setQuery(e.target.value);
-          }}
-        />
-      </div>
+      
 
       <div>
         {arr.map((val, key) => {

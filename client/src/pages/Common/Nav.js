@@ -36,7 +36,7 @@ function Nav() {
 
   return (
     <div>
-      <div className="bg-[#93908d]  w-[100%] h-[50px] text-white flex justify-between">
+      <div className="bg-[#f9f8f6]  w-[100%] h-[50px] z-10 text-black flex justify-between fixed">
         <div >logo</div>
         <div className="flex justify-between w-[20%]">
           <div>notification</div>
