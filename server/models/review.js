@@ -2,28 +2,31 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
-    description: {
+    bookid: {
         type: String,
         default: ""
     },
-    bid: {
-        type: Number,
-        default: null
+    ratings:{
+        type:Number,
+        default:0,
+        max:5,
+        min:0
+        
     },
-    uid: {
-        type: Number,
-        default: null
+    review:{
+        type:String,
+        default:""
     },
-    status:
-    {
-      type: String,
-      default : null
+    username:{
+        type:String,
+        default:""
     },
-    rating:
-    {
-        type: Number,
-        default: 0
+    picid:{
+        type:String,
+        default:""
     }
+
+    
    
 });
 

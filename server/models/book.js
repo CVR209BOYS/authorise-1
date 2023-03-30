@@ -2,28 +2,32 @@
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
+    coverpageurl: {
+        type: String,
+        default: ""
+    },
     description: {
         type: String,
         default: ""
     },
-    link: {
+    bookurl: {
         type: String,
         default: ""
     },
-    pid: {
+    authorObjid:{
         type: Number,
         default: null
     },
-    wid: {
-        type: Number,
-        default: null
+    title: {
+        type: String,
+        default: ""
     },
-    permission:
+    tags:
     {
-      type: String,
+      type: [String],
       default : null
     },
-    status:
+    publicationid:
     {
       type: String,
       default : null
@@ -31,7 +35,16 @@ const bookSchema = new mongoose.Schema({
     rating:
     {
         type: Number,
-        default: 0
+        default: 0,
+        max:5,
+        min:0
+    },
+
+    nopeople:
+    {
+        type: Number,
+        default: 0,
+        
     }
    
 });
