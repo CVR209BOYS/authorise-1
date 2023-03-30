@@ -1,0 +1,124 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "name": "Fiction"
+      },
+      {
+        "id": 2,
+        "name": "Science Fiction"
+      },
+      {
+        "id": 3,
+        "name": "Mystery"
+      },
+      {
+        "id": 4,
+        "name": "Thriller"
+      },
+      {
+        "id": 5,
+        "name": "Romance"
+      },
+      {
+        "id": 6,
+        "name": "Historical Fiction"
+      },
+      {
+        "id": 7,
+        "name": "Fantasy"
+      },
+      {
+        "id": 8,
+        "name": "Children's"
+      },
+      {
+        "id": 9,
+        "name": "Young Adult"
+      },
+      {
+        "id": 10,
+        "name": "Horror"
+      },
+      {
+        "id": 11,
+        "name": "Biography"
+      },
+      {
+        "id": 12,
+        "name": "Autobiography"
+      },
+      {
+        "id": 13,
+        "name": "Memoir"
+      },
+      {
+        "id": 14,
+        "name": "History"
+      },
+      {
+        "id": 15,
+        "name": "Politics"
+      },
+      {
+        "id": 16,
+        "name": "Science"
+      },
+      {
+        "id": 17,
+        "name": "Psychology"
+      },
+      {
+        "id": 18,
+        "name": "Self-Help"
+      },
+      {
+        "id": 19,
+        "name": "Cooking"
+      },
+      {
+        "id": 20,
+        "name": "Travel"
+      },
+      {
+        "id": 21,
+        "name": "Art"
+      },
+      {
+        "id": 22,
+        "name": "Music"
+      },
+      {
+        "id": 23,
+        "name": "Sports"
+      },
+      {
+        "id": 24,
+        "name": "Business"
+      },
+      {
+        "id": 25,
+        "name": "Finance"
+      },
+      {
+        "id": 26,
+        "name": "Marketing"
+      },
+      {
+        "id": 27,
+        "name": "Management"
+      },
+      {
+        "id": 28,
+        "name": "Technology"
+      },
+      {
+        "id": 29,
+        "name": "Reference"
+      },
+      {
+        "id": 30,
+        "name": "Religion"
+      }
+    ]
+  }

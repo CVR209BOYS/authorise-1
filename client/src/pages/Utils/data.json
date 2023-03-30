@@ -1,130 +1,130 @@
 {
-    "resources": [
-      {
-        "title": "Find me on Twitter",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/any",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Welcome to Ark Labs",
-        "link": "https://ark-labs.co.uk",
-        "imageUrl": "https://placeimg.com/300/300/animals",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Some sort of third title",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/architecture",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "A personal site perhaps?",
-        "link": "https://robkendal.co.uk",
-        "imageUrl": "https://placeimg.com/300/300/nature",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number five",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/people",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number six",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/tech",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number seven",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/animals",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number eight",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/people",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number the last",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/tech",
-        "author":"manas",
-        "stars":5
-      },{
-        "title": "Find me on Twitter",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/any",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Welcome to Ark Labs",
-        "link": "https://ark-labs.co.uk",
-        "imageUrl": "https://placeimg.com/300/300/animals",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Some sort of third title",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/architecture",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "A personal site perhaps?",
-        "link": "https://robkendal.co.uk",
-        "imageUrl": "https://placeimg.com/300/300/nature",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number five",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/people",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number six",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/tech",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number seven",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/animals",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number eight",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/people",
-        "author":"manas",
-        "stars":5
-      },
-      {
-        "title": "Super item number the last",
-        "link": "https://twitter.com/kendalmintcode",
-        "imageUrl": "https://placeimg.com/300/300/tech",
-        "author":"manas",
-        "stars":5
-      }
-    ]
-  }
-  
+  "resources": [
+    {
+      "title": "Find me on Twitter",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Welcome to Ark Labs",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Some sort of third title",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "A personal site perhaps?",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number five",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number six",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number seven",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number eight",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number the last",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Find me on Twitter",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Welcome to Ark Labs",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Some sort of third title",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "A personal site perhaps?",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number five",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number six",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number seven",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number eight",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    },
+    {
+      "title": "Super item number the last",
+      "link": "",
+      "imageUrl": "",
+      "author": "manas",
+      "stars": 5
+    }
+  ]
+}
