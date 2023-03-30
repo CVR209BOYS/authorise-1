@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const UserModel = require("./models/user"); //importing the schemas required
+const bookModel = require("./models/book"); //importing the schemas required
 const cors = require("cors");
 const axios = require("axios");
 const userRoutes = require("./routes/user.js");
