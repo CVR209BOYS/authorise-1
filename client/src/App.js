@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Home/Landing";
 import Profile from "./pages/Profile";
 import Nav from "./pages/Common/Nav";
+import PublishBook from "./pages/PublishBook/PublishBook";
+import BecomeAWriter from "./pages/BecomeAWriter/BecomeAWriter";
 
 export const Context = createContext();
 
@@ -19,6 +21,8 @@ function App() {
             <Nav />
             <Routes>
               <Route exact path="/" element={<Landing />} />
+              <Route exact path="/PublishBook" element={<PublishBook />} />
+              <Route exact path="/BecomeAWriter" element={<BecomeAWriter />} />
               <Route exact path="/profile" element={<Profile />} />
             </Routes>
           </Router>
