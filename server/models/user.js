@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     description:{
         type: String,
         default: ""
+    },
+    iswriter:{
+        type:Boolean,
+        default:false
     }
 });
 

@@ -4,21 +4,24 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const UserModel = require("./models/user"); //importing the schemas required
+const bookModel = require("./models/book"); //importing the schemas required
 const cors = require("cors");
-const axios= require("axios");
-const userRoutes= require("./routes/user.js");
-const logoutRoutes= require("./routes/logout.js");
-const session = require('express-session');
+const axios = require("axios");
+const userRoutes = require("./routes/user.js");
+const logoutRoutes = require("./routes/logout.js");
+const bookUplRoute = require("./routes/book");
+const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser")
-const MongoStore = require('connect-mongo')
+const bodyParser = require("body-parser");
+const MongoStore = require("connect-mongo");
 const secret = process.env.SECRET || "thisshouldbebettersecret";
 mongoose.connect(
   "mongodb+srv://CVR209:CVR209@cluster0.6miwwwz.mongodb.net/AUTHORISE?retryWrites=true&w=majority"
 );
 
 const store = new MongoStore({
-  mongoUrl: "mongodb+srv://CVR209:CVR209@cluster0.6miwwwz.mongodb.net/AUTHORISE?retryWrites=true&w=majority",
+  mongoUrl:
+    "mongodb+srv://CVR209:CVR209@cluster0.6miwwwz.mongodb.net/AUTHORISE?retryWrites=true&w=majority",
   secret: secret,
   touchAfter: 24 * 3600,
 });
@@ -26,7 +29,6 @@ store.on("error", function (e) {
   console.log("SESSION STORE ERROR", e);
 });
 // import userRoutes from './routes/users.js';
-
 
 app.use(express.json());
 app.use(cookieParser());
@@ -48,32 +50,29 @@ app.use(session(sessionConfig));
 
 //db connection
 
-
-
-
-
 // API requests
 // use req to take info from client to server
 // use res to take info from  server to client
 
-
-
 // code for saving users using gauth......................................................................................
 
-app.use('/createusers',userRoutes);
+app.use("/createusers", userRoutes);
 
 //.........................................................................................................................
 // code for logout.........................................................................................................
 
-app.use('/logout',logoutRoutes);
-app.get("/user", (req, res)=>{
-  console.log(req.session)
-})
-
-
+app.use("/logout", logoutRoutes);
+app.get("/user", (req, res) => {
+  console.log(req.session);
+});
 
 //.........................................................................................................................
 
+// code for book upload....................................................................................................
+
+app.use("/bookupl", bookUplRoute);
+
+//.........................................................................................................................
 
 //backend port is 3001
 app.listen(3001, () => {
