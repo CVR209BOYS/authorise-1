@@ -1,20 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const UserModel = require("../models/user");
-const axios= require("axios");
+const axios = require("axios");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
-
-const createusers= async(req,res)=>{
-
+const createusers = async (req, res) => {
   const user = req.body;
   let publics = await UserModel.find();
-  let c= false;
+  let c = false;
   let users;
-  let bherror=true;
- 
- 
+  let bherror = true;
+
   const response = await axios
     .get(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.tokenResponse.access_token}`,
@@ -26,48 +23,39 @@ const createusers= async(req,res)=>{
       }
     )
     .then(async (res) => {
-      
-      users= {
+      users = {
         name: res.data.name,
-        email:res.data.email,
-        picture:res.data.picture
-      } 
-      
+        email: res.data.email,
+        picture: res.data.picture,
+      };
 
       console.log(users);
       req.session.user = users;
       req.session.save();
-      console.log("session", req.session)
+      console.log("session", req.session);
       publics.forEach(function (item, index) {
-        if(item.email===res.data.email){
-             c=true;
-      }
-    });
+        if (item.email === res.data.email) {
+          c = true;
+        }
+      });
     })
     .catch((err) => {
-      bherror=false;
+      bherror = false;
       console.log(err);
     });
 
-    if(c){
-        console.log("user exist, welcome");
+  if (c) {
+    console.log("user exist, welcome");
+  } else {
+    if (bherror) {
+      const newUser = new UserModel(users);
+      await newUser.save();
+      console.log("user added");
+    } else {
+      console.log("error occured, user cant be added");
     }
-    else {
-      if(bherror){
-        const newUser = new UserModel(users);
-        await newUser.save();
-         console.log("user added");
-        
-      }
-      else{
-        console.log("error occured, user cant be added");
-      }
-      
-    }
-    res.send(users)
-    
-}
-
-
+  }
+  res.send(users);
+};
 
 module.exports = createusers;
