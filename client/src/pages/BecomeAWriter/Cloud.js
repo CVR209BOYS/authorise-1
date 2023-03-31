@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
-function CloudinaryUploadWidget() {
+function CloudinaryUploadWidget({ value, setFormData, formData }) {
+  console.log(formData);
   useEffect(() => {
     const cloudName = "dkwzswln4"; // replace with your own cloud name
     const uploadPreset = "l4njvysj"; // replace with your own upload
@@ -29,23 +30,28 @@ function CloudinaryUploadWidget() {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
+          const url = result.info.url;
+          if (value === 1) {
+            console.log(formData);
+            setFormData({ ...formData, coverpageurl: url });
+          } else {
+            setFormData({ ...formData, bookurl: url });
+          }
           console.log("Done! Here is the image info: ", result.info);
           //   document
           //     .getElementById("uploadedimage")
           //     .setAttribute("src", result.info.secure_url);
         } else {
-          console.log("hello");
+          // console.log("hello");
         }
       }
     );
-    document
-      .getElementById("upload_widget")
-      .addEventListener("click", function () {
-        myWidget.open();
-      });
+    document.getElementById(value).addEventListener("click", function () {
+      myWidget.open();
+    });
   }, []);
   return (
-    <button id="upload_widget" className="cloudinary-button">
+    <button id={value} className="cloudinary-button">
       Upload
     </button>
   );
