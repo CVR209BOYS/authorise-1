@@ -33,7 +33,7 @@ function BecomeAWriter(props) {
   }, [formData]);
 
   return (
-    <div className="pt-[70px]">
+    <div className="pt-[100px]  w-[90%] mx-auto ">
       {/* <label htmlFor="yourDescription">Your Description</label>
       <textarea
         rows="5"
@@ -46,64 +46,100 @@ function BecomeAWriter(props) {
       />
       <br /> */}
       {/* blah */}
-      <label htmlFor="coverpage">Cover Page</label>
-      <CloudinaryUploadWidget
-        value={1}
-        setFormData={setFormData}
-        formData={formData}
-      ></CloudinaryUploadWidget>
-      <br />
-      <label htmlFor="bookDescription">Book Description</label>
-      <textarea
-        rows="5"
-        cols="50"
-        id="bookDescription"
-        name="bookDescription"
-        maxLength="400"
-        className="border-black border-2"
-        onChange={(e) => {
-          setFormData({ ...formData, description: e.target.value });
-        }}
-      />
-      <br />
-      <label htmlFor="title" />
-      <input
-        type="text"
-        name="title"
-        onChange={(e) => {
-          setFormData({ ...formData, title: e.target.value });
-        }}
-      />
-      <br />
-      <br />
-      <label htmlFor="bookTags">Categories</label>
-      <div className="border-2 w-fit">
-        {bookTags.map((item, index) => {
-          // console.log(JSON.stringify(item));
-          return (
-            <div key={index}>
-              <input
-                name={item}
-                type="checkbox"
-                value={item}
-                onClick={async () => {
-                  await setSelectedTags([...selectedTags, item]);
-                  setFormData({ ...formData, tags: selectedTags });
-                }}
-              />
-              <label htmlFor={item}>{item}</label>
-            </div>
-          );
-        })}
-      </div>
-      book upload
-      <CloudinaryUploadWidget
-        value={2}
-        setFormData={setFormData}
-        formData={formData}
-      ></CloudinaryUploadWidget>
-      <div className="border-2" onClick={submitHandler}>
-        Submit
+      <div className="rounded-xl w-fit mx-auto text-center p-5 bg-[#ededed]">
+        
+        
+        
+        
+        <div className="flex flex-col">
+
+        <label htmlFor="TitleTags" className="font-bold mr-5">
+          Title
+        </label>
+        <label htmlFor="title" />
+        <input
+          type="text"
+          className="border-black border-2"
+          name="title"
+          onChange={(e) => {
+            setFormData({ ...formData, title: e.target.value });
+          }}
+        />
+        </div>
+        <br/>
+        <div className="flex flex-col">
+
+        <label htmlFor="bookDescription" className="font-bold ">
+          Book Description
+        </label>
+        <textarea
+          rows="5"
+          cols="50"
+          id="bookDescription"
+          name="bookDescription"
+          maxLength="400"
+          className="border-black border-2"
+          onChange={(e) => {
+            setFormData({ ...formData, description: e.target.value });
+          }}
+        />
+        </div>
+        <br />
+        
+        <label htmlFor="bookTags" className="font-bold ">
+          Categories
+        </label>
+        <div className="w-fit mx-auto">
+          {bookTags.map((item, index) => {
+            // console.log(JSON.stringify(item));
+            return (
+              <div key={index} className="text-left">
+                <input
+                  name={item}
+                  type="checkbox"
+                  value={item}
+                  onClick={async () => {
+                    await setSelectedTags([...selectedTags, item]);
+                    setFormData({ ...formData, tags: selectedTags });
+                  }}
+                />
+                <label htmlFor={item}>{item}</label>
+              </div>
+            );
+          })}
+        </div>
+        <br/>
+        
+        <div className=" flex justify-between">
+          <div>
+          <label htmlFor="coverpage" className="font-bold ">
+            Cover Page{" "}
+          </label>
+          <CloudinaryUploadWidget
+            value={1}
+            setFormData={setFormData}
+            formData={formData}
+          ></CloudinaryUploadWidget>
+          </div>
+          <div className="font-bold ">
+          <label htmlFor="coverpage" className="font-bold ">
+            Book Upload{" "}
+          </label>   
+            <CloudinaryUploadWidget
+              value={2}
+              setFormData={setFormData}
+              formData={formData}
+              
+            ></CloudinaryUploadWidget>
+          </div>
+        </div>
+        <br/>
+        <div
+          className="font-bold sm:text-[20px]cursor-pointer w-fit mx-auto p-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+          onClick={submitHandler}
+        >
+          Submit
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar from "./Sidebar";
+import SIdebar from "./SIdebar";
 import Footer from "../Common/Footer";
 import WorkSpace from "./WorkSpace";
 
@@ -7,7 +7,7 @@ function Landing() {
   const [open, setOpen] = useState(true);
   return (
     <div>
-      <Sidebar open={open} setOpen={setOpen} />
+      <SIdebar open={open} setOpen={setOpen} />
       <WorkSpace open={open} />
       <Footer />
     </div>

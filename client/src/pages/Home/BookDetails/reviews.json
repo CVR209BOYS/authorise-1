@@ -1,0 +1,25 @@
+{
+    "reviews": [
+        {
+            "reviewer_name": "John Doe",
+            "total_reads": 100,
+            "rating": 4,
+            "review_date": "24 December 2022",
+            "review_text": "I really enjoyed reading this book. The characters were well developed and the plot was engaging.I didn't like this book at all. The characters were unlikable and the story was boring.This is a classic novel that everyone should read. The writing is beautiful and the story is timeless."
+        },
+        {
+            "reviewer_name": "Jane Smith",
+            "total_reads": 10,
+            "rating": 5,
+            "review_date": "24 December 2022",
+            "review_text": "This is a classic novel that everyone should read. The writing is beautiful and the story is timeless.I really enjoyed reading this book. The characters were well developed and the plot was engaging.I didn't like this book at all. The characters were unlikable and the story was boring."
+        },
+        {
+            "reviewer_name": "Bob Johnson",
+            "total_reads": 6,
+            "rating": 2,
+            "review_date": "24 December 2022",
+            "review_text": "I didn't like this book at all. The characters were unlikable and the story was boring.I really enjoyed reading this book. The characters were well developed and the plot was engaging.This is a classic novel that everyone should read. The writing is beautiful and the story is timeless."
+        }
+    ]
+}

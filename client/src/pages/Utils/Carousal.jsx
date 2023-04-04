@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import NewCard from "../Utils/NewCard";
 // Data
 import data from "./data.json";
+import { Link } from "react-router-dom";
 
 const Carousel = () => {
   const maxScrollWidth = useRef(0);
@@ -110,7 +111,7 @@ const Carousel = () => {
                 key={index}
                 className="carousel-item text-center relative w-[300px] h-fit mx-3 rounded-md snap-start z-50"
               >
-                {/* <a
+                <a
                   href={resource.link}
                   className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 overflow-hidden rounded-md"
                   style={{ backgroundImage: `url(${resource.imageUrl || ""})` }}
@@ -128,8 +129,18 @@ const Carousel = () => {
                   <h3 className="text-white py-6 px-3 mx-auto text-xl">
                     {resource.title}
                   </h3>
-                </a> */}
-                <NewCard data={resource} />
+                </a>
+
+                <Link
+                  to={{
+                    pathname: "/bookdetails"
+                  }}
+                  state={{  }}
+                >
+                  <NewCard data={{title:resource.title,link:resource.link,img:resource.imageUrl,author:resource.author,stars:resource.stars}} />
+                </Link>
+
+                
               </div>
             );
           })}

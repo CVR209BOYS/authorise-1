@@ -1,11 +1,11 @@
 import React from "react";
 
-const BookCard = ({ data}) => {
+const BookCard = ({data}) => {
   return (
     <div className="w-[300px] h-[450px] rounded-md mx-1 my-1 px-3 py-2 grid grid-flow-row gap-[2px] grid-rows-12 shadow-xl bg-white hover:bg-slate-50 hover:shadow-md border-gray-300 hover:border-gray-400 border-[1px] duration-200">
       <div className="row-span-11 h-[260px]">
         <img
-          src={data.link}
+          // src={data.link}
           alt="No CoverPage Available"
           style={{ objectFit: "contain" }}
         />

@@ -10,8 +10,8 @@ export default function Book() {
   const authors = ["Mark Manson"];
   const genres = ["Self Growth", "Self Development"];
   return (
-    <div className="border-2 border-red-500 overflow-hidden">
-      best seller
+    <div className=" overflow-hidden">
+      <div className="text-[30px] font-mono font-semibold mb-5 ml-10 text-center sm:text-left">Best Seller</div>
       <Carousel />
     </div>
   );
