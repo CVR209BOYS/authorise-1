@@ -1,6 +1,6 @@
 const express = require("express");
-const uploadBooks = require("../controllers/book.js");
-const getBooks = require("../controllers/book.js");
+const {uploadBooks,getBooks} = require("../controllers/book.js");
+// const getBooks = require("../controllers/book.js");
 
 const router = express.Router();
 
