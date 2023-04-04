@@ -8,7 +8,6 @@ import { ReactSession } from "react-client-session";
 import { NavLink } from "react-router-dom";
 ReactSession.setStoreType("localStorage");
 
-
 function Nav() {
   const [user, setUser] = useState(undefined);
   const [user2, setUser2] = useState(undefined);
@@ -59,8 +58,7 @@ function Nav() {
     setUser2(undefined);
   };
 
-  const history=useNavigate();
-  console.log(history)
+  const history = useNavigate();
 
   return (
     <div>
@@ -103,7 +101,7 @@ function Nav() {
               <button onClick={logout}>Logout</button>
             </div>
           )}
-          <div className="bg-[#00000054] text-white font-bold rounded-md h-fit absolute mt-[80px] mr-[10px] p-1 " >
+          <div className="bg-[#00000054] text-white font-bold rounded-md h-fit absolute mt-[80px] mr-[10px] p-1 ">
             <button onClick={() => history(-1)}> BACK</button>
           </div>
         </div>

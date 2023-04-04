@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
-function CloudinaryUploadWidget({ value, setFormData, formData }) {
-  console.log(formData);
+function CloudinaryUploadWidget({ value, setUrl, url }) {
   useEffect(() => {
     const cloudName = "dkwzswln4"; // replace with your own cloud name
     const uploadPreset = "l4njvysj"; // replace with your own upload
@@ -30,12 +29,13 @@ function CloudinaryUploadWidget({ value, setFormData, formData }) {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          const url = result.info.url;
+          const urlRes = result.info.url;
           if (value === 1) {
-            console.log(formData);
-            setFormData({ ...formData, coverpageurl: url });
+            console.log(urlRes);
+            setUrl(urlRes);
           } else {
-            setFormData({ ...formData, bookurl: url });
+            console.log(urlRes);
+            setUrl(urlRes);
           }
           console.log("Done! Here is the image info: ", result.info);
           //   document
