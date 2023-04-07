@@ -1,6 +1,10 @@
 import { useLocation } from "react-router-dom";
+import Filters from "./Filters";
+import { useState } from "react";
 
 function MarketWorkSpace({ open }) {
+  const [languages, setLanguages] = useState([]);
+  const [categories, setCategories] = useState([]);
   const { state } = useLocation();
   console.log(state);
   return (
@@ -9,7 +13,7 @@ function MarketWorkSpace({ open }) {
         open ? "ml-[240px]" : "ml-[64px]"
       } pt-[50px] sm:pt-[70px]`}
     >
-      hello
+      <Filters></Filters>
     </div>
   );
 }
