@@ -54,18 +54,28 @@ export default function SigninModal({
   const onchange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-  console.log(credentials);
-
+  useEffect(() => {
+    console.log(credentials);
+  }, [credentials]);
   const eventHandler = async () => {
-    const response = axios({
-      method: "GET",
-      url:"http://localhost:3001/muserlogin/signin",
-      
-      body:{
-        "email": `${credentials.email}`,
-        "password": `${credentials.password}`,
+    const response = await axios({
+      method: "post",
+      url: "http://localhost:3001/muserlogin/signin",
+      data: {
+        email: "cse210001022@iiti.ac.in",
+        password: "12345",
       },
-    });
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(credentials);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // const history = useNavigate();
@@ -104,7 +114,7 @@ export default function SigninModal({
           </div>
           <div className="flex flex-wrap">
             <div className="w-[200px] h-full p-1 m-1 mx-auto rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
-              <button onClick={eventHandler}>login</button>
+              <div onClick={() => eventHandler()}>login</div>
             </div>
 
             <div className="w-[200px] mx-auto p-1  m-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
@@ -119,16 +129,23 @@ export default function SigninModal({
             setOpenSin(false);
           }}
         >
-          <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
-           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
-            <button onClick={()=>{
-              setOpenSin(false);
-              setOpenSup(true);
-
-            }}>Create an account</button>
+          <div
+            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
+           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+          >
+            <button
+              onClick={() => {
+                setOpenSin(false);
+                setOpenSup(true);
+              }}
+            >
+              Create an account
+            </button>
           </div>
-          <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
-           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+          <div
+            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
+           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+          >
             <button>Close</button>
           </div>
         </div>
