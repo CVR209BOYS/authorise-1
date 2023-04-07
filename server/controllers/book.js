@@ -6,9 +6,9 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 const uploadBooks = async (req, res) => {
-  console.log(req.body);
-  const newBook = new bookModel(req.body);
-  await newBook.save();
+  console.log("ohmymy");
+  // const newBook = new bookModel(req.body);
+  // await newBook.save();
   console.log("book added");
 };
 
@@ -16,5 +16,6 @@ const getBooks = async (req, res) => {
   let books = await bookModel.find();
   res.send(books);
 };
-module.exports = uploadBooks;
-module.exports = getBooks;
+
+(module.exports = uploadBooks), getBooks;
+// module.exports = getBooks;

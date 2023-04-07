@@ -8,6 +8,8 @@ const bookModel = require("./models/book"); //importing the schemas required
 const cors = require("cors");
 const axios = require("axios");
 const userRoutes = require("./routes/user.js");
+const reviewRoutes = require("./routes/review.js");
+const pubRoutes = require("./routes/publication.js");
 const logoutRoutes = require("./routes/logout.js");
 const bookUplRoute = require("./routes/book");
 const session = require("express-session");
@@ -71,6 +73,26 @@ app.get("/user", (req, res) => {
 // code for book upload....................................................................................................
 
 app.use("/bookupl", bookUplRoute);
+
+//.........................................................................................................................
+// code for getting users using gauth......................................................................................
+
+app.use("/getusers", userRoutes);
+
+//.........................................................................................................................
+// code for saving review using gauth......................................................................................
+
+app.use("/createReview", reviewRoutes);
+
+//.........................................................................................................................
+// code for getting review using gauth......................................................................................
+
+app.use("/getReview", reviewRoutes);
+
+//.........................................................................................................................
+// code for publisher using gauth......................................................................................
+
+app.use("/publisher", pubRoutes);
 
 //.........................................................................................................................
 
