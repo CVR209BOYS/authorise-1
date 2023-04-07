@@ -8,6 +8,7 @@ const bookModel = require("./models/book"); //importing the schemas required
 const cors = require("cors");
 const axios = require("axios");
 const userRoutes = require("./routes/user.js");
+const muserRoutes = require("./routes/muser.js");
 const logoutRoutes = require("./routes/logout.js");
 const bookUplRoute = require("./routes/book.js");
 const session = require("express-session");
@@ -59,6 +60,15 @@ app.use(session(sessionConfig));
 app.use("/createusers", userRoutes);
 
 //.........................................................................................................................
+
+// code for saving users using gauth......................................................................................
+
+app.use("/createmusers", muserRoutes);
+app.use("/muserlogin", muserRoutes);
+
+//.........................................................................................................................
+
+
 // code for logout.........................................................................................................
 
 app.use("/logout", logoutRoutes);

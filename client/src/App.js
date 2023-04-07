@@ -28,8 +28,11 @@ function App() {
     return (
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
+          
+        
           <Router>
-            <Nav />
+            <Nav/>
+            
             <Routes>
               <Route exact path="/" element={<Landing />} />
               <Route exact path="/PublishBook" element={<PublishBook />} />
