@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import NewCard from "../Utils/NewCard";
-// Data
-import data from "./data.json";
+import { Link } from "react-router-dom";
 
-const Carousel = () => {
+const Carousel = ({ allBooks }) => {
+  console.log(allBooks)
+  useEffect(() => {
+    console.log("lauda", allBooks);
+  }, []);
+
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -51,7 +55,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="w-[90%] h-[500px] carousel mx-auto my-auto">
+    <div className="w-[90%] h-[510px] carousel mx-auto my-auto">
       <div className="relative overflow-hidden">
         <motion.div
           initial={{ y: 225 }}
@@ -104,32 +108,20 @@ const Carousel = () => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 mx-auto w-[100%]"
         >
-          {data.resources.map((resource, index) => {
+          {allBooks && allBooks.map((book, index) => {
             return (
               <div
                 key={index}
-                className="carousel-item text-center relative w-[300px] h-fit mx-3 rounded-md snap-start z-50"
+                className="carousel-item text-center relative w-[300px] h-fit mx-3 my-4 rounded-md snap-start z-50"
               >
-                {/* <a
-                  href={resource.link}
-                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 overflow-hidden rounded-md"
-                  style={{ backgroundImage: `url(${resource.imageUrl || ""})` }}
+                <Link
+                  to={{
+                    pathname: "/bookdetails",
+                  }}
+                  state={{ book }}
                 >
-                  <img
-                    src={resource.imageUrl || ""}
-                    alt={resource.title}
-                    className="w-full aspect-square hidden"
-                  />
-                </a>
-                <a
-                  href={resource.link}
-                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-amber-600/50 z-10 rounded-md"
-                >
-                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
-                    {resource.title}
-                  </h3>
-                </a> */}
-                <NewCard data={resource} />
+                  <NewCard data={book} />
+                </Link>
               </div>
             );
           })}

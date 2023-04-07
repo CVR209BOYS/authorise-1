@@ -10,13 +10,13 @@ export default function WorkSpace({ open }) {
     <div
       className={`${open ? "w-[calc(100%-240px)]" : "w-[calc(100%-64px)]"} ${
         open ? "ml-[240px]" : "ml-[64px]"
-      } pt-[50px]`}
+      } pt-[50px] sm:pt-[70px]`}
     >
       <Categories />
       <Book />
-      <ContinueRead />
-      <Suggestions />
-      <Authors />
+      {/* <ContinueRead /> */}
+      {/* <Suggestions /> */}
+      {/* <Authors /> */}
     </div>
   );
 }

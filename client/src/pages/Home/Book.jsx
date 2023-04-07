@@ -1,18 +1,23 @@
-import React from "react";
-import BookCard from "../Utils/BookCard";
+import { useEffect, useState, useContext } from "react";
 import Carousel from "../Utils/Carousal";
+import axios from "axios";
+import { MenuContext } from "../../MenuContext";
 
-export default function Book() {
-  const coverPageUrl =
-    "https://firebasestorage.googleapis.com/v0/b/authorise-f26ef.appspot.com/o/images%2Fservice3.png?alt=media&token=49b6377a-4580-40c9-98fb-32eefb8ad174";
-  const title = "the subtle art of not giving a fuck!";
-  const stars = "4.7";
-  const authors = ["Mark Manson"];
-  const genres = ["Self Growth", "Self Development"];
+const Book = () => {
+  const { allBooks } = useContext(MenuContext);
+  console.log(allBooks);
+  useEffect(() => {
+    console.log(".");
+  }, [allBooks]);
+
   return (
-    <div className="border-2 border-red-500 overflow-hidden">
-      best seller
-      <Carousel />
+    <div className="overflow-hidden">
+      <div className="text-[30px] font-mono font-semibold mb-5 ml-10 text-center sm:text-left">
+        All Books
+      </div>
+      <Carousel allBooks={allBooks}  />
     </div>
   );
-}
+};
+
+export default Book;

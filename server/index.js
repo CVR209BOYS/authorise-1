@@ -10,8 +10,9 @@ const axios = require("axios");
 const userRoutes = require("./routes/user.js");
 const reviewRoutes = require("./routes/review.js");
 const pubRoutes = require("./routes/publication.js");
+const muserRoutes = require("./routes/muser.js");
 const logoutRoutes = require("./routes/logout.js");
-const bookUplRoute = require("./routes/book");
+const bookUplRoute = require("./routes/book.js");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -61,6 +62,14 @@ app.use(session(sessionConfig));
 app.use("/createusers", userRoutes);
 
 //.........................................................................................................................
+
+// code for saving users using gauth......................................................................................
+
+app.use("/createmusers", muserRoutes);
+app.use("/muserlogin", muserRoutes);
+
+//.........................................................................................................................
+
 // code for logout.........................................................................................................
 
 app.use("/logout", logoutRoutes);

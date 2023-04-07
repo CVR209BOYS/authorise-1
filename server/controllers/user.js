@@ -59,6 +59,7 @@ const createusers = async (req, res) => {
   res.send(users);
 };
 
+<<<<<<< HEAD
 const getusers = async (req, res) => {
   const mail = req.body.email;
   const Userdata = await UserModel.find({
@@ -86,3 +87,6 @@ const getusers = async (req, res) => {
 };
 
 module.exports = { createusers, getusers };
+=======
+module.exports = {createusers};
+>>>>>>> bf9ed54dc3b1de6cef3d5f687b56ab9c3f8f6942

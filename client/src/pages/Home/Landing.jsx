@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Sidebar from "./Sidebar";
 import Footer from "../Common/Footer";
 import WorkSpace from "./WorkSpace";
+import { MenuContext } from "../../MenuContext";
 
 function Landing() {
-  const [open, setOpen] = useState(true);
+  const { openSidebar, setOpenSidebar } = useContext(MenuContext);
+
   return (
     <div>
-      <Sidebar open={open} setOpen={setOpen} />
-      <WorkSpace open={open} />
+      <Sidebar open={openSidebar} setOpen={setOpenSidebar} />
+      <WorkSpace open={openSidebar} />
       <Footer />
     </div>
   );
