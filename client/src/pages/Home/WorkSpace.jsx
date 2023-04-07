@@ -12,11 +12,11 @@ export default function WorkSpace({ open }) {
         open ? "ml-[240px]" : "ml-[64px]"
       } pt-[50px] sm:pt-[70px]`}
     >
-      <Categories />
+      {/* <Categories /> */}
       <Book />
-      <ContinueRead />
-      <Suggestions />
-      <Authors />
+      {/* <ContinueRead /> */}
+      {/* <Suggestions /> */}
+      {/* <Authors /> */}
     </div>
   );
 }

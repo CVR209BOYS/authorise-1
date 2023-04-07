@@ -1,9 +1,8 @@
 import { useLocation, useParams } from "react-router-dom";
 
-import SIdebar from "./SIdebar";
+import Sidebar from "./Sidebar";
 import { useState } from "react";
 import CatBookWorkSpace from "./CatBookWorkSpace";
-
 
 export default function CatBook() {
   const { state } = useLocation();
@@ -15,7 +14,7 @@ export default function CatBook() {
 
   return (
     <div>
-      <SIdebar open={open} setOpen={setOpen} />
+      <Sidebar open={open} setOpen={setOpen} />
       <CatBookWorkSpace open={open} />
     </div>
   );

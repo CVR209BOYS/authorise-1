@@ -1,17 +1,11 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import BookReviews from "../BookDetails/BookReviews";
+import { useLocation } from "react-router-dom";
 
-function BookDetails({
-  coverPageUrl,
-  title,
-  authors,
-  genres,
-  stars,
-  description,
-  authorDescription,
-  bookId,
-}) {
+function BookDetails({ state }) {
+  const location=useLocation();
+  const bookData=location.state;
   const ref = useRef(null);
   //   const [widthVar, setWidthVar] = useState();
   //   useEffect(() => {
@@ -30,7 +24,7 @@ function BookDetails({
           <div className="rounded-md mx-auto mb-5 shadow-md px-2 py-2 bg-white max-w-xs lg:max-w-md">
             <img
               className="rounded-md z-50"
-              src={coverPageUrl}
+              src={bookData.coverPageUrl}
               alt="not available"
               style={{ objectFit: "contain " }}
             />
@@ -72,7 +66,7 @@ function BookDetails({
           className="col-span-12 md:col-span-7 md:mt-8 md:mr-20 mx-5"
         >
           <div className="flex justify-start mb-4">
-            {genres.map((item, index) => (
+            {bookData.tags.map((item, index) => (
               <div
                 key={index}
                 className="py-1 px-2 mx-1 text-amber-800 text-[16px] bg-amber-200  rounded-md font-semibold shadow-md"
@@ -82,10 +76,10 @@ function BookDetails({
             ))}
           </div>
           <div className="font-serif text-left text-[24px] md:text-[40px] font-bold mb-2">
-            {title.toUpperCase()}
+            {bookData.title.toUpperCase()}
           </div>
           <div className="font-mono text-[20px] text-left mb-2">
-            {description}
+            {bookData.description}
           </div>
           <hr className="my-8"></hr>
           <div className="text-left">
@@ -95,11 +89,11 @@ function BookDetails({
             <div className="ml-3 text-[22px] font-mono leading-loose">
               <div>
                 <span className="text-gray-500 mr-1">Author:</span>
-                {authors}
+                me
               </div>
               <div>
                 <span className="text-gray-500 mr-1">Rating:</span>
-                {stars} / 5
+                {bookData.rating} / 5
               </div>
               <div>
                 <span className="text-gray-500 mr-1">Publisher:</span>
@@ -113,7 +107,7 @@ function BookDetails({
         </motion.div>
       </div>
       <hr className="w-[98%] mx-auto mb-8 border-gray-400" />
-      <BookReviews bookId={bookId} />
+      {/* <BookReviews bookId={bookId} /> */}
       <hr className="w-[98%] mx-auto mb-8 border-gray-400" />
       <div>
         {/* <WriterCard
