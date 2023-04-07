@@ -74,6 +74,7 @@ const muserlogin = async (req, res) => {
 
   if (c) {
     res.send(publics[0]);
+    console.log(publics[0]);
     
   } else {
     if (bherror) {

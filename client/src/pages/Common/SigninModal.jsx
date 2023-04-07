@@ -55,16 +55,16 @@ export default function SigninModal({
     setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   console.log(credentials);
+
   const eventHandler = async () => {
-    const response = await fetch("http://localhost:3001/createmusers", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
+    const response = axios({
+      method: "GET",
+      url:"http://localhost:3001/muserlogin/signin",
+      
+      body:{
+        "email": `${credentials.email}`,
+        "password": `${credentials.password}`,
       },
-      body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
-      }),
     });
   };
 
@@ -92,7 +92,7 @@ export default function SigninModal({
               <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2">
                 <label for="password">Password</label>
                 <input
-                  type="number"
+                  type="string"
                   id="password"
                   name="password"
                   onChange={onchange}
@@ -119,6 +119,14 @@ export default function SigninModal({
             setOpenSin(false);
           }}
         >
+          <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
+           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+            <button onClick={()=>{
+              setOpenSin(false);
+              setOpenSup(true);
+
+            }}>Create an account</button>
+          </div>
           <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
            text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
             <button>Close</button>
