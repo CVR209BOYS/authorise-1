@@ -68,14 +68,7 @@ export default function SigninModal({
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
-        console.log(credentials);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   };
 
   // const history = useNavigate();

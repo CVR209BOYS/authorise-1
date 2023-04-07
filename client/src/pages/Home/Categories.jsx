@@ -18,11 +18,10 @@ export default function Categories() {
             key={index}
             to={{
               pathname: "/market",
-              hash: `${val.name}`,
             }}
-            state={{ categories: `${val.name}`, id: `${val.id}` }}
+            state={val}
           >
-            <CatButton value={{ name: val.name, selected: state }} />
+            <CatButton value={{ name: val.value, selected: state }} />
           </Link>
         ))}
       </div>

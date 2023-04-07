@@ -19,37 +19,42 @@ export default function Sidebar({ setOpen, open }) {
             x
           </div>
         </div>
-        <div className={`text-[24px] font-semibold mx-2 ${!open && "hidden"}`}>
+        {/* <div className={`text-[24px] font-semibold mx-2 ${!open && "hidden"}`}>
           Table Of Contents
-        </div>
+        </div> */}
         <div className="mt-1 flex flex-col relative ">
-          <div className="flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
-            <div className="px-2 py-2">ic</div>
-            <div
-              className={`whitespace-pre duration-500 ${!open && "opacity-0"}`}
-            >
-              -------fjsafjasa-----
+          <a href="/BecomeAWriter ">
+            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
+              <div className="px-2 py-2">ic</div>
+              <div
+                className={`whitespace-pre duration-100 ${
+                  !open && "opacity-0"
+                }`}
+              >
+                Become A Writer
+              </div>
             </div>
-          </div>
+          </a>
+          <a href="/PublishBook">
+            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
+              <div className="px-2 py-2">ic</div>
+              <div
+                className={`whitespace-pre duration-100 ${
+                  !open && "opacity-0"
+                }`}
+              >
+                Publish Book
+              </div>
+            </div>
+          </a>
         </div>
-        <div className="mt-1 flex flex-col relative ">
-          <div className="flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
-            <div className="px-2 py-2">ic</div>
-            <div
-              className={`whitespace-pre duration-500 ${!open && "opacity-0 "}`}
-            >
-              -------fjsafjasa-----
-            </div>
-          </div>
-        </div>
-        <div className="mt-1 flex flex-col relative ">
-          <div className="flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
-            <div className="px-2 py-2">ic</div>
-            <div
-              className={`whitespace-pre duration-500 ${!open && "opacity-0"}`}
-            >
-              -------fjsafjasa-----
-            </div>
+        <div className="flex flex-col-reverse h-[400px]">
+          <div
+            className={`bg-[#ffffff] hover:bg-[#ffe3bd] p-1 text-black font-bold text-center rounded-lg whitespace-pre duration-100 ${
+              !open && "opacity-0"
+            }`}
+          >
+            <a href="/RegisterYourPublication">Register your Publication</a>
           </div>
         </div>
       </div>
