@@ -54,24 +54,21 @@ export default function SigninModal({
   const onchange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-  console.log(credentials);
-
+  useEffect(() => {
+    console.log(credentials);
+  }, [credentials]);
   const eventHandler = async () => {
-    console.log("working");
-    const response = axios({
-      method: "GET",
+    const response = await axios({
+      method: "post",
       url: "http://localhost:3001/muserlogin/signin",
-      body: {
-        email: `${credentials.email}`,
-        password: `${credentials.password}`,
+      data: {
+        email:credentials.email ,
+        password: credentials.password,
       },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   // const history = useNavigate();
@@ -110,7 +107,7 @@ export default function SigninModal({
           </div>
           <div className="flex flex-wrap">
             <div className="w-[200px] h-full p-1 m-1 mx-auto rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
-              <button onClick={eventHandler}>login</button>
+              <div onClick={() => eventHandler()}>login</div>
             </div>
 
             <div className="w-[200px] mx-auto p-1  m-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">

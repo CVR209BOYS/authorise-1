@@ -4,6 +4,7 @@ const UserModel = require("../models/user");
 const axios = require("axios");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const { where } = require("../models/Publication");
 
 const createusers = async (req, res) => {
   const user = req.body;
@@ -50,7 +51,7 @@ const createusers = async (req, res) => {
     if (bherror) {
       const newUser = new UserModel(users);
       await newUser.save();
-      console.log("user added");
+      console.log("publication added");
     } else {
       console.log("error occured, user cant be added");
     }
@@ -58,4 +59,34 @@ const createusers = async (req, res) => {
   res.send(users);
 };
 
+<<<<<<< HEAD
+const getusers = async (req, res) => {
+  const mail = req.body.email;
+  const Userdata = await UserModel.find({
+    email: mail,
+  })
+    .then((data) => {
+      if (data.length == 0) {
+        console.log("invalid email");
+        res.send({
+          status: 403,
+          message: "invalid email",
+        });
+      } else {
+        console.log(data);
+        res.send({
+          status: 200,
+          data: data,
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+};
+
+module.exports = { createusers, getusers };
+=======
 module.exports = {createusers};
+>>>>>>> bf9ed54dc3b1de6cef3d5f687b56ab9c3f8f6942
