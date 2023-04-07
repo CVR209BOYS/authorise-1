@@ -53,20 +53,7 @@ function Nav() {
           </div>
 
           {/* nav links */}
-          <div className="flex border-b-[1px]  border-amber-300">
-            <a
-              className="mt-4 mx-3 text-center text-amber-400 hover:text-amber-600 font-semibold text-[10px]  md:text-2xl lg:text-2xl hover:border-b-2 hover:border-b-amber-600 duration-100"
-              href="/BecomeAWriter "
-            >
-              Become A Writer
-            </a>
-            <a
-              className="mt-4 mx-3 text-center text-amber-400 hover:text-amber-600 font-semibold text-[10px]  md:text-2xl lg:text-2xl hover:border-b-2 hover:border-b-amber-600 duration-100"
-              href="/PublishBook"
-            >
-              Publish Book
-            </a>
-          </div>
+          
           {/* profile corner */}
           <div className="flex justify-end ">
             <div>
