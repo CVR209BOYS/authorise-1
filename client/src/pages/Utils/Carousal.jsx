@@ -4,10 +4,7 @@ import NewCard from "../Utils/NewCard";
 import { Link } from "react-router-dom";
 
 const Carousel = ({ allBooks }) => {
-  console.log(allBooks)
-  useEffect(() => {
-    console.log("lauda", allBooks);
-  }, []);
+  // console.log(allBooks);
 
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -108,23 +105,24 @@ const Carousel = ({ allBooks }) => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 mx-auto w-[100%]"
         >
-          {allBooks && allBooks.map((book, index) => {
-            return (
-              <div
-                key={index}
-                className="carousel-item text-center relative w-[300px] h-fit mx-3 my-4 rounded-md snap-start z-50"
-              >
-                <Link
-                  to={{
-                    pathname: "/bookdetails",
-                  }}
-                  state={{ book }}
+          {allBooks &&
+            allBooks.map((book, index) => {
+              return (
+                <div
+                  key={index}
+                  className="carousel-item text-center relative w-[300px] h-fit mx-3 my-4 rounded-md snap-start z-50"
                 >
-                  <NewCard data={book} />
-                </Link>
-              </div>
-            );
-          })}
+                  <Link
+                    to={{
+                      pathname: "/bookdetails",
+                    }}
+                    state={{ book }}
+                  >
+                    <NewCard data={book} />
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

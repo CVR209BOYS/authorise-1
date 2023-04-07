@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bookModel = require("../models/book");
-const axios = require("axios");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
@@ -17,10 +16,5 @@ const getBooks = async (req, res) => {
   res.send(books);
 };
 
-
-
 // module.exports = getBooks;
 module.exports = { uploadBooks, getBooks };
-
-
-

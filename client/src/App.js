@@ -1,7 +1,6 @@
 import "./App.css";
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { createContext } from "react";
+import { useEffect, useContext } from "react";
+
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Home/Landing";
@@ -28,11 +27,9 @@ function App() {
     return (
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
-          
-        
           <Router>
-            <Nav/>
-            
+            <Nav />
+
             <Routes>
               <Route exact path="/" element={<Landing />} />
               <Route exact path="/PublishBook" element={<PublishBook />} />
