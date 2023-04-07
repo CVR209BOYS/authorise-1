@@ -6,9 +6,7 @@ export default function BookGrid() {
   return (
     <div className=" flex flex-wrap justify-evenly">
       {data.resources.map((val, key) => {
-        return (
-            <NewCard data={val} />
-        )
+        return <NewCard data={val} />;
       })}
     </div>
   );

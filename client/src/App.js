@@ -1,26 +1,32 @@
 import "./App.css";
-// import { useState} from 'react';
-// import Axios from "axios";
-import { createContext, useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { createContext } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Home/Landing";
 import Profile from "./pages/Profile";
 import Nav from "./pages/Common/Nav";
 import PublishBook from "./pages/PublishBook/PublishBook";
 import BecomeAWriter from "./pages/BecomeAWriter/BecomeAWriter";
-import CatBook from "./pages/Home/CatBook";
-import BookDetails from "./pages/Home/BookDetails/BookDetails"
-
-
-
-export const Context = createContext();
+import BookDetails from "./pages/Home/BookDetails/BookDetails";
+import { MenuContext } from "./MenuContext";
+import Market from "./pages/Market/Market";
 
 function App() {
+  // console.log(useContext(MenuContext));
+  const { allBooks } = useContext(MenuContext);
 
+  // console.log(allBooks);
+  useEffect(() => {
+    // console.log("allBooks");
+  }, [allBooks]);
 
-  return (
-    <Context.Provider value={{}}>
-      
+  if (!allBooks.length) {
+    return <div>loading</div>;
+  } else {
+    return (
+      <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
           
         
@@ -32,14 +38,14 @@ function App() {
               <Route exact path="/PublishBook" element={<PublishBook />} />
               <Route exact path="/BecomeAWriter" element={<BecomeAWriter />} />
               <Route exact path="/profile" element={<Profile />} />
-              <Route exact path="/category" element={<CatBook/>}/>
-              <Route exact path="/bookdetails" element={<BookDetails/>}/>
+              <Route exact path="/market" element={<Market />} />
+              <Route exact path="/bookdetails" element={<BookDetails />} />
             </Routes>
           </Router>
         </div>
-      
-    </Context.Provider>
-  );
+      </GoogleOAuthProvider>
+    );
+  }
 }
 
 export default App;
