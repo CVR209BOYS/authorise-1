@@ -1,6 +1,6 @@
 import React from "react";
 import CatButton from "../Utils/CatButton";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import data from "../Utils/categories.json";
 
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ export default function Categories() {
           <Link
             key={index}
             to={{
-              pathname: "/category",
+              pathname: "/market",
               hash: `${val.name}`,
             }}
             state={{ categories: `${val.name}`, id: `${val.id}` }}

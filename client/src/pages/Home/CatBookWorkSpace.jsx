@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import data from "../Utils/categories.json";
 import CatButton from "../Utils/CatButton";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import BookGrid from '../Utils/BookGrid';
 
 
