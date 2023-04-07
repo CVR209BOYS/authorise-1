@@ -12,6 +12,7 @@ import BecomeAWriter from "./pages/BecomeAWriter/BecomeAWriter";
 import BookDetails from "./pages/Home/BookDetails/BookDetails";
 import { MenuContext } from "./MenuContext";
 import Market from "./pages/Market/Market";
+import RegisterYourPublication from "./pages/PublishBook/RegisterYourPublication";
 
 function App() {
   // console.log(useContext(MenuContext));
@@ -36,6 +37,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Landing />} />
               <Route exact path="/PublishBook" element={<PublishBook />} />
+              <Route exact path="/RegisterYourPublication" element={<RegisterYourPublication />} />
               <Route exact path="/BecomeAWriter" element={<BecomeAWriter />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/market" element={<Market />} />

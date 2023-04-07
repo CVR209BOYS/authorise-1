@@ -57,15 +57,21 @@ export default function SigninModal({
   console.log(credentials);
 
   const eventHandler = async () => {
+    console.log("working");
     const response = axios({
       method: "GET",
-      url:"http://localhost:3001/muserlogin/signin",
-      
-      body:{
-        "email": `${credentials.email}`,
-        "password": `${credentials.password}`,
+      url: "http://localhost:3001/muserlogin/signin",
+      body: {
+        email: `${credentials.email}`,
+        password: `${credentials.password}`,
       },
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // const history = useNavigate();
@@ -119,16 +125,23 @@ export default function SigninModal({
             setOpenSin(false);
           }}
         >
-          <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
-           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
-            <button onClick={()=>{
-              setOpenSin(false);
-              setOpenSup(true);
-
-            }}>Create an account</button>
+          <div
+            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
+           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+          >
+            <button
+              onClick={() => {
+                setOpenSin(false);
+                setOpenSup(true);
+              }}
+            >
+              Create an account
+            </button>
           </div>
-          <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
-           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+          <div
+            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
+           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+          >
             <button>Close</button>
           </div>
         </div>
