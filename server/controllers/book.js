@@ -17,15 +17,5 @@ const getBooks = async (req, res) => {
   res.send(books);
 };
 
-<<<<<<< HEAD
-(module.exports = uploadBooks), getBooks;
-// module.exports = getBooks;
-=======
-
-
 // module.exports = getBooks;
 module.exports = { uploadBooks, getBooks };
-
-
-
->>>>>>> bf9ed54dc3b1de6cef3d5f687b56ab9c3f8f6942
