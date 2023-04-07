@@ -2,7 +2,7 @@ import React from "react";
 import NewCard from "../Utils/NewCard";
 import data from "../Utils/data.json";
 
-export default function BookGrid() {
+const BookGrid = ({ genres, languages, ratingRange }) => {
   return (
     <div className=" flex flex-wrap justify-evenly">
       {data.resources.map((val, key) => {
@@ -10,4 +10,6 @@ export default function BookGrid() {
       })}
     </div>
   );
-}
+};
+
+export default BookGrid;

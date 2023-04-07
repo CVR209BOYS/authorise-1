@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import CloudinaryUploadWidget from "./Cloud";
 import axios from "axios";
+import data from "../Utils/categories.json";
+import Select from "react-select";
+
+import { MenuContext } from "../../MenuContext";
 
 function BecomeAWriter(props) {
-  const bookTags = ["funny", "historical", "adventure", "manga", "webdev"];
-
   const [selectedTags, setSelectedTags] = useState([]);
   const [coverpageurl, setCoverpageurl] = useState();
   const [bookurl, setBookurl] = useState();
+
+  const { categoryList } = useContext(MenuContext);
 
   const [formData, setFormData] = useState({
     description: "",
@@ -92,23 +96,13 @@ function BecomeAWriter(props) {
         <label htmlFor="bookTags" className="font-bold ">
           Categories
         </label>
-        <div className="w-fit mx-auto">
-          {bookTags.map((item, index) => {
-            // console.log(JSON.stringify(item));
-            return (
-              <div key={index} className="text-left">
-                <input
-                  name={item}
-                  type="checkbox"
-                  value={item}
-                  onClick={() => {
-                    setSelectedTags([...selectedTags, item]);
-                  }}
-                />
-                <label htmlFor={item}>{item}</label>
-              </div>
-            );
-          })}
+        <div className="w-full mx-auto">
+          <Select
+            value={selectedTags}
+            onChange={setSelectedTags}
+            options={categoryList}
+            isMulti
+          />
         </div>
         <br />
 

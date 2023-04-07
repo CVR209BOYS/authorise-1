@@ -4,6 +4,9 @@ import axios from "axios";
 export const MenuContext = createContext(null);
 
 export const MenuProvider = ({ children }) => {
+  const [categoryList, setCategoryList] = useState();
+  const [languageList, setLanguageList] = useState();
+
   const [allBooks, setAllBooks] = useState([]);
   const [openSidebar, setOpenSidebar] = useState(true);
 
@@ -16,14 +19,54 @@ export const MenuProvider = ({ children }) => {
     setAllBooks([...res.data]);
   };
 
-  // console.log(allBooks);
+  const Categories = async () => {
+    const res = await axios({
+      method: "get",
+      url: "http://localhost:3001/getcategories/get",
+    });
+    let cat = [];
+    res.data.forEach((element) => {
+      cat.push({ value: element["value"], label: element["label"] });
+    });
+    // console.log(cat);
+    setCategoryList(cat);
+  };
+
+  const Languages = async () => {
+    const res = await axios({
+      method: "get",
+      url: "http://localhost:3001/getlanguages/get",
+    });
+    let cat = [];
+    res.data.forEach((element) => {
+      cat.push({ value: element["value"], label: element["label"] });
+    });
+    // console.log(cat);
+    setLanguageList(cat);
+  };
 
   useEffect(() => {
     Books();
   }, []);
+  useEffect(() => {
+    Categories();
+  }, []);
+  useEffect(() => {
+    Languages();
+  }, []);
+
   return (
     <MenuContext.Provider
-      value={{ allBooks, setAllBooks, openSidebar, setOpenSidebar }}
+      value={{
+        allBooks,
+        setAllBooks,
+        openSidebar,
+        setOpenSidebar,
+        categoryList,
+        setCategoryList,
+        languageList,
+        setLanguageList,
+      }}
     >
       {children}
     </MenuContext.Provider>
