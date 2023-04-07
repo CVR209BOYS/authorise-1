@@ -62,8 +62,8 @@ export default function SigninModal({
       method: "post",
       url: "http://localhost:3001/muserlogin/signin",
       data: {
-        email: "cse210001022@iiti.ac.in",
-        password: "12345",
+        email:credentials.email ,
+        password: credentials.password,
       },
       headers: {
         "Content-Type": "application/json",
