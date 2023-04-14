@@ -13,6 +13,8 @@ const pubRoutes = require("./routes/publication.js");
 const muserRoutes = require("./routes/muser.js");
 const logoutRoutes = require("./routes/logout.js");
 const bookUplRoute = require("./routes/book.js");
+const categoriesRoute = require("./routes/categories.js");
+const languagesRoute = require("./routes/languages.js");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -104,6 +106,10 @@ app.use("/getReview", reviewRoutes);
 app.use("/publisher", pubRoutes);
 
 //.........................................................................................................................
+
+// code for languages and categories....................................................................................................
+app.use("/getcategories", categoriesRoute);
+app.use("/getlanguages", languagesRoute);
 
 //backend port is 3001
 app.listen(3001, () => {
