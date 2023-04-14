@@ -10,7 +10,7 @@ const { where } = require("../models/Publication");
 
 const createPub = async (req, res) => {
   const user = req.body;
-
+  // let redUser=[];
   const publisher = await pubModel
     .find({
       email: req.body.email,
@@ -21,35 +21,42 @@ const createPub = async (req, res) => {
   console.log(publisher);
   if (publisher.length != 0) {
     res.send({ status: 403, message: " email exist" });
-  }
-  const publication = {
-    description: req.body.description,
-    password: req.body.password,
-    email: req.body.email,
-    companyName: req.body.companyName,
-    employees: req.body.employees,
-  };
-  const newPub = new pubModel(publication);
-  await newPub
-    .save()
-    .then(async (data) => {
-      console.log(data);
+  } else {
+    const publication = {
+      description: req.body.description,
+      password: req.body.password,
+      email: req.body.email,
+      companyName: req.body.companyName,
+      employees: req.body.employees,
+    };
+    const newPub = new pubModel(publication);
+    await newPub
+      .save()
+      .then(async (data) => {
+        console.log(data);
+        if (publication.employees.length != 0) {
+          publication.employees.forEach(async (item, index) => {
+            console.log(item);
 
-      publication.employees.forEach(async (item, index) => {
-        console.log(item);
-        await UserModel.findOneAndUpdate(
-          {
-            email: `${item}`,
-          },
-          { pid: data._id },
-          { new: true, upsert: true }
-        );
-      }),
+            await UserModel.findOneAndUpdate(
+              {
+                email: `${item}`,
+                pid: null,
+              },
+              { pid: data._id },
+              { new: true, upsert: true }
+            );
+          });
+        } else {
+          console.log("no employess currently!");
+        }
         console.log("user added");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    res.send({ message: "added", status: 200 });
+  }
 };
 
 const getPub = async (req, res) => {
@@ -79,4 +86,28 @@ const getPub = async (req, res) => {
   });
 };
 
-module.exports = { createPub, getPub };
+const addEmp = async (req, res) => {
+  const email = req.body.email;
+  await UserModel.findOne({
+    email: email,
+  })
+    .then((data) => {
+      if (data == null) {
+        res.send({
+          status: 403,
+          message: "user dosent exist", ///if user dosent exist use this status
+        });
+      } else {
+        res.send({
+          status: 200,
+          message: "user do exist", ///here user exist so use status 200
+        });
+      }
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+module.exports = { createPub, getPub, addEmp };
