@@ -1,26 +1,30 @@
 import { useState } from "react";
 import data from "./book.json";
 
-
 function Card() {
-//   console.log(data);
+  //   console.log(data);
 
-  const getFilteredItem = (query, item) => {
+  const getFilteblueItem = (query, item) => {
     if (!query) {
       return item;
     }
 
     return item.filter((val) => {
-      return val.name.replace(/\s+/g," ").trim().toLowerCase().indexOf(query.replace(/\s+/g," ").trim().toLowerCase()) > -1;
-      
+      return (
+        val.name
+          .replace(/\s+/g, " ")
+          .trim()
+          .toLowerCase()
+          .indexOf(query.replace(/\s+/g, " ").trim().toLowerCase()) > -1
+      );
     });
   };
 
   const [Query, setQuery] = useState("");
   console.log(Query);
-  const filtered = getFilteredItem(Query, data);
+  const filteblue = getFilteblueItem(Query, data);
 
-  console.log(filtered);
+  console.log(filteblue);
 
   return (
     <div>
@@ -36,11 +40,11 @@ function Card() {
       </div>
 
       <div>
-        <div >
-          {filtered.map((val, key) => {
+        <div>
+          {filteblue.map((val, key) => {
             return (
               <div>
-                <div className="m-5 h-[300px] bg-black w-[300px] text-white">
+                <div className="m-5 h-[300px] bg-blue w-[300px] text-white">
                   <h3>{val.name}</h3>
                   <h3>{val.author}</h3>
                   <h3>{val.genres}</h3>

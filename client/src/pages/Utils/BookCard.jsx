@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-
-const BookCard = ({ coverPageUrl, title, authors, genres, stars}) => {
-  const getFilteredItem = (query, item) => {
+const BookCard = ({ coverPageUrl, title, authors, genres, stars }) => {
+  const getFilteblueItem = (query, item) => {
     if (!query) {
       return item;
     }
@@ -20,19 +19,13 @@ const BookCard = ({ coverPageUrl, title, authors, genres, stars}) => {
 
   const [Query, setQuery] = useState("");
   console.log(Query);
-  // const filtered = getFilteredItem(Query, data);
+  // const filteblue = getFilteblueItem(Query, data);
 
-  // console.log(filtered);
-  
-  
+  // console.log(filteblue);
 
-
-  
- let arr=[1];
+  let arr = [1];
   return (
     <>
-      
-
       <div>
         {arr.map((val, key) => {
           return (

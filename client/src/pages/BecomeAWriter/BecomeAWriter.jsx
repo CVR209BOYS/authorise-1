@@ -47,27 +47,18 @@ function BecomeAWriter(props) {
 
   return (
     <div className="pt-[100px]  w-[90%] mx-auto ">
-      {/* <label htmlFor="yourDescription">Your Description</label>
-      <textarea
-        rows="5"
-        cols="50"
-        maxLength="400"
-        className="border-black border-2"
-        onChange={(e) => {
-          setFormData({ ...formData, yourDescription: e.target.value });
-        }}
-      />
-      <br /> */}
-      {/* blah */}
-      <div className="rounded-xl w-fit mx-auto text-center p-5 bg-[#ededed]">
-        <div className="flex flex-col">
-          <label htmlFor="TitleTags" className="font-bold mr-5">
+      <div className=" w-[70%] bg-blue-400 text-blue rounded-lg text-center p-5 mx-auto mt-1">
+        <div className="flex justify-between">
+          <label
+            htmlFor="TitleTags"
+            className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+          >
             Title
           </label>
           <label htmlFor="title" />
           <input
             type="text"
-            className="border-black border-2"
+            className=" w-[50%] m-2 bg-[#ffffff]"
             name="title"
             onChange={(e) => {
               setFormData({ ...formData, title: e.target.value });
@@ -75,8 +66,11 @@ function BecomeAWriter(props) {
           />
         </div>
         <br />
-        <div className="flex flex-col">
-          <label htmlFor="bookDescription" className="font-bold ">
+        <div className="flex justify-between">
+          <label
+            htmlFor="bookDescription"
+            className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+          >
             Book Description
           </label>
           <textarea
@@ -85,7 +79,7 @@ function BecomeAWriter(props) {
             id="bookDescription"
             name="bookDescription"
             maxLength="400"
-            className="border-black border-2"
+            className=" w-[50%] m-2 bg-[#ffffff]"
             onChange={(e) => {
               setFormData({ ...formData, description: e.target.value });
             }}
@@ -93,22 +87,31 @@ function BecomeAWriter(props) {
         </div>
         <br />
 
-        <label htmlFor="bookTags" className="font-bold ">
-          Categories
-        </label>
-        <div className="w-full mx-auto">
-          <Select
-            value={selectedTags}
-            onChange={setSelectedTags}
-            options={categoryList}
-            isMulti
-          />
+        <div className="w-[100%] mx-auto flex">
+          <label
+            htmlFor="bookTags"
+            className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+          >
+            Categories
+          </label>
+          <div className="w-[50%] flex">
+            <Select
+              className=" w-[100%] m-2 bg-[#ffffff]"
+              value={selectedTags}
+              onChange={setSelectedTags}
+              options={categoryList}
+              isMulti
+            />
+          </div>
         </div>
         <br />
 
-        <div className=" flex justify-between">
-          <div>
-            <label htmlFor="coverpage" className="font-bold ">
+        <div className=" flex justify-center flex-col bg-blue-200 p-1 mt-10 rounded-md">
+          <div className="m-2">
+            <label
+              htmlFor="coverpage"
+              className="font-bold  text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+            >
               Cover Page{" "}
             </label>
             <CloudinaryUploadWidget
@@ -117,8 +120,11 @@ function BecomeAWriter(props) {
               url={coverpageurl}
             ></CloudinaryUploadWidget>
           </div>
-          <div className="font-bold ">
-            <label htmlFor="coverpage" className="font-bold ">
+          <div className="font-bold m-2">
+            <label
+              htmlFor="coverpage"
+              className="font-bold  text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+            >
               Book Upload{" "}
             </label>
             <CloudinaryUploadWidget
@@ -130,7 +136,7 @@ function BecomeAWriter(props) {
         </div>
         <br />
         <div
-          className="font-bold sm:text-[20px]cursor-pointer w-fit mx-auto p-1 rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg"
+          className="w-[200px] mx-auto p-1 mt-3 font-bold rounded-md hover:bg-blue-100 text-blue mb-4 text-[15px]   bg-blue-700  md:text-base lg:text-lg"
           onClick={submitHandler}
         >
           Submit

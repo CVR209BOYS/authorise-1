@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function RegisterYourPublication() {
-  const [credentials, setcredentials] = useState({
+  const [cblueentials, setcblueentials] = useState({
     name: "",
     description: "",
     email: "",
@@ -22,9 +22,9 @@ export default function RegisterYourPublication() {
   };
 
   const onchange = (e) => {
-    setcredentials({ ...credentials, [e.target.name]: e.target.value });
+    setcblueentials({ ...cblueentials, [e.target.name]: e.target.value });
   };
-  console.log(credentials);
+  console.log(cblueentials);
 
   const onInput = (e) => {
     setemployee(e.target.value);
@@ -33,10 +33,10 @@ export default function RegisterYourPublication() {
   console.log(employeelist);
 
   const Register = () => {
-    setcredentials({ ...credentials, employees: { employeelist } });
+    setcblueentials({ ...cblueentials, employees: { employeelist } });
   };
   console.log("here is final list");
-  console.log(credentials);
+  console.log(cblueentials);
 
   return (
     <div className="pt-[100px]">
@@ -53,7 +53,7 @@ export default function RegisterYourPublication() {
               id="name"
               name="name"
               onChange={onchange}
-              required="required"
+              requiblue="requiblue"
               className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
             />
           </div>
@@ -64,7 +64,7 @@ export default function RegisterYourPublication() {
               id="description"
               name="description"
               onChange={onchange}
-              required="required"
+              requiblue="requiblue"
               className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
             />
           </div>
@@ -75,7 +75,7 @@ export default function RegisterYourPublication() {
               id="email"
               name="email"
               onChange={onchange}
-              required="required"
+              requiblue="requiblue"
               className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
             />
           </div>
@@ -86,7 +86,7 @@ export default function RegisterYourPublication() {
               id="password"
               name="password"
               onChange={onchange}
-              required="required"
+              requiblue="requiblue"
               className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
             />
           </div>
@@ -102,7 +102,7 @@ export default function RegisterYourPublication() {
                 id="add employee"
                 name="add employee"
                 onChange={onInput}
-                required="required"
+                requiblue="requiblue"
                 className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
               />
             </div>

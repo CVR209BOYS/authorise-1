@@ -25,7 +25,7 @@ export default function Sidebar({ setOpen, open }) {
         <div className="mt-1 flex flex-col relative ">
           <a href="/BecomeAWriter ">
             <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-blue-700 text-left rounded-md">
-              <div className="px-2 py-2">ic</div>
+              <div className="px-2 py-2">*</div>
               <div
                 className={`whitespace-pre duration-100 ${
                   !open && "opacity-0"
@@ -37,7 +37,7 @@ export default function Sidebar({ setOpen, open }) {
           </a>
           <a href="/PublishBook">
             <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-blue-700 text-left rounded-md">
-              <div className="px-2 py-2">ic</div>
+              <div className="px-2 py-2">*</div>
               <div
                 className={`whitespace-pre duration-100 ${
                   !open && "opacity-0"
@@ -50,7 +50,7 @@ export default function Sidebar({ setOpen, open }) {
         </div>
         <div className="flex flex-col-reverse h-[400px]">
           <div
-            className={`bg-[#ffffff] hover:bg-[#ffe3bd] p-1 text-black font-bold text-center rounded-lg whitespace-pre duration-100 ${
+            className={`bg-[#ffffff] text-black hover:bg-[#ffe3bd] p-1 text-blue font-bold text-center rounded-lg whitespace-pre duration-100 ${
               !open && "opacity-0"
             }`}
           >
