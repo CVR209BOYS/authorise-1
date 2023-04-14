@@ -130,7 +130,7 @@ function BecomeAWriter(props) {
         </div>
         <br />
         <div
-          className="font-bold sm:text-[20px]cursor-pointer w-fit mx-auto p-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+          className="font-bold sm:text-[20px]cursor-pointer w-fit mx-auto p-1 rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg"
           onClick={submitHandler}
         >
           Submit

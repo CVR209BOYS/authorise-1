@@ -15,8 +15,12 @@ export const MenuProvider = ({ children }) => {
       method: "get",
       url: "http://localhost:3001/bookupl/get",
     });
-    // console.log(res);
-    setAllBooks([...res.data]);
+    console.log(res);
+    if (res.data === null) {
+      setAllBooks([]);
+    } else {
+      setAllBooks([...res.data]);
+    }
   };
 
   const Categories = async () => {

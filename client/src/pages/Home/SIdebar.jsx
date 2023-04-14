@@ -6,9 +6,9 @@ export default function Sidebar({ setOpen, open }) {
       id="sidebar"
       className={`${
         open ? "w-[240px]" : "w-[64px]"
-      } flex gap-4 border-2 border-amber-600 h-screen fixed overflow-hidden mx-0 my-[50px] sm:my-[70px]`}
+      } flex gap-4 border-2 border-blue-600 h-screen fixed overflow-hidden mx-0 my-[50px] sm:my-[70px]`}
     >
-      <div className="bg-amber-600 duration-500 px-2 text-white w-full">
+      <div className="bg-blue-600 duration-500 px-2 text-white w-full">
         <div className=" flex justify-end">
           <div
             className="cursor-pointer p-5 text-xl "
@@ -24,7 +24,7 @@ export default function Sidebar({ setOpen, open }) {
         </div> */}
         <div className="mt-1 flex flex-col relative ">
           <a href="/BecomeAWriter ">
-            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
+            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-blue-700 text-left rounded-md">
               <div className="px-2 py-2">ic</div>
               <div
                 className={`whitespace-pre duration-100 ${
@@ -36,7 +36,7 @@ export default function Sidebar({ setOpen, open }) {
             </div>
           </a>
           <a href="/PublishBook">
-            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-amber-700 text-left rounded-md">
+            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-blue-700 text-left rounded-md">
               <div className="px-2 py-2">ic</div>
               <div
                 className={`whitespace-pre duration-100 ${

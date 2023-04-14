@@ -40,7 +40,7 @@ export default function RegisterYourPublication() {
 
   return (
     <div className="pt-[100px]">
-      <div className="bg-amber-400 w-[80%] mx-auto p-7 rounded-md">
+      <div className="bg-blue-400 w-[80%] mx-auto p-7 rounded-md">
         <div className=" w-fit pr-2 h-full font-bold pt-3 text-[15px] mx-auto  md:text-2xl lg:text-3xl">
           <p>Welcome to authoRISE</p>
         </div>
@@ -92,7 +92,7 @@ export default function RegisterYourPublication() {
           </div>
         </form>
         <form>
-          <div className="bg-amber-200 p-1 mt-10 rounded-md">
+          <div className="bg-blue-200 p-1 mt-10 rounded-md">
             <div className="font-bold text-left flex justify-between mt-10 text-[15px] w-[90%] md:text-md lg:text-xl m-2">
               <label for="password">Add Employee</label>
 
@@ -106,21 +106,25 @@ export default function RegisterYourPublication() {
                 className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
               />
             </div>
-          <div className="w-[100%] text-center">
-
-            <button onClick={addList} className=" w-[26%] font-bold bg-amber-500 rounded-md text-[20px] mt-2 mb-6">
-              ADD
-            </button>
-          </div>
+            <div className="w-[100%] text-center">
+              <button
+                onClick={addList}
+                className=" w-[26%] font-bold bg-blue-500 rounded-md text-[20px] mt-2 mb-6"
+              >
+                ADD
+              </button>
+            </div>
           </div>
         </form>
       </div>
-        <div className="w-[100%] text-center">
-
-            <button onClick={Register} className=" w-[26%] font-bold bg-[#9f9f9f] rounded-md text-[20px] mt-6 p-1">
-            Register
-            </button>
-          </div>
+      <div className="w-[100%] text-center">
+        <button
+          onClick={Register}
+          className=" w-[26%] font-bold bg-[#9f9f9f] rounded-md text-[20px] mt-6 p-1"
+        >
+          Register
+        </button>
+      </div>
     </div>
   );
 }

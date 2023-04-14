@@ -15,7 +15,7 @@ const Book = () => {
       <div className="text-[30px] font-mono font-semibold mb-5 ml-10 text-center sm:text-left">
         All Books
       </div>
-      <Carousel allBooks={allBooks}  />
+      <Carousel allBooks={allBooks} />
     </div>
   );
 };

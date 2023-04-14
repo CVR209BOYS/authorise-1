@@ -63,7 +63,7 @@ function Nav() {
               onClick={() => {
                 setOpenSin(true);
               }}
-              className="w-fit my-auto mx-2 mt-4 py-1 px-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+              className="w-fit my-auto mx-2 mt-4 py-1 px-1 rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
               login
             </div>
               
@@ -71,17 +71,17 @@ function Nav() {
               
             </div>
             {user2 && (
-              <div className="my-auto mx-2 py-1 px-1 rounded-md text-[10px] text-center bg-amber-400 text-amber-900 md:text-base lg:text-base">
+              <div className="my-auto mx-2 py-1 px-1 rounded-md text-[10px] text-center bg-blue-400 text-blue-900 md:text-base lg:text-base">
                 <a href="/profile">{user2.name}</a>
               </div>
             )}
             {/* {!user2 && (
-              <div className="my-auto mx-2 py-1 px-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+              <div className="my-auto mx-2 py-1 px-1 rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
                 <button onClick={signIn}>Login</button>
               </div>
             )} */}
             {user2 && (
-              <div className="my-auto mx-2 py-1 px-1 rounded-md bg-amber-400 text-amber-900 text-[10px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-base">
+              <div className="my-auto mx-2 py-1 px-1 rounded-md bg-blue-400 text-blue-900 text-[10px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-base">
                 <button onClick={logout}>Logout</button>
               </div>
             )}

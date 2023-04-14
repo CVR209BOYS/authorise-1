@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 export default function SignupMOdal({
   setOpenSin,
   setOpenSup,
@@ -9,8 +8,11 @@ export default function SignupMOdal({
   setUser,
   setUser2,
 }) {
-
-  const [credentials, setcredentials] = useState({ username:"",email: "", password: "" });
+  const [credentials, setcredentials] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const onchange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -22,7 +24,7 @@ export default function SignupMOdal({
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        username:credentials.username,
+        username: credentials.username,
         email: credentials.email,
         password: credentials.password,
       }),
@@ -74,8 +76,7 @@ export default function SignupMOdal({
           </div>
 
           <div>
-            <div
-              className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+            <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
               <button
                 onClick={() => {
                   setOpenSin(false);

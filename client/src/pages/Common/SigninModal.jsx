@@ -62,7 +62,7 @@ export default function SigninModal({
       method: "post",
       url: "http://localhost:3001/muserlogin/signin",
       data: {
-        email:credentials.email ,
+        email: credentials.email,
         password: credentials.password,
       },
       headers: {
@@ -106,11 +106,11 @@ export default function SigninModal({
             </form>
           </div>
           <div className="flex flex-wrap">
-            <div className="w-[200px] h-full p-1 m-1 mx-auto rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+            <div className="w-[200px] h-full p-1 m-1 mx-auto rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
               <div onClick={() => eventHandler()}>login</div>
             </div>
 
-            <div className="w-[200px] mx-auto p-1  m-1 rounded-md bg-amber-400 text-amber-900 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+            <div className="w-[200px] mx-auto p-1  m-1 rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
               <button onClick={signIn}>Signin with Google</button>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function SigninModal({
         >
           <div
             className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
-           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+           text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg"
           >
             <button
               onClick={() => {
@@ -137,7 +137,7 @@ export default function SigninModal({
           </div>
           <div
             className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4
-           text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg"
+           text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg"
           >
             <button>Close</button>
           </div>
