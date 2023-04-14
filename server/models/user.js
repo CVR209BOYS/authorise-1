@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
   },
   pid: {
     type: String,
-
+    require: true,
     default: "",
   },
   description: {
