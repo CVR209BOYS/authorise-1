@@ -10,11 +10,11 @@ export default function SignupMOdal({
   setUser2,
 }) {
 
-  const [credentials, setcredentials] = useState({ username:"",email: "", password: "" });
+  const [cblueentials, setcblueentials] = useState({ username:"",email: "", password: "" });
   const onchange = (e) => {
-    setcredentials({ ...credentials, [e.target.name]: e.target.value });
+    setcblueentials({ ...cblueentials, [e.target.name]: e.target.value });
   };
-  console.log(credentials);
+  console.log(cblueentials);
   const eventHandler = async () => {
     const response = await fetch("http://localhost:3001/createmusers/signup", {
       method: "POST",
@@ -22,21 +22,21 @@ export default function SignupMOdal({
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        username:credentials.username,
-        email: credentials.email,
-        password: credentials.password,
+        username:cblueentials.username,
+        email: cblueentials.email,
+        password: cblueentials.password,
       }),
     });
   };
   return (
     <div>
       <div className="bg-[#000000db] text-white w-full h-screen snap-none fixed top-0 z-[60]">
-        <div className="border-2 w-[50%] bg-white text-black rounded-xl text-center mx-auto mt-12">
+        <div className="border-2 w-[50%] bg-white text-blue rounded-xl text-center mx-auto mt-12">
           <div className=" w-fit pr-2 h-full font-bold pt-3 text-[15px] mx-auto  md:text-2xl lg:text-3xl">
             <p>Welcome to authoRISE</p>
           </div>
           <div>
-            <div className=" border-3 border-black w-[70%] mx-auto mt-10">
+            <div className=" border-3 border-blue w-[70%] mx-auto mt-10">
               <form>
                 <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2 ">
                   <label for="email">Username</label>
@@ -75,7 +75,7 @@ export default function SignupMOdal({
 
           <div>
             <div
-              className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-black mb-4 text-[15px]  hover:text-white hover:bg-amber-700  md:text-base lg:text-lg">
+              className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-blue mb-4 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
               <button
                 onClick={() => {
                   setOpenSin(false);

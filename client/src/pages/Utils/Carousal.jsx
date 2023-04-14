@@ -60,7 +60,7 @@ const Carousel = ({ allBooks }) => {
         >
           <button
             onClick={movePrev}
-            className="bg-amber-500 hover:bg-amber-600 text-white w-12 h-12 text-center opacity-85 hover:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed z-50 p-0 m-0 transition-all ease-in-out duration-300 rounded-full"
+            className="bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 text-center opacity-85 hover:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed z-50 p-0 m-0 transition-all ease-in-out duration-300 rounded-full"
             disabled={isDisabled("prev")}
           >
             <svg
@@ -81,7 +81,7 @@ const Carousel = ({ allBooks }) => {
           </button>
           <button
             onClick={moveNext}
-            className="bg-amber-500 hover:bg-amber-600 text-white w-12 h-12 text-center opacity-85 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-50 p-0 m-0 transition-all ease-in-out duration-300 rounded-full"
+            className="bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 text-center opacity-85 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-50 p-0 m-0 transition-all ease-in-out duration-300 rounded-full"
             disabled={isDisabled("next")}
           >
             <svg
