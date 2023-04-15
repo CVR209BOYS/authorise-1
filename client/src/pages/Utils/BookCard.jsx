@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const BookCard = ({ coverPageUrl, title, authors, genres, stars }) => {
-  const getFilteblueItem = (query, item) => {
+  const getFilteredItem = (query, item) => {
     if (!query) {
       return item;
     }
@@ -19,9 +19,9 @@ const BookCard = ({ coverPageUrl, title, authors, genres, stars }) => {
 
   const [Query, setQuery] = useState("");
   console.log(Query);
-  // const filteblue = getFilteblueItem(Query, data);
+  // const filtered = getFilteredItem(Query, data);
 
-  // console.log(filteblue);
+  // console.log(filtered);
 
   let arr = [1];
   return (
@@ -45,7 +45,7 @@ const BookCard = ({ coverPageUrl, title, authors, genres, stars }) => {
               </div>
               <div className=" flex row-span-1">
                 {genres.map((item) => (
-                  <span className="rounded-lg  mx-1 px-1 py-[2px] border-2 border-sky-800 bg-blue-200 text-sky-800 hover:bg-blue-300">
+                  <span className="rounded-lg  mx-1 px-1 py-[2px] border-2 border-sky-800 bg-red-200 text-sky-800 hover:bg-red-300">
                     {item}
                   </span>
                 ))}

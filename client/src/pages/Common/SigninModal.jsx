@@ -26,7 +26,7 @@ export default function SigninModal({
   const signIn = useGoogleLogin({
     clientId:
       "http://959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com",
-    blueirect_uri: "http://localhost:3000",
+    redirect_uri: "http://localhost:3000",
     onSuccess: (tokenResponse) => {
       console.log(tokenResponse.access_token);
       const data = axios({
@@ -78,12 +78,12 @@ export default function SigninModal({
 
   return (
     <div className="bg-[#000000db] text-black w-full h-screen snap-none fixed top-0 z-[60]">
-      <div className="border-2 w-[50%] bg-white text-blue rounded-xl text-center mx-auto mt-12">
+      <div className="border-2 w-[50%] bg-white text-red rounded-xl text-center mx-auto mt-12">
         <div className=" w-fit pr-2 h-full font-bold pt-3 text-[15px] mx-auto  md:text-2xl lg:text-3xl">
           <p>Welcome to authoRISE</p>
         </div>
         <div>
-          <div className=" border-3 border-blue w-[70%] mx-auto mt-10">
+          <div className=" border-3 border-red w-[70%] mx-auto mt-10">
             <form>
               <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2 ">
                 <label for="email">Email</label>
@@ -109,11 +109,11 @@ export default function SigninModal({
             </form>
           </div>
           <div className="flex flex-wrap">
-            <div className="w-[200px] h-full p-1 m-1 mx-auto rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
+            <div className="w-[200px] h-full p-1 m-1 mx-auto rounded-md bg-red-400 text-red-900 text-[15px]  hover:text-white hover:bg-red-700  md:text-base lg:text-lg">
               <div onClick={() => eventHandler()}>login</div>
             </div>
 
-            <div className="w-[200px] mx-auto p-1  m-1 rounded-md bg-blue-400 text-blue-900 text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg">
+            <div className="w-[200px] mx-auto p-1  m-1 rounded-md bg-red-400 text-red-900 text-[15px]  hover:text-white hover:bg-red-700  md:text-base lg:text-lg">
               <button onClick={signIn}>Signin with Google</button>
             </div>
           </div>
@@ -126,8 +126,8 @@ export default function SigninModal({
           }}
         >
           <div
-            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-blue mb-4
-           text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg"
+            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-red mb-4
+           text-[15px]  hover:text-white hover:bg-red-700  md:text-base lg:text-lg"
           >
             <button
               onClick={() => {
@@ -139,8 +139,8 @@ export default function SigninModal({
             </button>
           </div>
           <div
-            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-blue mb-4
-           text-[15px]  hover:text-white hover:bg-blue-700  md:text-base lg:text-lg"
+            className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-red mb-4
+           text-[15px]  hover:text-white hover:bg-red-700  md:text-base lg:text-lg"
           >
             <button>Close</button>
           </div>

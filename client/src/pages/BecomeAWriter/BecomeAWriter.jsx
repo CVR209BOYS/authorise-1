@@ -3,6 +3,7 @@ import CloudinaryUploadWidget from "./Cloud";
 import axios from "axios";
 import data from "../Utils/categories.json";
 import Select from "react-select";
+import bg2 from '../../images/bg2.png'
 
 import { MenuContext } from "../../MenuContext";
 
@@ -47,99 +48,107 @@ function BecomeAWriter(props) {
 
   return (
     <div className="pt-[100px]  w-[90%] mx-auto ">
-      <div className=" w-[70%] bg-blue-400 text-blue rounded-lg text-center p-5 mx-auto mt-1">
-        <div className="flex justify-between">
-          <label
-            htmlFor="TitleTags"
-            className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
-          >
-            Title
-          </label>
-          <label htmlFor="title" />
-          <input
-            type="text"
-            className=" w-[50%] m-2 bg-[#ffffff]"
-            name="title"
-            onChange={(e) => {
-              setFormData({ ...formData, title: e.target.value });
-            }}
-          />
-        </div>
-        <br />
-        <div className="flex justify-between">
-          <label
-            htmlFor="bookDescription"
-            className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
-          >
-            Book Description
-          </label>
-          <textarea
-            rows="5"
-            cols="50"
-            id="bookDescription"
-            name="bookDescription"
-            maxLength="400"
-            className=" w-[50%] m-2 bg-[#ffffff]"
-            onChange={(e) => {
-              setFormData({ ...formData, description: e.target.value });
-            }}
-          />
-        </div>
-        <br />
-
-        <div className="w-[100%] mx-auto flex">
-          <label
-            htmlFor="bookTags"
-            className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
-          >
-            Categories
-          </label>
-          <div className="w-[50%] flex">
-            <Select
-              className=" w-[100%] m-2 bg-[#ffffff]"
-              value={selectedTags}
-              onChange={setSelectedTags}
-              options={categoryList}
-              isMulti
+      <div className=" w-[70%] bg-green-400 text-green rounded-lg text-center p-5 mx-auto mt-1 flex">
+        <div
+          className="w-[40%] mr-9 bg-black bg-no-repeat bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${bg2})`,
+          }}
+        ></div>
+        <div className="w-[80%]">
+          <div className="flex justify-between">
+            <label
+              htmlFor="TitleTags"
+              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+            >
+              Title
+            </label>
+            <label htmlFor="title" />
+            <input
+              type="text"
+              className=" w-[50%] m-2 bg-[#ffffff]"
+              name="title"
+              onChange={(e) => {
+                setFormData({ ...formData, title: e.target.value });
+              }}
             />
           </div>
-        </div>
-        <br />
+          <br />
+          <div className="flex justify-between">
+            <label
+              htmlFor="bookDescription"
+              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+            >
+              Book Description
+            </label>
+            <textarea
+              rows="5"
+              cols="50"
+              id="bookDescription"
+              name="bookDescription"
+              maxLength="400"
+              className=" w-[50%] m-2 bg-[#ffffff]"
+              onChange={(e) => {
+                setFormData({ ...formData, description: e.target.value });
+              }}
+            />
+          </div>
+          <br />
 
-        <div className=" flex justify-center flex-col bg-blue-200 p-1 mt-10 rounded-md">
-          <div className="m-2">
+          <div className="w-[100%] mx-auto flex">
             <label
-              htmlFor="coverpage"
-              className="font-bold  text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+              htmlFor="bookTags"
+              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
             >
-              Cover Page{" "}
+              Categories
             </label>
-            <CloudinaryUploadWidget
-              value={1}
-              setUrl={setCoverpageurl}
-              url={coverpageurl}
-            ></CloudinaryUploadWidget>
+            <div className="w-[50%] flex">
+              <Select
+                className=" w-[100%] m-2 bg-[#ffffff]"
+                value={selectedTags}
+                onChange={setSelectedTags}
+                options={categoryList}
+                isMulti
+              />
+            </div>
           </div>
-          <div className="font-bold m-2">
-            <label
-              htmlFor="coverpage"
-              className="font-bold  text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
-            >
-              Book Upload{" "}
-            </label>
-            <CloudinaryUploadWidget
-              value={2}
-              setUrl={setBookurl}
-              url={bookurl}
-            ></CloudinaryUploadWidget>
+          <br />
+
+          <div className=" flex justify-center flex-col bg-[#ffffff] p-1 mt-10 rounded-md">
+            <div className="m-2">
+              <label
+                htmlFor="coverpage"
+                className="font-bold  text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+              >
+                Cover Page{" "}
+              </label>
+              <CloudinaryUploadWidget
+                value={1}
+                setUrl={setCoverpageurl}
+                url={coverpageurl}
+              ></CloudinaryUploadWidget>
+            </div>
+            <div className="font-bold m-2">
+              <label
+                htmlFor="coverpage"
+                className="font-bold  text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+              >
+                Book Upload{" "}
+              </label>
+              <CloudinaryUploadWidget
+                value={2}
+                setUrl={setBookurl}
+                url={bookurl}
+              ></CloudinaryUploadWidget>
+            </div>
           </div>
-        </div>
-        <br />
-        <div
-          className="w-[200px] mx-auto p-1 mt-3 font-bold rounded-md hover:bg-blue-100 text-blue mb-4 text-[15px]   bg-blue-700  md:text-base lg:text-lg"
-          onClick={submitHandler}
-        >
-          Submit
+          <br />
+          <div
+            className="w-[200px] mx-auto p-1 mt-3 font-bold text-white rounded-md hover:bg-green-100 hover:text-black text-green mb-4 text-[15px]   bg-green-700  md:text-base lg:text-lg"
+            onClick={submitHandler}
+          >
+            Submit
+          </div>
         </div>
       </div>
     </div>

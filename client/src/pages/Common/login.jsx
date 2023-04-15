@@ -11,7 +11,7 @@ function LoginPage(props) {
   const signIn = useGoogleLogin({
     clientId:
       "http://959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com",
-    blueirect_uri: "http://localhost:3000",
+    redirect_uri: "http://localhost:3000",
     onSuccess: (tokenResponse) => {
       console.log(tokenResponse.access_token);
 
@@ -26,11 +26,11 @@ function LoginPage(props) {
       //navigate("/Home", { state: tokenResponse });
     },
     // onCompleted: (user) => {
-    //     const hasRequiblueScopes = scopes.every((scope) =>
+    //     const hasRequiredScopes = scopes.every((scope) =>
     //         user.accessToken.scopes.includes(scope)
     //     );
 
-    //     if (!hasRequiblueScopes) {
+    //     if (!hasRequiredScopes) {
     //         console.log("Try logging in again");
     //     } else {
     //         navigate("/");

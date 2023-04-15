@@ -27,7 +27,7 @@ function ReviewCard({
       <div className="col-span-full md:col-span-6 lg:col-span-5 ">
         <div className="grid grid-cols-7 gap-2 h-full">
           <div className="col-span-1 md:col-span-2 flex justify-center ">
-            <div className="w-[45px] md:w-[80px] h-[45px] md:h-[80px] rounded-md bg-blue-200">
+            <div className="w-[45px] md:w-[80px] h-[45px] md:h-[80px] rounded-md bg-red-200">
               {/* <img src="" alt="" /> */}
             </div>
           </div>
@@ -54,11 +54,11 @@ function ReviewCard({
           }
         >
           {review === trtext ? (
-            <span className="bg-blue-100 rounded-md px-3 py-1 my-2 text-blue-500 font-semibold hover:bg-blue-600 hover:text-blue-100 duration-150">
+            <span className="bg-red-100 rounded-md px-3 py-1 my-2 text-red-500 font-semibold hover:bg-red-600 hover:text-red-100 duration-150">
               Read More
             </span>
           ) : (
-            <span className="bg-blue-100 rounded-md px-3 py-1 my-2 text-blue-500 font-semibold hover:bg-blue-600 hover:text-blue-100 duration-150">
+            <span className="bg-red-100 rounded-md px-3 py-1 my-2 text-red-500 font-semibold hover:bg-red-600 hover:text-red-100 duration-150">
               Read Less
             </span>
           )}

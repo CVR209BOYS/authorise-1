@@ -14,9 +14,9 @@ function Profile() {
     setUser2(user);
   }, [user]);
   return (
-    <div className="pt-[100px] border-2 border-blue-600 w-[80%] mx-auto">
+    <div className="pt-[100px] border-2 border-red-600 w-[80%] mx-auto">
       {user2 && (
-        <div className="border-2 border-blue flex w-[80%] mx-auto">
+        <div className="border-2 border-red flex w-[80%] mx-auto">
           <div>
             <img src={user2.picture}></img>
           </div>

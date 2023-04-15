@@ -28,7 +28,7 @@ function BookReviews({ bookId }) {
             <div className="font-semibold text-[30px] md:text-[45px] align-top">
               {data.reviews.length}
             </div>
-            <div className="w-fit rounded-full bg-blue-100 px-2 py-1 text-[14px] font-light text-blue-600 h-fit my-auto hidden md:block">
+            <div className="w-fit rounded-full bg-red-100 px-2 py-1 text-[14px] font-light text-red-600 h-fit my-auto hidden md:block">
               BlockBuster!!
             </div>
           </div>
@@ -41,7 +41,7 @@ function BookReviews({ bookId }) {
             <div className="font-semibold text-[30px] md:text-[45px] align-top">
               {avgRating(data).toFixed(1)}
             </div>
-            <div className="w-fit rounded-full bg-blue-100 px-2 py-1 text-[14px] font-light text-blue-600 h-fit my-auto hidden md:block">
+            <div className="w-fit rounded-full bg-red-100 px-2 py-1 text-[14px] font-light text-red-600 h-fit my-auto hidden md:block">
               starsstars
             </div>
           </div>
@@ -49,10 +49,10 @@ function BookReviews({ bookId }) {
         <div className="hidden lg:block col-span-1 py-3 mx-6">
           <div className="font-medium text-[20px] underline">Category Rank</div>
           <div className="flex">
-            <div className="w-fit rounded-lg bg-blue-100 px-2 py-1 text-[14px] font-light text-blue-600 h-fit my-2 mx-1">
+            <div className="w-fit rounded-lg bg-red-100 px-2 py-1 text-[14px] font-light text-red-600 h-fit my-2 mx-1">
               Self Growth - 200
             </div>
-            <div className="w-fit rounded-lg bg-blue-100 px-2 py-1 text-[14px] font-light text-blue-600 h-fit my-2 mx-1">
+            <div className="w-fit rounded-lg bg-red-100 px-2 py-1 text-[14px] font-light text-red-600 h-fit my-2 mx-1">
               Self Dev - 800
             </div>
           </div>

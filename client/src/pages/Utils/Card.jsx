@@ -4,7 +4,7 @@ import data from "./book.json";
 function Card() {
   //   console.log(data);
 
-  const getFilteblueItem = (query, item) => {
+  const getFilteredItem = (query, item) => {
     if (!query) {
       return item;
     }
@@ -22,9 +22,9 @@ function Card() {
 
   const [Query, setQuery] = useState("");
   console.log(Query);
-  const filteblue = getFilteblueItem(Query, data);
+  const filtered = getFilteredItem(Query, data);
 
-  console.log(filteblue);
+  console.log(filtered);
 
   return (
     <div>
@@ -41,10 +41,10 @@ function Card() {
 
       <div>
         <div>
-          {filteblue.map((val, key) => {
+          {filtered.map((val, key) => {
             return (
               <div>
-                <div className="m-5 h-[300px] bg-blue w-[300px] text-white">
+                <div className="m-5 h-[300px] bg-red w-[300px] text-white">
                   <h3>{val.name}</h3>
                   <h3>{val.author}</h3>
                   <h3>{val.genres}</h3>

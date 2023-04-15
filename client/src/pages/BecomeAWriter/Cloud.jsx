@@ -51,7 +51,7 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
     });
   }, []);
   return (
-    <button id={value} className="cloudinary-button bg-blue-400 h-fit">
+    <button id={value} className="cloudinary-button bg-red-400 h-fit">
       Upload
     </button>
   );

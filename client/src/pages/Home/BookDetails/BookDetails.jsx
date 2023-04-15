@@ -40,7 +40,7 @@ function BookDetails({ state }) {
 
   return (
     <div className="h-[100vh]">
-      <div className="h-[20%] bg-blue-800 overflow-hidden"></div>
+      <div className="h-[20%] bg-red-800 overflow-hidden"></div>
       <div className="grid grid-cols-12 mx-4 gap-4 mb-2 md:mb-10">
         <motion.div
           ref={ref}
@@ -64,30 +64,30 @@ function BookDetails({ state }) {
           {/* action buttons for large screens */}
           <div className="grid-rows-3 gap-2 mx-auto   max-w-xs lg:max-w-md hidden md:grid">
             <div className="row-span-1">
-              <button className="w-full py-2  rounded-md shadow-md bg-blue-800 text-white hover:bg-blue-700 duration-150">
+              <button className="w-full py-2  rounded-md shadow-md bg-red-800 text-white hover:bg-red-700 duration-150">
                 Read Now
               </button>
             </div>
             <div className="row-span-1">
-              <button className="w-full py-2 rounded-md shadow-md border-2 border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white duration-150">
+              <button className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150">
                 Add To Bookmarks
               </button>
             </div>
             <div className="row-span-1">
-              <button className="w-full py-2 rounded-md shadow-md border-2 border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white duration-150">
+              <button className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150">
                 Publish It!!
               </button>
             </div>
           </div>
           {/* action buttons for small screens */}
           <div className="grid md:hidden grid-cols-3 gap-4 w-fit mx-auto">
-            <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-blue-700 z-10 shadow-md shadow-blue-700">
+            <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
               R
             </div>
-            <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-blue-700 z-10 shadow-md shadow-blue-700">
+            <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
               C
             </div>
-            <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-blue-700 z-10 shadow-md shadow-blue-700">
+            <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
               B
             </div>
           </div>
@@ -100,7 +100,7 @@ function BookDetails({ state }) {
             {book.tags.map((item, index) => (
               <div
                 key={index}
-                className="py-1 px-2 mx-1 text-blue-800 text-[16px] bg-blue-200  rounded-md font-semibold shadow-md"
+                className="py-1 px-2 mx-1 text-red-800 text-[16px] bg-red-200  rounded-md font-semibold shadow-md"
               >
                 {item.value}
               </div>
