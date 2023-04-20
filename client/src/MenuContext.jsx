@@ -10,10 +10,10 @@ export const MenuProvider = ({ children }) => {
   const [allBooks, setAllBooks] = useState([]);
   const [openSidebar, setOpenSidebar] = useState(true);
 
-  const Books = async () => {
+  const getAllBooks = async () => {
     const res = await axios({
       method: "get",
-      url: "http://localhost:3001/bookupl/get",
+      url: "http://localhost:3001/bookupl/getallbooks",
     });
     console.log(res);
     if (res.data === null) {
@@ -32,7 +32,6 @@ export const MenuProvider = ({ children }) => {
     res.data.forEach((element) => {
       cat.push({ value: element["value"], label: element["label"] });
     });
-    // console.log(cat);
     setCategoryList(cat);
   };
 
@@ -50,7 +49,7 @@ export const MenuProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    Books();
+    getAllBooks();
   }, []);
   useEffect(() => {
     Categories();
@@ -70,6 +69,7 @@ export const MenuProvider = ({ children }) => {
         setCategoryList,
         languageList,
         setLanguageList,
+        getAllBooks,
       }}
     >
       {children}

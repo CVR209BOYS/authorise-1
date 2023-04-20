@@ -14,13 +14,8 @@ import Market from "./pages/Market/Market";
 import RegisterYourPublication from "./pages/PublishBook/RegisterYourPublication";
 
 function App() {
-  // console.log(useContext(MenuContext));
   const { allBooks } = useContext(MenuContext);
-
-  // console.log(allBooks);
-  useEffect(() => {
-    // console.log("allBooks");
-  }, [allBooks]);
+  useEffect(() => {}, [allBooks]);
 
   if (!allBooks.length) {
     return <div>loading</div>;
@@ -30,11 +25,14 @@ function App() {
         <div id="App">
           <Router>
             <Nav />
-
             <Routes>
               <Route exact path="/" element={<Landing />} />
               <Route exact path="/PublishBook" element={<PublishBook />} />
-              <Route exact path="/RegisterYourPublication" element={<RegisterYourPublication />} />
+              <Route
+                exact
+                path="/RegisterYourPublication"
+                element={<RegisterYourPublication />}
+              />
               <Route exact path="/BecomeAWriter" element={<BecomeAWriter />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/market" element={<Market />} />
