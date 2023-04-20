@@ -24,7 +24,7 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
         clientAllowedFormats: ["raw"], //restrict uploading to image files only
         maxImageFileSize: 9000000, //restrict file size to less than 2MB
         resource_type: "raw",
-        // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+        maxImageWidth: 300, //Scales the image down to a width of 2000 pixels before uploading
         // theme: "purple", //change to a purple theme
       },
       (error, result) => {

@@ -26,7 +26,7 @@ const bookSchema = new mongoose.Schema({
     default: "",
   },
   authorObjid: {
-    type: Number,
+    type: String,
     default: null,
   },
   title: {

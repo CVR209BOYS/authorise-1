@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-function ReviewCard({
-  reviewerName,
-  review_text,
-  rating,
-  total_reads,
-  review_date,
-}) {
+function ReviewCard({ reviewerName, review_text, rating }) {
   function truncateString(string, limit) {
     if (string.length > limit) {
       return string.substring(0, limit) + "...";
@@ -35,16 +29,15 @@ function ReviewCard({
             {reviewerName}
             <div>
               <span className="font-semibold text-[13px] md:text-[16px] font-mono">
-                Total Reads:
+                Rating:
               </span>
               <span className="font-semibold text-[15px] md:text-[18px] font-mono"></span>
-              {total_reads}
+              {rating}
             </div>
           </div>
         </div>
       </div>
       <div className="text-[19px] leading-8 font-serif  pl-4 md:pl-8 col-span-full md:col-span-6 lg:col-span-7">
-        <span className="text-[16px] text-gray-600 mb-3">{review_date}</span>
         <div>{review}</div>
         <button
           onClick={() =>
