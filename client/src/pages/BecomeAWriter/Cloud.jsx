@@ -10,10 +10,14 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
     // the full list of possible parameters that you
     // can add see:
     // https://cloudinary.com/documentation/upload_widget_reference
+
     var myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: cloudName,
         uploadPreset: uploadPreset,
+
+        preprocess: true,
+        startOpen: false,
         // cropping: true, //add a cropping step
         // showAdvancedOptions: true,  //add advanced options (public_id and tag)
         // sources: [ "local", "url"], // restrict the upload sources to URL and local files
@@ -24,9 +28,14 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
         clientAllowedFormats: ["raw"], //restrict uploading to image files only
         maxImageFileSize: 9000000, //restrict file size to less than 2MB
         resource_type: "raw",
+        singleUploadAutoClose: false,
+        showCompletedButton: true,
+        autoUpload: false,
+
         // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
-        // theme: "purple", //change to a purple theme
+        theme: "green", //change to a purple theme
       },
+
       (error, result) => {
         if (!error && result && result.event === "success") {
           const urlRes = result.info.url;
@@ -46,10 +55,11 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
         }
       }
     );
+
     document.getElementById(value).addEventListener("click", function () {
       myWidget.open();
     });
-  }, []);
+  });
   return (
     <button id={value} className="cloudinary-button bg-red-400 h-fit">
       Upload

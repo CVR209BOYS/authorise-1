@@ -10,6 +10,7 @@ const axios = require("axios");
 const userRoutes = require("./routes/user.js");
 const reviewRoutes = require("./routes/review.js");
 const pubRoutes = require("./routes/publication.js");
+const commRoutes = require("./routes/communication.js");
 const muserRoutes = require("./routes/muser.js");
 const logoutRoutes = require("./routes/logout.js");
 const bookUplRoute = require("./routes/book.js");
@@ -101,9 +102,14 @@ app.use("/createReview", reviewRoutes);
 app.use("/getReview", reviewRoutes);
 
 //.........................................................................................................................
-// code for publisher using gauth......................................................................................
+// code for publisher......................................................................................
 
 app.use("/publisher", pubRoutes);
+
+//.........................................................................................................................
+// code for communication .....................................................................................
+
+app.use("/communication", commRoutes);
 
 //.........................................................................................................................
 

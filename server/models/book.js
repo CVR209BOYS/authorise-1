@@ -25,9 +25,13 @@ const bookSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  authorObjid: {
-    type: Number,
-    default: null,
+  authorEmail: {
+    type: String,
+    required: true,
+  },
+  authorName: {
+    type: String,
+    default: "neha",
   },
   title: {
     type: String,

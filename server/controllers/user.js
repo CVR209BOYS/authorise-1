@@ -75,7 +75,7 @@ const getusers = async (req, res) => {
         console.log(data);
         res.send({
           status: 200,
-          data: data,
+          data,
         });
       }
     })
