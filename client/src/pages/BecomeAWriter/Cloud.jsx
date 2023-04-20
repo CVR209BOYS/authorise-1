@@ -32,8 +32,16 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
         showCompletedButton: true,
         autoUpload: false,
 
-        // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+        maxImageWidth: 300, //Scales the image down to a width of 2000 pixels before uploading
         theme: "green", //change to a purple theme
+        cropping: true,
+        croppingAspectRatio: 1,
+        croppingCoordinatesMode: "custom",
+
+        showUploadMoreButton: false,
+        //showCompletedButton: false,
+
+        thumbnailTransformation: { width: 150, height: 150, crop: "fill" },
       },
 
       (error, result) => {

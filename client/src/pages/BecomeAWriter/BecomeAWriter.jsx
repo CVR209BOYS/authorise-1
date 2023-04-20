@@ -29,7 +29,7 @@ const BecomeAWriter = (props) => {
       coverpageurl: coverpageurl,
       description: formData.description,
       bookurl: bookurl,
-      authorObjId: formData.authorObjId,
+      authorEmail: formData.authorObjId,
       title: formData.title,
       tags: selectedTags,
       publicationId: formData.publicationId,
