@@ -113,6 +113,9 @@ app.use("/communication", commRoutes);
 // code for languages and categories....................................................................................................
 app.use("/getcategories", categoriesRoute);
 app.use("/getlanguages", languagesRoute);
+
+
+//code for profile update
 app.use("/update", updateRoute);
 
 

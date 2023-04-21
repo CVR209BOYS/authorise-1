@@ -15,8 +15,9 @@ const updateUser = async (req, res) => {
       description: req.body.description,
     }
   )
-    .then((data) => {
-      console.log(data);
+    .then(async(data) => {
+      console.log("updated");
+      await console.log(data);
     })
     .catch();
 };

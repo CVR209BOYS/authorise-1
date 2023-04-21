@@ -5,8 +5,8 @@ import Select from "react-select";
 import bg2 from "../../images/bg2.png";
 import { ReactSession } from "react-client-session";
 import { MenuContext } from "../../MenuContext";
-ReactSession.setStoreType("localStorage");
 import { useNavigate } from "react-router-dom";
+ReactSession.setStoreType("localStorage");
 
 const BecomeAWriter = (props) => {
   const { setAllBooks, allBooks } = useContext(MenuContext);

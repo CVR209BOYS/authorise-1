@@ -15,11 +15,10 @@ const createmusers = async (req, res) => {
   }).catch((err) => {
     console.log(err);
   });
-  }).catch((err) => {
-    console.log(err);
-  });
+  // }).catch((err) => {
+  //   console.log(err);
+  // });
 
-  if (mongouser[0] == undefined) {
   if (mongouser[0] == undefined) {
     let users = {
       name: user.name,
@@ -43,8 +42,8 @@ const createmusers = async (req, res) => {
     res.send({
       message: "email already exists",
     });
-      message: "email already exists",
-    });
+    //   message: "email already exists",
+    // });
   }
 };
 
@@ -52,10 +51,11 @@ const muserlogin = async (req, res) => {
   let user = req.body;
   console.log(req.body);
   // res.send({ message: res.body });
-  let mongouser = await UserModel.find({ email: req.body.email })
-  .catch((err) => {
-    console.log(err);
-  });
+  let mongouser = await UserModel.find({ email: req.body.email }).catch(
+    (err) => {
+      console.log(err);
+    }
+  );
   // console.log(mongouser);
 
   if (mongouser == undefined) {

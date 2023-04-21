@@ -61,6 +61,7 @@ const createusers = async (req, res) => {
 
 const getusers = async (req, res) => {
   const mail = req.body.email;
+  console.log(req.body);
   const Userdata = await UserModel.find({
     email: mail,
   })
@@ -72,6 +73,7 @@ const getusers = async (req, res) => {
           message: "invalid email",
         });
       } else {
+
         console.log(data);
         res.send({
           status: 200,
