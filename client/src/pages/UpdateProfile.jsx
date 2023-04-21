@@ -33,7 +33,9 @@ export default function UpdateProfile() {
 
   console.log(credentials);
   return (
-    <div className="border-2 border-red-500 pt-[200px]">
+    <div className="border-2 w-[50%] mx-auto pt-[200px]">
+      <div className="bg-white drop-shadow-xl">
+
       <form>
         <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2 ">
           <label for="name">name</label>
@@ -60,6 +62,7 @@ export default function UpdateProfile() {
         <br />
       </form>
       <button onClick={eventHandler}>save</button>
+      </div>
     </div>
   );
 }

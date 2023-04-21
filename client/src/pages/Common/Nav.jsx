@@ -85,10 +85,10 @@ function Nav() {
                 <button onClick={logout}>Logout</button>
               </div>
             )}
-            <div className="bg-[#00000054] text-white font-bold rounded-md h-fit absolute mt-[80px] mr-[10px] p-1 ">
-              <button onClick={() => history(-1)}> BACK</button>
-            </div>
           </div>
+        </div>
+        <div className=" bg-red-500 font-semibold text-white rounded-full border-white border-2 aspect-square absolute mt-[60px] sm:mt-[80px] ml-[10px] px-2 text-[25px] z-50 hover:bg-opacity-100 hover:shadow-sm hover:shadow-white hover:bg-red-600 duration-100 hover:scale-110">
+          <button onClick={() => history(-1)}> {"<-"} </button>
         </div>
       </div>
     </GoogleOAuthProvider>
