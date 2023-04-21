@@ -29,12 +29,7 @@ function Filters({
       <div className="col-span-1">
         <div className="text-[20px] font-mono font-semibold">Genres</div>
         <div>
-          <Select
-            value={genres}
-            onChange={setGenres}
-            options={categoryList}
-            isMulti
-          />
+          <Select value={genres} onChange={setGenres} options={categoryList} />
         </div>
       </div>
       <div className="col-span-1">

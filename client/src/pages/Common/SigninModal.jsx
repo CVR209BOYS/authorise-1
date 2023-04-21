@@ -71,6 +71,11 @@ export default function SigninModal({
       headers: {
         "Content-Type": "application/json",
       },
+    }).then((res) => {
+      console.log(res.data);
+      ReactSession.set("user", res.data);
+      setUser(ReactSession.get("user"));
+      console.log(ReactSession.get("user"))
     });
   };
 

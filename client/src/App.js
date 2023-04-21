@@ -12,6 +12,7 @@ import BookDetails from "./pages/Home/BookDetails/BookDetails";
 import { MenuContext } from "./MenuContext";
 import Market from "./pages/Market/Market";
 import RegisterYourPublication from "./pages/PublishBook/RegisterYourPublication";
+import UpdateProfile from "./pages/UpdateProfile";
 
 function App() {
   const { allBooks } = useContext(MenuContext);
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/market" element={<Market />} />
               <Route exact path="/bookdetails" element={<BookDetails />} />
+              <Route exact path="/updateprofile" element={<UpdateProfile />} />
             </Routes>
           </Router>
         </div>

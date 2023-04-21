@@ -35,6 +35,14 @@ const createPub = async (req, res) => {
       .then(async (data) => {
         console.log(data);
         if (publication.employees.length != 0) {
+          await UserModel.findOneAndUpdate(
+            {
+              email: req.body.email,
+              pid: null,
+            },
+            { pid: data._id },
+            { new: true, upsert: true }
+          );
           publication.employees.forEach(async (item, index) => {
             console.log(item);
 

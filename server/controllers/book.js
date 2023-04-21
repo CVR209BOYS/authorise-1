@@ -5,17 +5,18 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 const uploadBooks = async (req, res) => {
-  console.log("ohmymy");
+  //console.log("ohmymy");
   const newBook = new bookModel(req.body);
   await newBook
     .save()
     .then((data) => {
+      console.log(data);
       res.send(data);
     })
     .catch((err) => {
       console.log("error");
     });
-  console.log("book added");
+  //console.log("book added");
 };
 
 const getBookbyid = async (req, res) => {

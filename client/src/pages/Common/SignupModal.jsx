@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { ReactSession } from "react-client-session";
+
 
 export default function SignupMOdal({
   setOpenSin,
@@ -13,26 +16,41 @@ export default function SignupMOdal({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    setUser((currentUser) => ReactSession.get("user"));
+  }, []);
+  useEffect(() => {
+    setUser2(user);
+  }, [user]);
   const onchange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   console.log(credentials);
   const eventHandler = async () => {
-    const response = await fetch("http://localhost:3001/createmusers/signup", {
+    const response = await axios({
       method: "POST",
+      url:"http://localhost:3001/createmusers/signup",
+      data:{
+        name: credentials.username,
+        email: credentials.email,
+        password: credentials.password,
+      },
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({
-        username: credentials.username,
-        email: credentials.email,
-        password: credentials.password,
-      }),
+    }).then((res) => {
+      console.log("incoming");
+      console.log(res.data);
+      ReactSession.set("user", res.data);
+      setUser(ReactSession.get("user"));
+      console.log(ReactSession.get("user"))
     });
+    console.log("dfgh")
+    console.log(response)
   };
   return (
     <div>
-      <div className="bg-[#000000db] text-white w-full h-screen snap-none fixed top-0 z-[60]">
+      <div className="bg-[#000000db] text-black w-full h-screen snap-none fixed top-0 z-[60]">
         <div className="border-2 w-[50%] bg-white text-red rounded-xl text-center mx-auto mt-12">
           <div className=" w-fit pr-2 h-full font-bold pt-3 text-[15px] mx-auto  md:text-2xl lg:text-3xl">
             <p>Welcome to authoRISE</p>
@@ -79,6 +97,7 @@ export default function SignupMOdal({
             <div className="w-[200px] mx-auto p-1 mt-3 rounded-md bg-[#8e8e8e] text-red mb-4 text-[15px]  hover:text-white hover:bg-red-700  md:text-base lg:text-lg">
               <button
                 onClick={() => {
+                  eventHandler();
                   setOpenSin(false);
                   setOpenSup(false);
                 }}

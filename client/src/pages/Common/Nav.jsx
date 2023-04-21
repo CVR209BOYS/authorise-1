@@ -21,6 +21,7 @@ function Nav() {
     setUser(undefined);
     setUser2(undefined);
   };
+  
 
   return (
     <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
