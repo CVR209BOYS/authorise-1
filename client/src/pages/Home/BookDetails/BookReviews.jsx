@@ -13,7 +13,7 @@ function BookReviews({ bookid }) {
       total += item.rating;
       count++;
     });
-    return total / count;
+    return (total / count).toPrecision(3);
   };
 
   const [avg, setAvg] = useState(0);
@@ -28,14 +28,14 @@ function BookReviews({ bookid }) {
     }).then((r) => {
       setReviews(r.data.bookreview);
     });
-    console.log(reviewsData);
+    // console.log(reviewsData);
   };
   useEffect(() => {
     getReviews();
   }, []);
 
   useEffect(() => {
-    console.log(reviews);
+    // console.log(reviews);
     setAvg(avgRating(reviews));
   }, [reviews]);
 

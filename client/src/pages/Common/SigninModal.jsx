@@ -28,7 +28,7 @@ export default function SigninModal({
       "http://959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com",
     redirect_uri: "http://localhost:3000",
     onSuccess: (tokenResponse) => {
-      console.log(tokenResponse.access_token);
+      // console.log(tokenResponse.access_token);
       const data = axios({
         method: "post",
         url: "http://localhost:3001/createusers",
@@ -39,7 +39,7 @@ export default function SigninModal({
         // console.log(res.data);
         ReactSession.set("user", res.data);
         setUser(ReactSession.get("user"));
-        console.log(ReactSession.get("user"))
+        // console.log(ReactSession.get("user"))
       });
       console.log(data);
     },
