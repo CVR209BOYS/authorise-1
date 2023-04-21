@@ -33,14 +33,14 @@ function Profile() {
             <div>{user.email}</div>
             {/* <div>{user.description}</div> */}
 
-            {user.description.length === 0 ? (
+            {user.description?.length === 0 ? (
               <div>no content</div>
             ) : (
               <div>{user.description}</div>
             )}
           </div>
           <div>
-          <a href="/updateprofile">update</a>
+            <a href="/updateprofile">update</a>
           </div>
         </div>
       )}

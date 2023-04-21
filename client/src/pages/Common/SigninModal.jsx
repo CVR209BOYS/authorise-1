@@ -39,7 +39,7 @@ export default function SigninModal({
         // console.log(res.data);
         ReactSession.set("user", res.data);
         setUser(ReactSession.get("user"));
-        console.log(ReactSession.get("user"))
+        console.log(ReactSession.get("user"));
       });
       console.log(data);
     },
@@ -73,9 +73,17 @@ export default function SigninModal({
       },
     }).then((res) => {
       console.log(res.data);
-      ReactSession.set("user", res.data);
-      setUser(ReactSession.get("user"));
-      console.log(ReactSession.get("user"))
+      if (res.data.status !== 403 && res.data.status !== 402) {
+        ReactSession.set("user", res.data);
+        setUser(ReactSession.get("user"));
+        console.log(ReactSession.get("user"));
+      } else {
+        if (res.data.status === 402) {
+          alert("user dosent exist");
+        } else {
+          alert("invalid credentials");
+        }
+      }
     });
   };
 

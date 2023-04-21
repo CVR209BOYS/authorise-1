@@ -36,7 +36,7 @@ const bookSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    default: "",
+    required: true,
   },
   tags: {
     type: [tagSchema],

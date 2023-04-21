@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
   },
   picture: {
     type: String,
+    default: "https://wallpapercave.com/wp/wp8305921.jpg",
   },
   pid: {
     type: String,
@@ -32,6 +33,7 @@ const UserSchema = new mongoose.Schema({
   authType: {
     type: String,
     enum: ["GOOGLE", "PASSWORD"],
+    default: "GOOGLE",
   },
 });
 

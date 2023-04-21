@@ -5,14 +5,14 @@ import Select from "react-select";
 import bg2 from "../../images/bg2.png";
 import { ReactSession } from "react-client-session";
 import { MenuContext } from "../../MenuContext";
-ReactSession.setStoreType("localStorage");
 import { useNavigate } from "react-router-dom";
+ReactSession.setStoreType("localStorage");
 
 const BecomeAWriter = (props) => {
   const { setAllBooks, allBooks } = useContext(MenuContext);
   const navigate = useNavigate();
-  const authorObjid = ReactSession.get("user").email;
-  console.log(authorObjid);
+  const authorEmail = ReactSession.get("user").email;
+  const authorName = ReactSession.get("user").name;
 
   const [selectedTags, setSelectedTags] = useState([]);
   const [coverpageurl, setCoverpageurl] = useState(null);
@@ -24,7 +24,8 @@ const BecomeAWriter = (props) => {
     description: "",
     title: "",
     publicationId: "",
-    authorObjid: authorObjid,
+    authorEmail: authorEmail,
+    authorName: authorName,
   });
 
   const submitHandler = async () => {
@@ -33,7 +34,8 @@ const BecomeAWriter = (props) => {
       coverpageurl: coverpageurl,
       description: formData.description,
       bookurl: bookurl,
-      authorObjid: formData.authorObjid,
+      authorEmail: formData.authorEmail,
+      authorName: formData.authorName,
       title: formData.title,
       tags: selectedTags,
       publicationId: formData.publicationId,
@@ -41,20 +43,24 @@ const BecomeAWriter = (props) => {
     const book = await axios
       .post("http://localhost:3001/bookupl/upload", data)
       .then(async (response) => {
-        setFormData({
-          description: "",
-          authorObjId: "",
-          title: "",
-          publicationId: "",
-        });
-        setSelectedTags([]);
-        setCoverpageurl(null);
-        setBookurl(null);
-        await setAllBooks([...allBooks, response.data]);
-        console.log(response.data);
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
+        console.log(response);
+        if (response.status !== 403) {
+          setFormData({
+            description: "",
+            authorEmail: "",
+            authorName: "",
+            title: "",
+            publicationId: "",
+          });
+          setSelectedTags([]);
+          setCoverpageurl(null);
+          setBookurl(null);
+          await setAllBooks([...allBooks, response.data]);
+          console.log(response.data);
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -174,4 +180,3 @@ const BecomeAWriter = (props) => {
 };
 
 export default BecomeAWriter;
-

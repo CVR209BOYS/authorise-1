@@ -14,7 +14,8 @@ const uploadBooks = async (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      console.log("error");
+      console.log(err);
+      res.send({ status: 403 });
     });
   //console.log("book added");
 };

@@ -24,7 +24,7 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
         multiple: false, //restrict upload to a single file
         folder: "pdf", //upload files to the specified folder
         tags: ["pdf", "books"], //add the given tags to the uploaded files
-        // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+        context: { alt: "user_uploaded" }, //add the given context data to the uploaded files
         clientAllowedFormats: ["raw"], //restrict uploading to image files only
         maxImageFileSize: 9000000, //restrict file size to less than 2MB
         resource_type: "raw",
@@ -38,7 +38,7 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
         croppingAspectRatio: 1,
         croppingCoordinatesMode: "custom",
 
-        showUploadMoreButton: false,
+        //showUploadMoreButton: false,
         //showCompletedButton: false,
 
         thumbnailTransformation: { width: 150, height: 150, crop: "fill" },
