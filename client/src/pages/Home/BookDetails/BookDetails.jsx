@@ -4,6 +4,7 @@ import BookReviews from "../BookDetails/BookReviews";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { MenuContext } from "../../../MenuContext";
+import Pdf from "../../Common/Pdf";
 
 function BookDetails({ state }) {
   const location = useLocation();
@@ -38,11 +39,6 @@ function BookDetails({ state }) {
 
   useEffect(() => {
     setBook(() => {
-      console.log(
-        allBooks.filter((b) => {
-          return b._id === bookid;
-        })[0]
-      );
       const x = allBooks.filter((b) => {
         return b._id === bookid;
       });
@@ -55,11 +51,34 @@ function BookDetails({ state }) {
     setImageLoaded(true);
   };
 
+  const [openPdfReader, setOpenPdfReader] = useState(false);
+
+  const handleReadNow = () => {
+    setOpenPdfReader(!openPdfReader);
+  };
+
+  useEffect(() => {
+    // console.log(openPdfReader);
+  }, [openPdfReader]);
+
   if (bookLoaded === false) {
     return <div>loading!!</div>;
   } else {
     return (
-      <div className="h-[100vh]">
+      <div
+        className={`h-[100vh] ${
+          openPdfReader ? "overflow-clip" : "overflow-scroll"
+        }`}
+      >
+        {openPdfReader && (
+          <Pdf
+            title={book.title}
+            url={book.bookurl}
+            handleReadNow={handleReadNow}
+            openPdfReader={openPdfReader}
+            setOpenPdfReader={setOpenPdfReader}
+          />
+        )}
         <div className="h-[20%] bg-red-800 overflow-hidden"></div>
         <div className="grid grid-cols-12 mx-4 gap-4 mb-2 md:mb-10">
           <motion.div
@@ -84,7 +103,10 @@ function BookDetails({ state }) {
             {/* action buttons for large screens */}
             <div className="grid-rows-3 gap-2 mx-auto max-w-xs lg:max-w-md hidden md:grid">
               <div className="row-span-1">
-                <button className="w-full py-2  rounded-md shadow-md bg-red-800 text-white hover:bg-red-700 duration-150">
+                <button
+                  onClick={handleReadNow}
+                  className="w-full py-2  rounded-md shadow-md bg-red-800 text-white hover:bg-red-700 duration-150"
+                >
                   Read Now
                 </button>
               </div>
@@ -101,7 +123,10 @@ function BookDetails({ state }) {
             </div>
             {/* action buttons for small screens */}
             <div className="grid md:hidden grid-cols-3 gap-4 w-fit mx-auto">
-              <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
+              <div
+                onClick={handleReadNow}
+                className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700"
+              >
                 R
               </div>
               <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">

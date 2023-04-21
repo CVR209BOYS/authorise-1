@@ -8,7 +8,7 @@ function AddReview({ bookid, setReviews }) {
   const openAddReview = () => {
     setAddReviewForm(!addReviewForm);
   };
-  console.log(bookid);
+  // console.log(bookid);
   const [reviewData, setReviewData] = useState({
     bookid: bookid,
     email: ReactSession.get("user").email,
@@ -45,7 +45,7 @@ function AddReview({ bookid, setReviews }) {
         setAddReviewForm(false);
       })
       .catch((err) => {
-        console.log("sorry");
+        // console.log("sorry");
       });
   };
 
