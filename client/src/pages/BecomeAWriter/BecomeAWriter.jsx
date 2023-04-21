@@ -3,11 +3,15 @@ import CloudinaryUploadWidget from "./Cloud";
 import axios from "axios";
 import data from "../Utils/categories.json";
 import Select from "react-select";
-import bg2 from '../../images/bg2.png'
-
+import bg2 from "../../images/bg2.png";
+import { ReactSession } from "react-client-session";
 import { MenuContext } from "../../MenuContext";
+ReactSession.setStoreType("localStorage");
 
 function BecomeAWriter(props) {
+  const authorObjid = ReactSession.get("user").email;
+  console.log(authorObjid);
+
   const [selectedTags, setSelectedTags] = useState([]);
   const [coverpageurl, setCoverpageurl] = useState();
   const [bookurl, setBookurl] = useState();
@@ -16,9 +20,9 @@ function BecomeAWriter(props) {
 
   const [formData, setFormData] = useState({
     description: "",
-    authorObjId: "",
     title: "",
     publicationId: "",
+    authorObjid: authorObjid,
   });
 
   const submitHandler = async () => {
@@ -27,7 +31,7 @@ function BecomeAWriter(props) {
       coverpageurl: coverpageurl,
       description: formData.description,
       bookurl: bookurl,
-      authorObjId: formData.authorObjId,
+      authorObjid: formData.authorObjid,
       title: formData.title,
       tags: selectedTags,
       publicationId: formData.publicationId,
@@ -108,7 +112,6 @@ function BecomeAWriter(props) {
                 value={selectedTags}
                 onChange={setSelectedTags}
                 options={categoryList}
-                isMulti
               />
             </div>
           </div>

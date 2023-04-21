@@ -2,32 +2,49 @@ import { useEffect, useState } from "react";
 import { ReactSession } from "react-client-session";
 import Book from "./Home/Book";
 import Carousel from "../pages/Utils/Carousal";
+import { Navigate } from "react-router-dom";
 ReactSession.setStoreType("localStorage");
 
 function Profile() {
+  // const navigate = Navigate();
   const [user, setUser] = useState(undefined);
   const [user2, setUser2] = useState(undefined);
+  // useEffect(() => {
+  // }, [ReactSession.get("user")]);
   useEffect(() => {
     setUser((currentUser) => ReactSession.get("user"));
-  }, [ReactSession.get("user")]);
-  useEffect(() => {
     setUser2(user);
-  }, [user]);
+  }, []);
+  console.log(user);
+  // const desc = user.email;
+  // console.log(desc);
+  // const handleUpdate = () => {
+
+  // };
   return (
     <div className="pt-[100px] border-2 border-red-600 w-[80%] mx-auto">
-      {user2 && (
-        <div className="border-2 border-red flex w-[80%] mx-auto">
+      {user && (
+        <div className="border-2 border-red  w-[80%] mx-auto">
           <div>
-            <img src={user2.picture}></img>
+            <img src={user.picture}></img>
           </div>
           <div>
-            {user2.name}
-            <div>{user2.email}</div>
-            <div>this is my description ...........</div>
+            {user.name}
+            <div>{user.email}</div>
+            {/* <div>{user.description}</div> */}
+
+            {user.description.length === 0 ? (
+              <div>no content</div>
+            ) : (
+              <div>{user.description}</div>
+            )}
+          </div>
+          <div>
+          <a href="/updateprofile">update</a>
           </div>
         </div>
       )}
-      {!user2 && <div>koi user nhi h LAUDE</div>}
+      {!user && <div>koi user nhi h LAUDE</div>}
       <br />
       <br />
       <div>Uploaded book</div>

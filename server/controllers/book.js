@@ -6,8 +6,9 @@ const cookieParser = require("cookie-parser");
 
 const uploadBooks = async (req, res) => {
   console.log("ohmymy");
-  // const newBook = new bookModel(req.body);
-  // await newBook.save();
+  console.log(req.body)
+  const newBook = new bookModel(req.body);
+  await newBook.save();
   console.log("book added");
 };
 

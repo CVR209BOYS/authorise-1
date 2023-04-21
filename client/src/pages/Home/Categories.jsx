@@ -19,7 +19,7 @@ export default function Categories() {
             to={{
               pathname: "/market",
             }}
-            state={val}
+            state={val.value}
           >
             <CatButton value={{ name: val.value, selected: state }} />
           </Link>
