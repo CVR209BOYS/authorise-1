@@ -36,10 +36,10 @@ export default function SigninModal({
           tokenResponse,
         },
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         ReactSession.set("user", res.data);
         setUser(ReactSession.get("user"));
-        // console.log(ReactSession.get("user"))
+        console.log(ReactSession.get("user"))
       });
       console.log(data);
     },

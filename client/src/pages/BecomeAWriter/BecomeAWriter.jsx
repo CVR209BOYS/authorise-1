@@ -1,20 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CloudinaryUploadWidget from "./Cloud";
 import axios from "axios";
-import data from "../Utils/categories.json";
 import Select from "react-select";
 import bg2 from "../../images/bg2.png";
 import { ReactSession } from "react-client-session";
 import { MenuContext } from "../../MenuContext";
 ReactSession.setStoreType("localStorage");
+import { useNavigate } from "react-router-dom";
 
-function BecomeAWriter(props) {
+const BecomeAWriter = (props) => {
+  const { setAllBooks, allBooks } = useContext(MenuContext);
+  const navigate = useNavigate();
   const authorObjid = ReactSession.get("user").email;
   console.log(authorObjid);
 
   const [selectedTags, setSelectedTags] = useState([]);
-  const [coverpageurl, setCoverpageurl] = useState();
-  const [bookurl, setBookurl] = useState();
+  const [coverpageurl, setCoverpageurl] = useState(null);
+  const [bookurl, setBookurl] = useState(null);
 
   const { categoryList } = useContext(MenuContext);
 
@@ -26,7 +28,7 @@ function BecomeAWriter(props) {
   });
 
   const submitHandler = async () => {
-    console.log(coverpageurl + "      " + bookurl);
+    // console.log(coverpageurl + "      " + bookurl);
     const data = {
       coverpageurl: coverpageurl,
       description: formData.description,
@@ -36,19 +38,32 @@ function BecomeAWriter(props) {
       tags: selectedTags,
       publicationId: formData.publicationId,
     };
-    axios.post("http://localhost:3001/bookupl/upload", data);
-    // await axios({
-    //   method: "post",
-    //   url: "http://localhost:3001/bookupl/upload",
-    //   body: formData,
-    // });
+    const book = await axios
+      .post("http://localhost:3001/bookupl/upload", data)
+      .then(async (response) => {
+        setFormData({
+          description: "",
+          authorObjId: "",
+          title: "",
+          publicationId: "",
+        });
+        setSelectedTags([]);
+        setCoverpageurl(null);
+        setBookurl(null);
+        await setAllBooks([...allBooks, response.data]);
+        console.log(response.data);
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  // console.log(selectedTags);
-  // useEffect(() => {
-  //   console.log(bookurl);
-  //   console.log(coverpageurl);
-  // }, [bookurl, coverpageurl]);
+  useEffect(() => {
+    console.log(allBooks);
+  }, [allBooks]);
 
   return (
     <div className="pt-[100px]  w-[90%] mx-auto ">
@@ -156,6 +171,7 @@ function BecomeAWriter(props) {
       </div>
     </div>
   );
-}
+};
 
 export default BecomeAWriter;
+

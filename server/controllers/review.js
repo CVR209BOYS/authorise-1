@@ -25,7 +25,7 @@ const createReview = async (req, res) => {
           bookid: req.body.bookid,
           email: req.body.email,
           picid: req.body.picid,
-          ratings: req.body.ratings,
+          rating: req.body.rating,
           review: req.body.review,
           username: req.body.username,
         };
@@ -38,8 +38,10 @@ const createReview = async (req, res) => {
   console.log(review);
   const newReview = new reviewModel(review);
   await newReview.save();
-  console.log("user added");
+  const updatedReviews = await reviewModel.find({ bookid: req.body.bookid });
+  res.send(updatedReviews);
 };
+
 const getReview = async (req, res) => {
   let book = {};
   const bookreview = await reviewModel
@@ -47,24 +49,15 @@ const getReview = async (req, res) => {
       bookid: req.body.bookid,
     })
     .then((data) => {
-      if (data.length == 0) {
-        console.log("invalid email");
-        res.send({
-          status: 403,
-          message: "invalid email",
-        });
-      } else {
-        book = data;
-      }
+      res.send({
+        status: 200,
+        bookreview: data,
+      });
     })
     .catch((err) => {
       console.log(err);
       res.send(err);
     });
-  res.send({
-    status: 200,
-    bookreview: book,
-  });
 };
 
 module.exports = { createReview, getReview };

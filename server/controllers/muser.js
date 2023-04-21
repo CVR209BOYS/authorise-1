@@ -9,15 +9,17 @@ const cookieParser = require("cookie-parser");
 
 const createmusers = async (req, res) => {
   const user = req.body;
-  console.log("jhbhcdklbsalkvbslkbvlk");
-  console.log(user);
 
   let mongouser = await UserModel.find({
     email: user.email,
   }).catch((err) => {
     console.log(err);
   });
+  }).catch((err) => {
+    console.log(err);
+  });
 
+  if (mongouser[0] == undefined) {
   if (mongouser[0] == undefined) {
     let users = {
       name: user.name,
@@ -38,8 +40,9 @@ const createmusers = async (req, res) => {
     console.log(sendresponse);
     res.send(sendresponse);
   } else {
-    console.log("jayant2");
     res.send({
+      message: "email already exists",
+    });
       message: "email already exists",
     });
   }
@@ -64,9 +67,9 @@ const muserlogin = async (req, res) => {
       message: "Invalid credentials",
     });
   } else {
-    console.log("login sucessfull jayant");
+    console.log("login sucessfull");
     let sentuser = mongouser[0];
-    console.log(sentuser);
+    // console.log(sentuser);
     res.send(sentuser);
   }
   // console.log(publics[0]);

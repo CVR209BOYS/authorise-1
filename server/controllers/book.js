@@ -5,11 +5,31 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 const uploadBooks = async (req, res) => {
-  console.log("ohmymy");
-  console.log(req.body)
+  //console.log("ohmymy");
   const newBook = new bookModel(req.body);
-  await newBook.save();
-  console.log("book added");
+  await newBook
+    .save()
+    .then((data) => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log("error");
+    });
+  //console.log("book added");
+};
+
+const getBookbyid = async (req, res) => {
+  console.log(req.body._id);
+  let book = await bookModel
+    .findById(req.body._id)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log("opps!");
+    });
+  res.send(book);
 };
 
 const getBooks = async (req, res) => {
@@ -18,4 +38,4 @@ const getBooks = async (req, res) => {
 };
 
 // module.exports = getBooks;
-module.exports = { uploadBooks, getBooks };
+module.exports = { uploadBooks, getBooks, getBookbyid };

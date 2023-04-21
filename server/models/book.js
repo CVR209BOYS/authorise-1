@@ -23,11 +23,16 @@ const bookSchema = new mongoose.Schema({
   },
   bookurl: {
     type: String,
-    default: "",
+    required: true,
+    minlength: 9,
   },
-  authorObjid: {
+  authorEmail: {
     type: String,
-    default: null,
+    required: true,
+  },
+  authorName: {
+    type: String,
+    default: "neha",
   },
   title: {
     type: String,
@@ -37,7 +42,7 @@ const bookSchema = new mongoose.Schema({
     type: [tagSchema],
     default: null,
   },
-  publicationid: {
+  publicationId: {
     type: String,
     default: null,
   },
