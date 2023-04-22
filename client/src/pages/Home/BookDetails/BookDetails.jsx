@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { MenuContext } from "../../../MenuContext";
 import { ReactSession } from "react-client-session";
+import AuthorDetails from "./AuthorDetails";
 import Pdf from "../../Common/Pdf";
 
 function BookDetails({ open }) {
@@ -19,7 +20,7 @@ function BookDetails({ open }) {
   const [book, setBook] = useState(null);
   const [bookLoaded, setBookLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  // const pid = ReactSession.get("user").pid;
+  const pid = ReactSession.get("user").pid;
   // console.log(pid);
   const [openPdfReader, setOpenPdfReader] = useState(false);
   const [coverSectionLift, setCoverSectionLift] = useState(
@@ -123,6 +124,9 @@ function BookDetails({ open }) {
     });
     getReviews();
     setBookLoaded(true);
+
+    const author = book.authorName;
+    console.log(author);
   }, []);
 
   const handleImageLoad = () => {
@@ -132,10 +136,17 @@ function BookDetails({ open }) {
   const handleReadNow = () => {
     setOpenPdfReader(!openPdfReader);
   };
+  const handledetails = () => {
+    open.setopendetails(true);
+    open.setauthordata({ book });
+  };
 
   useEffect(() => {
     // console.log(openPdfReader);
   }, [openPdfReader]);
+
+  console.log("book data");
+  console.log(book);
 
   if (bookLoaded === false) {
     return <div>loading!!</div>;
@@ -192,15 +203,21 @@ function BookDetails({ open }) {
                 </button>
               </div>
               <div className="row-span-1">
-                {/* {pid?.length === 0 ? (
+                {pid?.length === 0 ? (
                   <div>
-                    <button className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150">
+                    <button
+                      onClick={() => {
+                        open.setopendetails(true);
+                        open.setauthordata({ book });
+                      }}
+                      className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150"
+                    >
                       Publish It!!
                     </button>
                   </div>
                 ) : (
                   <></>
-                )} */}
+                )}
               </div>
             </div>
             {/* action buttons for small screens */}
@@ -214,8 +231,19 @@ function BookDetails({ open }) {
               <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
                 C
               </div>
-              <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
-                B
+              <div>
+                {pid.length === 0 ? (
+                  <div>
+                    <button
+                      onClick={handledetails}
+                      className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700"
+                    >
+                      <div></div>
+                    </button>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </motion.div>

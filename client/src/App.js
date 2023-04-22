@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -13,11 +13,11 @@ import { MenuContext } from "./MenuContext";
 import Market from "./pages/Market/Market";
 import RegisterYourPublication from "./pages/PublishBook/RegisterYourPublication";
 import UpdateProfile from "./pages/UpdateProfile";
-import { useState } from "react";
 import AuthorDetails from "./pages/Home/BookDetails/AuthorDetails";
 
 function App() {
   const [opendetails, setopendetials] = useState(false);
+  const [authordata, setauthordata] = useState({});
 
   const { allBooks } = useContext(MenuContext);
   useEffect(() => {
@@ -31,7 +31,15 @@ function App() {
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
           <Router>
-            {opendetails && <AuthorDetails open={setopendetials} />}
+            {opendetails && (
+              <AuthorDetails
+                open={{
+                  setopendetails: setopendetials,
+                  setauthordata: setauthordata,
+                  authordata: authordata,
+                }}
+              />
+            )}
             <Nav />
             <Routes>
               <Route exact path="/" element={<Landing />} />
@@ -47,7 +55,16 @@ function App() {
               <Route
                 exact
                 path="/bookdetails"
-                element={<BookDetails open={setopendetials} />}
+                element={
+                  <BookDetails
+                    open={{
+                      setopendetails: setopendetials,
+                      setauthordata: setauthordata,
+                      authordata: authordata,
+                      opendetails: opendetails,
+                    }}
+                  />
+                }
               />
               <Route exact path="/updateprofile" element={<UpdateProfile />} />
             </Routes>
