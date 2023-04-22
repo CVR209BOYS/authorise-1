@@ -6,10 +6,10 @@ import axios from "axios";
 import { MenuContext } from "../../../MenuContext";
 import { ReactSession } from "react-client-session";
 import AuthorDetails from "./AuthorDetails";
+import Pdf from "../../Common/Pdf";
 
 function BookDetails({ open }) {
-  // console.log(open)
-  import Pdf from "../../Common/Pdf";
+  console.log(open);
 
   ReactSession.setStoreType("localStorage");
   const location = useLocation();
@@ -57,21 +57,6 @@ function BookDetails({ open }) {
 
     const author = book.authorObjid;
     console.log(author);
-    const response = await axios({
-      method: "POST",
-      url: "http://localhost:3001/getusers/myUser",
-      data: {
-        email: `${author}`,
-      },
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).then((res) => {
-      // setuserInformation(res.data)
-      console.log("authordetails");
-      console.log(res.data.data[0]);
-      setauthordata(res.data.data[0]);
-    });
   }, []);
 
   const handleImageLoad = () => {
@@ -83,10 +68,20 @@ function BookDetails({ open }) {
   const handleReadNow = () => {
     setOpenPdfReader(!openPdfReader);
   };
+  const handledetails =() => {
+      open.setopendetails(true);
+      open.setauthordata({ book });
+    };
+  
 
   useEffect(() => {
     // console.log(openPdfReader);
   }, [openPdfReader]);
+
+  console.log("book data");
+  console.log(book);
+
+  
 
   if (bookLoaded === false) {
     return <div>loading!!</div>;
@@ -97,6 +92,7 @@ function BookDetails({ open }) {
           openPdfReader ? "overflow-clip" : "overflow-scroll"
         }`}
       >
+        
         {openPdfReader && (
           <Pdf
             title={book.title}
@@ -145,7 +141,13 @@ function BookDetails({ open }) {
               <div className="row-span-1">
                 {pid.length === 0 ? (
                   <div>
-                    <button className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150">
+                    <button
+                      onClick={() => {
+                        open.setopendetails(true);
+                        open.setauthordata({ book });
+                      }}
+                      className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150"
+                    >
                       Publish It!!
                     </button>
                   </div>
@@ -165,8 +167,20 @@ function BookDetails({ open }) {
               <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
                 C
               </div>
-              <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
-                B
+              <div >
+                
+                {pid.length === 0 ? (
+                  <div>
+                    <button
+                      onClick={handledetails}
+                      className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700"
+                    >
+                      <div></div>
+                    </button>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </motion.div>

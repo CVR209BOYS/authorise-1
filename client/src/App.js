@@ -21,6 +21,7 @@ function App() {
 
   
   const [opendetails,setopendetials]=useState(false);
+  const [authordata,setauthordata]=useState({});
 
 
   const { allBooks } = useContext(MenuContext);
@@ -33,7 +34,8 @@ function App() {
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
           <Router>
-        {opendetails && (<AuthorDetails open={setopendetials}/>)}
+        
+          {(opendetails) && (<AuthorDetails open={{setopendetails:setopendetials,setauthordata:setauthordata,authordata:authordata}}/>)}
             <Nav />
             <Routes>
               <Route exact path="/" element={<Landing />} />
@@ -46,7 +48,7 @@ function App() {
               <Route exact path="/BecomeAWriter" element={<BecomeAWriter />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/market" element={<Market />} />
-              <Route exact path="/bookdetails" element={<BookDetails open={setopendetials} />} />
+              <Route exact path="/bookdetails" element={<BookDetails open={{setopendetails:setopendetials,setauthordata:setauthordata,authordata:authordata,opendetails:opendetails}} />} />
               <Route exact path="/updateprofile" element={<UpdateProfile />} />
             </Routes>
           </Router>
