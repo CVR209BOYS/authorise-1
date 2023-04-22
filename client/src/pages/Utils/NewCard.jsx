@@ -11,7 +11,9 @@ const BookCard = ({ book }) => {
         />
       </div>
       <div className="row-span-1 grid grid-rows-2">
-        <div className="row-span-1 text-[20px]">{book.title.toUpperCase()}</div>
+        <div className="row-span-1 text-[20px]">
+          {book.title?.toUpperCase()}
+        </div>
         <div className="row-span-1 grid grid-cols-2 border-t-2 pt-3">
           <div className="grid grid-rows-3 col-span-1 text-[14px] text-left">
             <span className="text-gray-400 row-span-1">Authors</span>
@@ -20,7 +22,7 @@ const BookCard = ({ book }) => {
           <div className="grid grid-rows-3 col-span-1 text-[14px] text-right">
             <div className="text-gray-400 row-span-1">Rating</div>
             <div className="row-span-2 text-[18px]">
-              {book.rating.toPrecision(2)}/5
+              {book.rating?.toPrecision(2)}/5
             </div>
           </div>
         </div>

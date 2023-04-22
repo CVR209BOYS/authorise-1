@@ -11,8 +11,8 @@ ReactSession.setStoreType("localStorage");
 const BecomeAWriter = (props) => {
   const { setAllBooks, allBooks } = useContext(MenuContext);
   const navigate = useNavigate();
-  const authorEmail = ReactSession.get("user").email;
-  const authorName = ReactSession.get("user").name;
+  const authorEmail = ReactSession.get("user")?.email;
+  const authorName = ReactSession.get("user")?.name;
 
   const [selectedTags, setSelectedTags] = useState([]);
   const [coverpageurl, setCoverpageurl] = useState(null);
@@ -44,7 +44,8 @@ const BecomeAWriter = (props) => {
       .post("http://localhost:3001/bookupl/upload", data)
       .then(async (response) => {
         console.log(response);
-        if (response.status !== 403) {
+        if (response.data.status !== 403) {
+          console.log(45);
           setFormData({
             description: "",
             authorEmail: "",
@@ -60,6 +61,8 @@ const BecomeAWriter = (props) => {
           setTimeout(() => {
             navigate("/");
           }, 3000);
+        } else {
+          alert("Please fill the form again properly");
         }
       })
       .catch((err) => {
