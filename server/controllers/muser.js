@@ -6,10 +6,16 @@ const axios = require("axios");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const { body, validationResult } = require("express-validator");
+const bodyParser = require("body-parser");
 
 const createmusers = async (req, res) => {
   const user = req.body;
   console.log(req.body.email.length);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.send({ status: 400, errors: errors.array() });
+  }
 
   if (
     req.body.email.length == 0 ||
@@ -55,6 +61,10 @@ const createmusers = async (req, res) => {
 
 const muserlogin = async (req, res) => {
   console.log(req.body);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.send({ status: 400, errors: errors.array() });
+  }
   // res.send({ message: res.body });
   let mongouser = await UserModel.find({ email: req.body.email })
     .then(async (data) => {

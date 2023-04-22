@@ -28,6 +28,7 @@ const createusers = async (req, res) => {
         name: res.data.name,
         email: res.data.email,
         picture: res.data.picture,
+        authType: "GOOGLE",
       };
 
       console.log(users);
@@ -73,7 +74,6 @@ const getusers = async (req, res) => {
           message: "invalid email",
         });
       } else {
-
         console.log(data);
         res.send({
           status: 200,

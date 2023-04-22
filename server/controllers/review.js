@@ -43,7 +43,7 @@ const createReview = async (req, res) => {
 
   const bookupdate = await bookModel
     .findOneAndUpdate(
-      { authorEmail: req.body.reviewData.email },
+      { _id: req.body.reviewData.bookid },
       {
         nopeople: req.body.nopeople + 1,
         rating:

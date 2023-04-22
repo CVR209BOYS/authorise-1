@@ -42,6 +42,9 @@ export default function SignupMOdal({
         console.log(data);
         if (data.data.status === 403) {
           alert("kindly fill the form properly");
+        } else if (data.data.status === 400) {
+          console.log(`Invalid ${data.data.errors[0].path}`);
+          alert(`Invalid ${data.data.errors[0].path}`);
         } else {
           console.log(data.data);
           ReactSession.set("user", data.data);

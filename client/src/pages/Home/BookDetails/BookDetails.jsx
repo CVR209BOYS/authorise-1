@@ -143,6 +143,14 @@ function BookDetails({ open }) {
 
   useEffect(() => {
     // console.log(openPdfReader);
+    setBook(() => {
+      const x = allBooks.filter((b) => {
+        return b._id === bookid;
+      });
+      return x[0];
+    });
+    getReviews();
+    setBookLoaded(true);
   }, [openPdfReader]);
 
   console.log("book data");
