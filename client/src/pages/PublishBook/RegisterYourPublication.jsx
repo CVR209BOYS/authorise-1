@@ -1,129 +1,156 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ReactSession } from "react-client-session";
+import axios from "axios";
+import EmployeeDisplay from "./EmployeeDisplay";
 
 export default function RegisterYourPublication() {
-  const [credentials, setcredentials] = useState({
+  const [validEmployees, setValidEmployees] = useState([]);
+  const [invalidEmployees, setInvalidEmployees] = useState([]);
+
+  const [employee, setEmployee] = useState("");
+  const [credentials, setCredentials] = useState({
     name: "",
     description: "",
-    email: "",
-    password: "",
-    employees: [],
+    email: ReactSession.get("user").email,
+    employees: validEmployees,
   });
-  const [employeelist, setemployeelist] = useState([]);
-  const [employee, setemployee] = useState("");
 
-  const addList = (e) => {
-    e.preventDefault();
-    if (employee.length > 0) {
-      setemployeelist([...employeelist, employee]);
-      setemployee("");
+  const onCredentialChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const onEmployeeInputChange = (e) => {
+    setEmployee(e.target.value);
+  };
+
+  const onEmployeeAddClick = async () => {
+    if (employee === "") {
+      alert("Employee Field is empty.");
     } else {
-      alert("first add employee");
+      const employeeCheck = await axios({
+        url: "http://localhost:3001/publisher/check",
+        data: { email: employee },
+        method: "POST",
+      }).then(async (checkResponse) => {
+        console.log(checkResponse);
+        if (checkResponse.data.status === 403) {
+          alert(
+            "Please ensure that the email you have entered has an account on out website first."
+          );
+          if (!invalidEmployees.includes(employee)) {
+            setInvalidEmployees([...invalidEmployees, employee]);
+          }
+          setEmployee("");
+        } else if (checkResponse.data.status === 200) {
+          if (!validEmployees.includes(employee)) {
+            setValidEmployees([...validEmployees, employee]);
+          }
+          setEmployee("");
+        }
+      });
     }
   };
 
-  const onchange = (e) => {
-    setcredentials({ ...credentials, [e.target.name]: e.target.value });
+  const Register = async () => {
+    const response = await axios({
+      url: "http://localhost:3001/publisher/createpublisher",
+      data: credentials,
+      method: "POST",
+    })
+      .then((data) => {
+        console.log(data);
+        setCredentials({
+          name: "",
+          description: "",
+          email: ReactSession.get("user").email,
+          employees: validEmployees,
+        });
+        alert("Your publication has been registered successfully!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-  console.log(credentials);
 
-  const onInput = (e) => {
-    setemployee(e.target.value);
-  };
-  console.log(employee);
-  console.log(employeelist);
+  useEffect(() => {
+    console.log(validEmployees);
+  }, [validEmployees]);
 
-  const Register = () => {
-    setcredentials({ ...credentials, employees: { employeelist } });
-  };
-  console.log("here is final list");
-  console.log(credentials);
+  useEffect(() => {
+    setCredentials({ ...credentials, employees: validEmployees });
+  }, [validEmployees]);
+
+  useEffect(() => {
+    console.log(credentials);
+  });
 
   return (
     <div className="pt-[100px]">
-      <div className="bg-red-400 w-[80%] mx-auto p-7 rounded-md">
-        <div className=" w-fit pr-2 h-full font-bold pt-3 text-[15px] mx-auto  md:text-2xl lg:text-3xl">
-          <p>Welcome to authoRISE</p>
+      <div className=" mx-[5%] px-5 py-4 bg-red-700 rounded-md shadow-lg">
+        <div className="w-fit text-[30px] font-semibold capitalize mx-auto mb-6 underline text-slate-200">
+          Register Your Publication
         </div>
-        <br />
-        <form>
-          <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2 ">
-            <label for="email">Company Name</label>
-            <input
-              type="string"
-              id="name"
-              name="name"
-              onChange={onchange}
-              required="required"
-              className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
-            />
-          </div>
-          <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2 ">
-            <label for="email">Description</label>
-            <input
-              type="string"
-              id="description"
-              name="description"
-              onChange={onchange}
-              required="required"
-              className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
-            />
-          </div>
-          <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2 ">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={onchange}
-              required="required"
-              className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
-            />
-          </div>
-          <div className="font-bold text-left flex justify-between text-[15px] w-[90%] md:text-md lg:text-xl m-2">
-            <label for="password">Password</label>
-            <input
-              type="string"
-              id="password"
-              name="password"
-              onChange={onchange}
-              required="required"
-              className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
-            />
-          </div>
-        </form>
-        <form>
-          <div className="bg-red-200 p-1 mt-10 rounded-md">
-            <div className="font-bold text-left flex justify-between mt-10 text-[15px] w-[90%] md:text-md lg:text-xl m-2">
-              <label for="password">Add Employee</label>
-
-              <input
-                value={employee}
-                type="string"
-                id="add employee"
-                name="add employee"
-                onChange={onInput}
-                required="required"
-                className="bg-[#ffffff] w-[60%] font-normal text-[15px]"
-              />
+        <div className="grid grid-cols-8 gap-7 text-[20px]">
+          <label htmlFor="name" className="col-span-2 text-right">
+            Publication Name:
+          </label>
+          <input
+            className="col-span-6 rounded-md shadow-md focus:bg-slate-200 focus:shadow-sm focus:border-none"
+            name="name"
+            onChange={onCredentialChange}
+            value={credentials.name}
+          />
+          <label htmlFor="description" className="col-span-2 text-right">
+            Description:
+          </label>
+          <textarea
+            rows="10"
+            className="col-span-6 rounded-md shadow-md focus:bg-slate-200 focus:shadow-sm focus:border-none"
+            name="description"
+            onChange={onCredentialChange}
+            value={credentials.description}
+          />
+          <label htmlFor="addEmployee" className="col-span-2 text-right">
+            Employee Email:
+          </label>
+          <input
+            className="col-span-5 rounded-md shadow-md focus:bg-slate-200 focus:shadow-sm focus:border-none"
+            name="addEmployee"
+            onChange={onEmployeeInputChange}
+            value={employee}
+          />
+          <button
+            className="px-1 py-2 rounded-md bg-white text-black"
+            onClick={onEmployeeAddClick}
+          >
+            Add
+          </button>
+          <div className="col-span-full md:col-span-4">
+            <div className="pb-2 border-b-2 mb-1 text-white">
+              Valid Employee List
             </div>
-            <div className="w-[100%] text-center">
-              <button
-                onClick={addList}
-                className=" w-[26%] font-bold bg-red-500 rounded-md text-[20px] mt-2 mb-6"
-              >
-                ADD
-              </button>
-            </div>
+            <EmployeeDisplay
+              employees={validEmployees}
+              setEmployees={setValidEmployees}
+            />
           </div>
-        </form>
-      </div>
-      <div className="w-[100%] text-center">
-        <button
+          <div className="col-span-full md:col-span-4">
+            <div className="pb-2 border-b-2 text-white mb-1">
+              Invalid Employee List
+            </div>
+            <EmployeeDisplay
+              employees={invalidEmployees}
+              setEmployees={setInvalidEmployees}
+            />
+          </div>
+        </div>
+        <div
+          className="rounded-sm shadow-gray-800 shadow-md text-white hover:bg-red-500
+          hover:shadow-md w-fit px-4 py-3 mx-auto mt-3 cursor-pointer"
           onClick={Register}
-          className=" w-[26%] font-bold bg-[#9f9f9f] rounded-md text-[20px] mt-6 p-1"
         >
           Register
-        </button>
+        </div>
       </div>
     </div>
   );
