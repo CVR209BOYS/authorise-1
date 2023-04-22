@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ReactSession } from "react-client-session";
 
-
 export default function SignupMOdal({
   setOpenSin,
   setOpenSup,
@@ -29,8 +28,8 @@ export default function SignupMOdal({
   const eventHandler = async () => {
     const response = await axios({
       method: "POST",
-      url:"http://localhost:3001/createmusers/signup",
-      data:{
+      url: "http://localhost:3001/createmusers/signup",
+      data: {
         name: credentials.username,
         email: credentials.email,
         password: credentials.password,
@@ -38,15 +37,21 @@ export default function SignupMOdal({
       headers: {
         "Content-type": "application/json",
       },
-    }).then((res) => {
-      console.log("incoming");
-      console.log(res.data);
-      ReactSession.set("user", res.data);
-      setUser(ReactSession.get("user"));
-      console.log(ReactSession.get("user"))
-    });
-    console.log("dfgh")
-    console.log(response)
+    })
+      .then((data) => {
+        console.log(data);
+        if (data.data.status === 403) {
+          alert("kindly fill the form properly");
+        } else {
+          console.log(data.data);
+          ReactSession.set("user", data.data);
+          setUser(ReactSession.get("user"));
+          console.log(ReactSession.get("user"));
+          setOpenSin(false);
+          setOpenSup(false);
+        }
+      })
+      .catch(() => alert("fill form mannn"));
   };
   return (
     <div>
@@ -98,8 +103,6 @@ export default function SignupMOdal({
               <button
                 onClick={() => {
                   eventHandler();
-                  setOpenSin(false);
-                  setOpenSup(false);
                 }}
               >
                 Create an account

@@ -115,6 +115,10 @@ const addEmp = async (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.send({
+        status: 404,
+        message: "undefined error",
+      });
     });
 };
 
