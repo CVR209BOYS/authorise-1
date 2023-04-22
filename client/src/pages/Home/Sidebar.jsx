@@ -1,6 +1,13 @@
+import axios from "axios";
 import React from "react";
 
-export default function Sidebar({ setOpen, open }) {
+
+export default function Sidebar({ setOpen, open, openPublicationList }) {
+
+
+  
+
+
   return (
     <div
       id="sidebar"
@@ -35,18 +42,22 @@ export default function Sidebar({ setOpen, open }) {
               </div>
             </div>
           </a>
-          <a href="/PublishBook">
-            <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-red-700 text-left rounded-md">
-              <div className="px-2 py-2">*</div>
-              <div
-                className={`whitespace-pre duration-100 ${
-                  !open && "opacity-0"
-                }`}
+
+          <div className="flex items-center text-md gap-3.5 font-medium p-2 hover:bg-red-700 text-left rounded-md">
+            <div className="px-2 py-2">*</div>
+            <div
+              className=
+              {`whitespace-pre duration-100 ${!open && "opacity-0"}`}>
+              <button
+                onClick={() => {
+                  
+                  openPublicationList(true);
+                }}
               >
-                Publish Book
-              </div>
+                Search Publication
+              </button>
             </div>
-          </a>
+          </div>
         </div>
         <div className="flex flex-col-reverse h-[400px]">
           <div
