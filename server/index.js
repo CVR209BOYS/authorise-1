@@ -21,6 +21,8 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
+const { body, validationResult } = require("express-validator");
+
 const secret = process.env.SECRET || "thisshouldbebettersecret";
 mongoose.connect(
   "mongodb+srv://CVR209:CVR209@cluster0.6miwwwz.mongodb.net/AUTHORISE?retryWrites=true&w=majority"
@@ -41,6 +43,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(bodyParser.json());
+
 const sessionConfig = {
   store: store,
   secret: "thisshouldbebettersecret",
@@ -113,7 +117,6 @@ app.use("/communication", commRoutes);
 // code for languages and categories.......................................................................................
 app.use("/getcategories", categoriesRoute);
 app.use("/getlanguages", languagesRoute);
-
 
 //code for profile update
 app.use("/update", updateRoute);
