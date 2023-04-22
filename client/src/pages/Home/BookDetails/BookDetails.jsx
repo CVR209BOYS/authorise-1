@@ -125,8 +125,8 @@ function BookDetails({ open }) {
     getReviews();
     setBookLoaded(true);
 
-    const author = book.authorName;
-    console.log(author);
+    // const author = book.author;
+    // console.log(author);
   }, []);
 
   const handleImageLoad = () => {
@@ -232,7 +232,7 @@ function BookDetails({ open }) {
                 C
               </div>
               <div>
-                {pid.length === 0 ? (
+                {pid?.length === 0 ? (
                   <div>
                     <button
                       onClick={handledetails}

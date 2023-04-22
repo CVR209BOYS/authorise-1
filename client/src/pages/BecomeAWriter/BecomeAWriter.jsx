@@ -91,6 +91,7 @@ const BecomeAWriter = (props) => {
             <label htmlFor="title" />
             <input
               type="text"
+              required="true"
               className=" w-[50%] m-2 bg-[#ffffff]"
               name="title"
               onChange={(e) => {
@@ -111,6 +112,7 @@ const BecomeAWriter = (props) => {
               cols="50"
               id="bookDescription"
               name="bookDescription"
+              required="true"
               maxLength="400"
               className=" w-[50%] m-2 bg-[#ffffff]"
               onChange={(e) => {
@@ -146,6 +148,7 @@ const BecomeAWriter = (props) => {
               >
                 Cover Page{" "}
               </label>
+
               <CloudinaryUploadWidget
                 value={1}
                 setUrl={setCoverpageurl}

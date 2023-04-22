@@ -107,7 +107,7 @@ const Carousel = ({ allBooks }) => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 mx-auto w-[100%]"
         >
-          {allBooks.length &&
+          {allBooks?.length &&
             allBooks.map((book, index) => {
               return (
                 <div
