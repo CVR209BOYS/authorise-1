@@ -30,6 +30,7 @@ function App() {
     return (
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
+          
           <Router>
             {opendetails && (
               <AuthorDetails
