@@ -14,25 +14,26 @@ export default function BookCardNew({ bookdetails }) {
         <p className="font-semibold text-2xl m-2">{bookdetails.title}</p>
         <p className="font-normal text-md m-2">{bookdetails.description}</p>
         <div className=" border-t-2">
-
-        <div className="flex justify-between m-2 ">
-          <p className="text-md font-semibold">
-            Author{bookdetails.authorObjid}
-          </p>
-          <p className="text-md font-semibold">
-            Publication{bookdetails.publicationid}
-          </p>
-        </div>
-        <div className="flex justify-between m-2">
-          <p className=" flex text-md font-semibold">
-            {" "}
-            Rating:{" "}
-            <p className="mx-2 text-lg font-bold">{bookdetails.rating}/5</p>
-          </p>
-          <p className="font-normal text-md bg-slate-400 rounded-md p-1">
-            {bookdetails.tags[0].value}
-          </p>
-        </div>
+          <div className="flex justify-between m-2 ">
+            <p className="text-md font-semibold">
+              Author{bookdetails.authorName}
+            </p>
+            <p className="text-md font-semibold">
+              Publication{bookdetails.publicationid}
+            </p>
+          </div>
+          <div className="flex justify-between m-2">
+            <p className=" flex text-md font-semibold">
+              {" "}
+              Rating:{" "}
+              <p className="mx-2 text-lg font-bold">
+                {bookdetails.rating.toPrecision(2)}/5
+              </p>
+            </p>
+            <p className="font-normal text-md bg-slate-400 rounded-md p-1">
+              {bookdetails.tags[0].value}
+            </p>
+          </div>
         </div>
       </div>
     </div>

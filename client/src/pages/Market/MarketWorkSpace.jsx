@@ -8,24 +8,23 @@ import BookCardNew from "../Utils/BookCardNew";
 function MarketWorkSpace({ open }) {
   const { allBooks } = useContext(MenuContext);
   const { state } = useLocation();
-  
-  
+
   // const [languages, setLanguages] = useState([]);
-  const [genres, setGenres] = useState({value:state});
+  const [genres, setGenres] = useState({ value: state });
   const [ratingRange, setRatingRange] = useState(null);
-  const [filtered, setFiltered] = useState([])
+  const [filtered, setFiltered] = useState([]);
 
   console.log(allBooks);
   console.log(genres);
 
-  const getFilteredItem =(query, item) => {
+  const getFilteredItem = (query, item) => {
     // console.log(query);
     if (!query) {
       return item;
     }
     const item_filtered = item.filter((val) => {
       const bookcat = val.tags[0];
-      
+
       if (bookcat) {
         const catname = bookcat.label;
         console.log(val.tags[0].label);
@@ -33,25 +32,24 @@ function MarketWorkSpace({ open }) {
         return catname.toLowerCase() === query.toLowerCase();
       }
     });
-    console.log(query)
-    console.log(item_filtered)
-    return item_filtered
+    console.log(query);
+    console.log(item_filtered);
+    return item_filtered;
   };
 
   console.log(genres);
 
   // console.log(allBooks)
-  
 
   // console.log(filtered);
-  useEffect(()=>{
-    setFiltered(getFilteredItem(genres.value, allBooks))
-  }, [genres])
+  useEffect(() => {
+    setFiltered(getFilteredItem(genres.value, allBooks));
+  }, [genres]);
   // if(filtered.length===0){
   //   alert("no book available")
   // }
-  const NoBook=filtered.length
-  console.log(NoBook)
+  const NoBook = filtered.length;
+  console.log(NoBook);
 
   return (
     <div
@@ -73,17 +71,20 @@ function MarketWorkSpace({ open }) {
         ratingRange={ratingRange}
       ></BookGrid> */}
 
-      <h1>we found {`${NoBook}`} books from category {`${genres.value}`}</h1>
+      <h1>
+        we found {`${NoBook}`} books from category {`${genres.value}`}
+      </h1>
       <div className="flex flex-wrap  flex-row w-[90%]  m-auto h-[500px] mt-7">
-        {filtered.map((val, key) => {
+        {filtered.map((book, key) => {
           return (
             <div>
               <Link
                 to={{
-                  pathname: "/",
+                  pathname: "/bookdetails",
                 }}
+                state={{ book }}
               >
-                <BookCardNew bookdetails={val} />
+                <BookCardNew bookdetails={book} />
               </Link>
             </div>
           );

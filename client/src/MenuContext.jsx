@@ -7,7 +7,7 @@ export const MenuProvider = ({ children }) => {
   const [categoryList, setCategoryList] = useState();
   const [languageList, setLanguageList] = useState();
 
-  const [allBooks, setAllBooks] = useState([]);
+  const [allBooks, setAllBooks] = useState([{ message: "to be loaded!" }]);
   const [openSidebar, setOpenSidebar] = useState(true);
 
   const getAllBooks = async () => {
@@ -16,7 +16,7 @@ export const MenuProvider = ({ children }) => {
       url: "http://localhost:3001/bookupl/getallbooks",
     });
     console.log(res);
-    if (res.data === null) {
+    if (res.data.length === 0) {
       setAllBooks([]);
     } else {
       setAllBooks([...res.data]);

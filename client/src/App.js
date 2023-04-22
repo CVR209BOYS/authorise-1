@@ -16,24 +16,22 @@ import UpdateProfile from "./pages/UpdateProfile";
 import { useState } from "react";
 import AuthorDetails from "./pages/Home/BookDetails/AuthorDetails";
 
-
 function App() {
-
-  
-  const [opendetails,setopendetials]=useState(false);
-
+  const [opendetails, setopendetials] = useState(false);
 
   const { allBooks } = useContext(MenuContext);
-  useEffect(() => {}, [allBooks]);
+  useEffect(() => {
+    console.log(allBooks.length);
+  }, [allBooks]);
 
-  if (!allBooks.length) {
+  if (allBooks[0]?.message === "to be loaded!") {
     return <div>loading</div>;
   } else {
     return (
       <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
         <div id="App">
           <Router>
-        {opendetails && (<AuthorDetails open={setopendetials}/>)}
+            {opendetails && <AuthorDetails open={setopendetials} />}
             <Nav />
             <Routes>
               <Route exact path="/" element={<Landing />} />
@@ -46,7 +44,11 @@ function App() {
               <Route exact path="/BecomeAWriter" element={<BecomeAWriter />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/market" element={<Market />} />
-              <Route exact path="/bookdetails" element={<BookDetails open={setopendetials} />} />
+              <Route
+                exact
+                path="/bookdetails"
+                element={<BookDetails open={setopendetials} />}
+              />
               <Route exact path="/updateprofile" element={<UpdateProfile />} />
             </Routes>
           </Router>

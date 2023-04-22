@@ -4,7 +4,9 @@ import NewCard from "../Utils/NewCard";
 import { Link } from "react-router-dom";
 
 const Carousel = ({ allBooks }) => {
-  // console.log(allBooks);
+  useEffect(() => {
+    console.log(allBooks);
+  }, [allBooks]);
 
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -105,7 +107,7 @@ const Carousel = ({ allBooks }) => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 mx-auto w-[100%]"
         >
-          {allBooks &&
+          {allBooks.length &&
             allBooks.map((book, index) => {
               return (
                 <div

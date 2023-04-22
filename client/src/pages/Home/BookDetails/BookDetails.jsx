@@ -5,34 +5,102 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { MenuContext } from "../../../MenuContext";
 import { ReactSession } from "react-client-session";
-import AuthorDetails from "./AuthorDetails";
+import Pdf from "../../Common/Pdf";
 
 function BookDetails({ open }) {
   // console.log(open)
-  import Pdf from "../../Common/Pdf";
+  const { getAllBooks, allBooks } = useContext(MenuContext);
+  const [reviews, setReviews] = useState([]);
 
   ReactSession.setStoreType("localStorage");
   const location = useLocation();
   const bookid = location.state.book._id;
   const ref = useRef(null);
-  const { allBooks } = useContext(MenuContext);
-
-  const pid = ReactSession.get("user").pid;
-  console.log(pid);
-
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [bookLoaded, setBookLoaded] = useState(false);
-
   const [book, setBook] = useState(null);
-  const [authordata, setauthordata] = useState({});
-
+  const [bookLoaded, setBookLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  // const pid = ReactSession.get("user").pid;
+  // console.log(pid);
+  const [openPdfReader, setOpenPdfReader] = useState(false);
   const [coverSectionLift, setCoverSectionLift] = useState(
     window.innerWidth >= 768 ? -50 : -50
   );
-
   const [detailsSectionLift, setDetailsSectionLift] = useState(
     window.innerWidth >= 768 ? 10 : -40
   );
+
+  const getReviews = async () => {
+    const reviewsData = await axios({
+      url: "http://localhost:3001/reviews/getreviews",
+      method: "POST",
+      data: { bookid: bookid },
+    }).then((r) => {
+      setReviews(r.data.bookreview);
+      console.log(r.data.bookreview);
+      getAllBooks();
+    });
+    // console.log(reviewsData);
+  };
+
+  const [addReviewFormOpen, setAddReviewFormOpen] = useState(false);
+  const openAddReview = () => {
+    setAddReviewFormOpen(!addReviewFormOpen);
+  };
+  // console.log(bookid);
+  const [reviewFormData, setReviewFormData] = useState({
+    bookid: bookid,
+    email: ReactSession.get("user").email,
+    picid: ReactSession.get("user").picture,
+    rating: "1",
+    review: "",
+    username: ReactSession.get("user").name,
+  });
+
+  const handleRatingChange = (e) => {
+    setReviewFormData({ ...reviewFormData, rating: e.target.value });
+  };
+
+  const handleReviewChange = (e) => {
+    setReviewFormData({ ...reviewFormData, review: e.target.value });
+  };
+
+  const handleReviewSubmit = async () => {
+    setBookLoaded(false);
+    const res = await axios({
+      url: "http://localhost:3001/reviews/createreview",
+      data: {
+        reviewData: reviewFormData,
+        nopeople: book.nopeople,
+        bookrating: book.rating,
+      },
+      method: "POST",
+    })
+      .then(async (review) => {
+        await setReviews(review.data);
+        setReviewFormData({
+          bookid: bookid,
+          email: ReactSession.get("user").email,
+          picid: ReactSession.get("user").picture,
+          rating: "1",
+          review: "",
+          username: ReactSession.get("user").name,
+        });
+        setAddReviewFormOpen(false);
+        setBookLoaded(false);
+        await getAllBooks();
+        setBook(() => {
+          const x = allBooks.filter((b) => {
+            return b._id === bookid;
+          });
+          return x[0];
+        });
+        getReviews();
+        setBookLoaded(true);
+      })
+      .catch((err) => {
+        console.log("sorry");
+      });
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,39 +114,20 @@ function BookDetails({ open }) {
     };
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     setBook(() => {
       const x = allBooks.filter((b) => {
         return b._id === bookid;
       });
       return x[0];
     });
+    getReviews();
     setBookLoaded(true);
-
-    const author = book.authorObjid;
-    console.log(author);
-    const response = await axios({
-      method: "POST",
-      url: "http://localhost:3001/getusers/myUser",
-      data: {
-        email: `${author}`,
-      },
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).then((res) => {
-      // setuserInformation(res.data)
-      console.log("authordetails");
-      console.log(res.data.data[0]);
-      setauthordata(res.data.data[0]);
-    });
   }, []);
 
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
-
-  const [openPdfReader, setOpenPdfReader] = useState(false);
 
   const handleReadNow = () => {
     setOpenPdfReader(!openPdfReader);
@@ -143,15 +192,15 @@ function BookDetails({ open }) {
                 </button>
               </div>
               <div className="row-span-1">
-                {pid.length === 0 ? (
+                {/* {pid?.length === 0 ? (
                   <div>
                     <button className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150">
                       Publish It!!
                     </button>
                   </div>
                 ) : (
-                  <div></div>
-                )}
+                  <></>
+                )} */}
               </div>
             </div>
             {/* action buttons for small screens */}
@@ -198,11 +247,11 @@ function BookDetails({ open }) {
               <div className="ml-3 text-[22px] font-mono leading-loose">
                 <div>
                   <span className="text-gray-500 mr-1">Author:</span>
-                  me
+                  {book.authorName}
                 </div>
                 <div>
                   <span className="text-gray-500 mr-1">Rating:</span>
-                  {book.rating} / 5
+                  {book.rating.toPrecision(2)} / 5
                 </div>
                 <div>
                   <span className="text-gray-500 mr-1">Publisher:</span>
@@ -213,7 +262,19 @@ function BookDetails({ open }) {
         </div>
         <hr className="w-[98%] mx-auto mb-8 border-gray-400" />
         {/* reviews section generated based on a query */}
-        <BookReviews bookid={bookid} />
+        <BookReviews
+          bookrating={book.rating}
+          nopeople={book.nopeople}
+          reviews={reviews}
+          reviewFormData={reviewFormData}
+          setReviewFormData={setReviewFormData}
+          openAddReview={openAddReview}
+          addReviewFormOpen={addReviewFormOpen}
+          setAddReviewFormOpen={setAddReviewFormOpen}
+          handleRatingChange={handleRatingChange}
+          handleReviewChange={handleReviewChange}
+          handleReviewSubmit={handleReviewSubmit}
+        />
         <hr className="w-[98%] mx-auto mb-8 border-gray-400" />
       </div>
     );

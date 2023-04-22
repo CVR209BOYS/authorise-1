@@ -3,52 +3,16 @@ import { motion } from "framer-motion";
 import { ReactSession } from "react-client-session";
 import axios from "axios";
 
-function AddReview({ bookid, setReviews }) {
-  const [addReviewForm, setAddReviewForm] = useState(false);
-  const openAddReview = () => {
-    setAddReviewForm(!addReviewForm);
-  };
-  // console.log(bookid);
-  const [reviewData, setReviewData] = useState({
-    bookid: bookid,
-    email: ReactSession.get("user").email,
-    picid: ReactSession.get("user").picture,
-    rating: "1",
-    review: "",
-    username: ReactSession.get("user").name,
-  });
-
-  const handleRatingChange = (e) => {
-    setReviewData({ ...reviewData, rating: e.target.value });
-  };
-
-  const handleReviewChange = (e) => {
-    setReviewData({ ...reviewData, review: e.target.value });
-  };
-
-  const handleReviewSubmit = async () => {
-    const res = await axios({
-      url: "http://localhost:3001/reviews/createreview",
-      data: reviewData,
-      method: "POST",
-    })
-      .then(async (review) => {
-        await setReviews(review.data);
-        setReviewData({
-          bookid: bookid,
-          email: ReactSession.get("user").email,
-          picid: ReactSession.get("user").picture,
-          rating: "1",
-          review: "",
-          username: ReactSession.get("user").name,
-        });
-        setAddReviewForm(false);
-      })
-      .catch((err) => {
-        // console.log("sorry");
-      });
-  };
-
+function AddReview({
+  reviewFormData,
+  setReviewFormData,
+  openAddReview,
+  addReviewFormOpen,
+  setAddReviewFormOpen,
+  handleRatingChange,
+  handleReviewChange,
+  handleReviewSubmit,
+}) {
   return (
     <div className="rounded-md border-2 px-[1px] py-[1px] my-2">
       <button
@@ -57,7 +21,7 @@ function AddReview({ bookid, setReviews }) {
       >
         Add Review
       </button>
-      {addReviewForm && (
+      {addReviewFormOpen && (
         <div className="my-2">
           <div className="grid grid-cols-4 mx-3">
             <label
@@ -70,7 +34,7 @@ function AddReview({ bookid, setReviews }) {
               onChange={handleRatingChange}
               className="col-span-full md:col-span-2 lg:col-span-3 border-2 border-gray-400 px-3 rounded-md text-[25px]"
               name="rating"
-              value={reviewData.rating}
+              value={reviewFormData.rating}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -88,7 +52,7 @@ function AddReview({ bookid, setReviews }) {
             </label>
             <textarea
               onChange={handleReviewChange}
-              value={reviewData.review}
+              value={reviewFormData.review}
               className="col-span-full md:col-span-2 lg:col-span-3 border-2 border-gray-400 px-3 rounded-md text-[20px] md:text-[25px]"
               name="review"
               rows="5"

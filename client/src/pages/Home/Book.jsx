@@ -5,9 +5,9 @@ import { MenuContext } from "../../MenuContext";
 
 const Book = () => {
   const { allBooks } = useContext(MenuContext);
-  
+
   useEffect(() => {
-    // console.log(".");
+    console.log(allBooks);
   }, [allBooks]);
 
   return (

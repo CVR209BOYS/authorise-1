@@ -19,7 +19,9 @@ const BookCard = ({ book }) => {
           </div>
           <div className="grid grid-rows-3 col-span-1 text-[14px] text-right">
             <div className="text-gray-400 row-span-1">Rating</div>
-            <div className="row-span-2 text-[18px]">{book.rating} / 5</div>
+            <div className="row-span-2 text-[18px]">
+              {book.rating.toPrecision(2)}/5
+            </div>
           </div>
         </div>
       </div>

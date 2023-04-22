@@ -67,7 +67,7 @@ function CloudinaryUploadWidget({ value, setUrl, url }) {
     document.getElementById(value).addEventListener("click", function () {
       myWidget.open();
     });
-  });
+  }, []);
   return (
     <button id={value} className="cloudinary-button bg-red-400 h-fit">
       Upload
