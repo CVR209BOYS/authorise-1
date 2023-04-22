@@ -6,7 +6,7 @@ export default function Sidebar({ setOpen, open }) {
       id="sidebar"
       className={`${
         open ? "w-[240px]" : "w-[64px]"
-      } flex gap-4 border-2 border-red-600 h-screen fixed overflow-hidden mx-0 my-[50px] sm:my-[70px]`}
+      } flex gap-4 border-2 border-red-600 h-screen  fixed overflow-hidden mx-0 my-[50px] sm:my-[70px]`}
     >
       <div className="bg-red-600 duration-500 px-2 text-white w-full">
         <div className=" flex justify-end">
