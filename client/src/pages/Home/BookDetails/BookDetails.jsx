@@ -197,21 +197,26 @@ function BookDetails({ open }) {
             {/* action buttons include "read now", "publish it" and "bookmark it" */}
             {/* action buttons for large screens */}
             <div className="grid-rows-3 gap-2 mx-auto max-w-xs lg:max-w-md hidden md:grid">
-              <div className="row-span-1">
-                <button
-                  onClick={handleReadNow}
-                  className="w-full py-2  rounded-md shadow-md bg-red-800 text-white hover:bg-red-700 duration-150"
-                >
-                  Read Now
-                </button>
-              </div>
+              {book.permission === 0 ||
+              (book.permission === 1 && pid?.length !== 0) ? (
+                <div className="row-span-1">
+                  <button
+                    onClick={handleReadNow}
+                    className="w-full py-2  rounded-md shadow-md bg-red-800 text-white hover:bg-red-700 duration-150"
+                  >
+                    Read Now
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
               <div className="row-span-1">
                 <button className="w-full py-2 rounded-md shadow-md border-2 border-red-800 text-red-800 hover:bg-red-800 hover:text-white duration-150">
                   Add To Bookmarks
                 </button>
               </div>
-              <div className="row-span-1">
-                {pid?.length === 0 ? (
+              {pid?.length !== 0 ? (
+                <div className="row-span-1">
                   <div>
                     <button
                       onClick={() => {
@@ -223,24 +228,29 @@ function BookDetails({ open }) {
                       Publish It!!
                     </button>
                   </div>
-                ) : (
-                  <></>
-                )}
-              </div>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             {/* action buttons for small screens */}
             <div className="grid md:hidden grid-cols-3 gap-4 w-fit mx-auto">
-              <div
-                onClick={handleReadNow}
-                className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700"
-              >
-                R
-              </div>
+              {book.permission === 0 ||
+              (book.permission === 1 && pid?.length !== 0) ? (
+                <div
+                  onClick={handleReadNow}
+                  className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700"
+                >
+                  R
+                </div>
+              ) : (
+                <></>
+              )}
               <div className="w-[50px] text-white flex align-middle justify-center pt-2 text-[20px] aspect-square rounded-full bg-red-700 z-10 shadow-md shadow-red-700">
                 C
               </div>
               <div>
-                {pid?.length === 0 ? (
+                {pid?.length !== 0 ? (
                   <div>
                     <button
                       onClick={handledetails}
@@ -250,7 +260,7 @@ function BookDetails({ open }) {
                     </button>
                   </div>
                 ) : (
-                  <div></div>
+                  <></>
                 )}
               </div>
             </div>
