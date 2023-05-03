@@ -95,7 +95,7 @@ function Nav() {
             )}
           </div>
         </div>
-        <div className=" bg-red-500 font-semibold text-white rounded-full border-white border-2 aspect-square absolute mt-[60px] sm:mt-[80px] ml-[10px] px-2 text-[25px] z-50 hover:bg-opacity-100 hover:shadow-sm hover:shadow-white hover:bg-red-600 duration-100 hover:scale-110">
+        <div className=" bg-red-500  font-semibold text-white rounded-full border-white border-2 aspect-square absolute  mt-[50px] sm:mt-[80px] ml-[10px] px-2 text-[25px] z-50 hover:bg-opacity-100 hover:shadow-sm hover:shadow-white hover:bg-red-600 duration-100 hover:scale-110">
           <button onClick={handleback}> {"<-"} </button>
         </div>
       </div>

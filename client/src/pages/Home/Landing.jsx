@@ -4,12 +4,12 @@ import Footer from "../Common/Footer";
 import WorkSpace from "./WorkSpace";
 import { MenuContext } from "../../MenuContext";
 
-function Landing() {
+function Landing({open,}) {
   const { openSidebar, setOpenSidebar } = useContext(MenuContext);
 
   return (
     <div>
-      <Sidebar open={openSidebar} setOpen={setOpenSidebar} />
+      <Sidebar open={openSidebar} setOpen={setOpenSidebar} openPublicationList={open} />
       <WorkSpace open={openSidebar} />
       <Footer />
     </div>

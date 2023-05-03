@@ -33,7 +33,6 @@ const UserSchema = new mongoose.Schema({
   authType: {
     type: String,
     enum: ["GOOGLE", "PASSWORD"],
-    default: "GOOGLE",
   },
 });
 

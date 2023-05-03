@@ -1,6 +1,5 @@
 import "./App.css";
 import { useEffect, useContext, useState } from "react";
-
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Home/Landing";
@@ -14,10 +13,23 @@ import Market from "./pages/Market/Market";
 import RegisterYourPublication from "./pages/PublishBook/RegisterYourPublication";
 import UpdateProfile from "./pages/UpdateProfile";
 import AuthorDetails from "./pages/Home/BookDetails/AuthorDetails";
+import axios from "axios";
+import PublicationList from "./pages/PublishBook/Publication_List/PublicationList";
+import PublicationdataDetails from "./pages/PublishBook/Publication_List/PublicationdataDetails";
 
 function App() {
   const [opendetails, setopendetials] = useState(false);
   const [authordata, setauthordata] = useState({});
+
+  //publication list
+
+  const [openPublicationList, setopenPublicationList] = useState(false);
+  const [PublicationDetails, setPublicationDetails] = useState({});
+  console.log("openPublicationList");
+  console.log(openPublicationList);
+
+  console.log("Publicationdetails");
+  console.log(PublicationDetails);
 
   const { allBooks } = useContext(MenuContext);
   useEffect(() => {
@@ -40,9 +52,18 @@ function App() {
                 }}
               />
             )}
+            {openPublicationList && (
+              <PublicationList
+                setopenPublicationList={setopenPublicationList}
+              />
+            )}
             <Nav />
             <Routes>
-              <Route exact path="/" element={<Landing />} />
+              <Route
+                exact
+                path="/"
+                element={<Landing open={setopenPublicationList} />}
+              />
               <Route exact path="/PublishBook" element={<PublishBook />} />
               <Route
                 exact
@@ -67,6 +88,16 @@ function App() {
                 }
               />
               <Route exact path="/updateprofile" element={<UpdateProfile />} />
+              <Route
+                exact
+                path="/Publicationdetails"
+                element={
+                  <PublicationdataDetails
+                  setopenPublicationList={setopenPublicationList}
+                    
+                  />
+                }
+              />
             </Routes>
           </Router>
         </div>

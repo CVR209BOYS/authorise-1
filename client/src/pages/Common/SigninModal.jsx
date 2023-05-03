@@ -73,15 +73,25 @@ export default function SigninModal({
       },
     }).then((res) => {
       console.log(res.data);
-      if (res.data.status !== 403 && res.data.status !== 402) {
+      if (
+        res.data.status !== 403 &&
+        res.data.status !== 402 &&
+        res.data.status !== 405 &&
+        res.data.status !== 400
+      ) {
         ReactSession.set("user", res.data);
         setUser(ReactSession.get("user"));
         console.log(ReactSession.get("user"));
       } else {
         if (res.data.status === 402) {
           alert("user dosent exist");
-        } else {
+        } else if (res.data.status === 403) {
           alert("invalid credentials");
+        } else if (res.data.status === 405) {
+          alert("please login with google");
+        } else {
+          console.log(`Invalid ${res.data.errors[0].path}`);
+          alert(`Invalid ${res.data.errors[0].path}`);
         }
       }
     });

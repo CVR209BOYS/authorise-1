@@ -6,44 +6,65 @@ const axios = require("axios");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const { body, validationResult } = require("express-validator");
+const bodyParser = require("body-parser");
 
 const createmusers = async (req, res) => {
   const user = req.body;
+  console.log(req.body.email.length);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.send({ status: 400, errors: errors.array() });
+  }
 
-  let mongouser = await UserModel.find({
-    email: user.email,
-  }).catch((err) => {
-    console.log(err);
-  });
-
-  if (mongouser[0] == undefined) {
-    let users = {
-      name: user.name,
-      email: user.email,
-      password: await bcrypt.hash(user.password, 10),
-      authType: "PASSWORD",
-    };
-    console.log("jayant1");
-    const newUser = new UserModel(users);
-    await newUser.save().catch((err) => {
-      console.log(err);
-    });
-    console.log("user added");
-    let senduser = await UserModel.find({ email: user.email }).catch((err) => {
-      console.log(err);
-    });
-    let sendresponse = senduser[0];
-    console.log(sendresponse);
-    res.send(sendresponse);
+  if (
+    req.body.email.length == 0 ||
+    req.body.name.length == 0 ||
+    req.body.password.length == 0
+  ) {
+    res.send({ status: 403 });
   } else {
-    res.send({
-      message: "email already exists",
+    let mongouser = await UserModel.find({
+      email: user.email,
+    }).catch((err) => {
+      console.log(err);
     });
+
+    if (mongouser[0] == undefined) {
+      let users = {
+        name: user.name,
+        email: user.email,
+        password: await bcrypt.hash(user.password, 10),
+        authType: "PASSWORD",
+      };
+
+      const newUser = new UserModel(users);
+      await newUser.save().catch((err) => {
+        console.log(err);
+      });
+      console.log("user added");
+      let senduser = await UserModel.find({ email: user.email }).catch(
+        (err) => {
+          console.log(err);
+        }
+      );
+      let sendresponse = senduser[0];
+      console.log(sendresponse);
+      res.send(sendresponse);
+    } else {
+      res.send({
+        message: "email already exists",
+      });
+    }
   }
 };
 
 const muserlogin = async (req, res) => {
   console.log(req.body);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.send({ status: 400, errors: errors.array() });
+  }
   // res.send({ message: res.body });
   let mongouser = await UserModel.find({ email: req.body.email })
     .then(async (data) => {
@@ -54,6 +75,11 @@ const muserlogin = async (req, res) => {
         res.send({
           status: 402,
           message: "user does not exists",
+        });
+      } else if (data[0].authType === "GOOGLE") {
+        res.send({
+          status: 405,
+          message: "login with google",
         });
       } else if (
         (await bcrypt.compare(req.body.password, data[0].password)) === false
