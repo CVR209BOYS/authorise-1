@@ -40,6 +40,7 @@ const BecomeAWriter = (props) => {
       tags: selectedTags,
       publicationId: formData.publicationId,
     };
+    
     const book = await axios
       .post("http://localhost:3001/bookupl/upload", data)
       .then(async (response) => {

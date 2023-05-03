@@ -65,7 +65,9 @@ export default function RegisterYourPublication() {
           email: ReactSession.get("user").email,
           employees: validEmployees,
         });
-        alert("Your publication has been registered successfully!");
+        alert(
+          "Your publication has been registered successfully. Please logout and login again to get your publication access."
+        );
       })
       .catch((err) => {
         console.log(err);
