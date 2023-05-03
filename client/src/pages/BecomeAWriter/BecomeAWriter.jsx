@@ -18,6 +18,16 @@ const BecomeAWriter = (props) => {
   const [coverpageurl, setCoverpageurl] = useState(null);
   const [bookurl, setBookurl] = useState(null);
 
+  const [permission, setPermission] = useState(0);
+
+  const permissionChangeHandler = (e) => {
+    setPermission(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(permission);
+  }, [permission]);
+
   const { categoryList } = useContext(MenuContext);
 
   const [formData, setFormData] = useState({
@@ -46,6 +56,7 @@ const BecomeAWriter = (props) => {
           title: formData.title,
           tags: selectedTags,
           publicationId: formData.publicationId,
+          permission: Number(permission),
         };
         const book = await axios
           .post("http://localhost:3001/bookupl/upload", data)
@@ -63,6 +74,7 @@ const BecomeAWriter = (props) => {
               setSelectedTags([]);
               setCoverpageurl(null);
               setBookurl(null);
+              setPermission(0);
               await setAllBooks([...allBooks, response.data]);
               console.log(response.data);
               setTimeout(() => {
@@ -102,15 +114,15 @@ const BecomeAWriter = (props) => {
           <div className="flex justify-between">
             <label
               htmlFor="TitleTags"
-              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2"
             >
-              Title
+              Title:
             </label>
             <label htmlFor="title" />
             <input
               type="text"
               required="true"
-              className=" w-[50%] m-2 bg-[#ffffff]"
+              className=" w-[50%] m-2 bg-[#ffffff] rounded-sm"
               name="title"
               onChange={(e) => {
                 setFormData({ ...formData, title: e.target.value });
@@ -123,7 +135,7 @@ const BecomeAWriter = (props) => {
               htmlFor="bookDescription"
               className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
             >
-              Book Description
+              Book Description:
             </label>
             <textarea
               rows="5"
@@ -132,7 +144,7 @@ const BecomeAWriter = (props) => {
               name="bookDescription"
               required="true"
               maxLength="400"
-              className=" w-[50%] m-2 bg-[#ffffff]"
+              className=" w-[50%] m-2 bg-[#ffffff] rounded-sm"
               onChange={(e) => {
                 setFormData({ ...formData, description: e.target.value });
               }}
@@ -143,17 +155,41 @@ const BecomeAWriter = (props) => {
           <div className="w-[100%] mx-auto flex">
             <label
               htmlFor="bookTags"
-              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2"
             >
-              Categories
+              Categories:
             </label>
             <div className="w-[50%] flex">
               <Select
-                className=" w-[100%] m-2 bg-[#ffffff]"
+                className=" w-[100%] m-2 bg-[#ffffff] rounded-sm"
                 value={selectedTags}
                 onChange={setSelectedTags}
                 options={categoryList}
               />
+            </div>
+          </div>
+          <br />
+
+          <div className="w-[100%] mx-auto flex">
+            <label
+              htmlFor="permission"
+              className="font-bold text-left flex justify-between text-[15px] w-[50%] md:text-md lg:text-xl m-2 "
+            >
+              Read Permission:
+            </label>
+            <div className="w-[50%] flex">
+              <select
+                className="m-2 py-1 px-2 rounded-sm border-2 border-white  focus:border-gray-300"
+                name="permission"
+                value={permission}
+                onChange={permissionChangeHandler}
+              >
+                <option disabled className="text-gray-400" value={0}>
+                  Choose One
+                </option>
+                <option value={0}>Everyone</option>
+                <option value={1}>Publishers Only</option>
+              </select>
             </div>
           </div>
           <br />

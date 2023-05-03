@@ -8,10 +8,11 @@ const { where } = require("../models/Publication");
 
 const createusers = async (req, res) => {
   const user = req.body;
-  let publics = await UserModel.find();
+  let userDb = await UserModel.find();
   let c = false;
   let users;
   let bherror = true;
+  let sendUser = "";
 
   const response = await axios
     .get(
@@ -35,7 +36,7 @@ const createusers = async (req, res) => {
       req.session.user = users;
       req.session.save();
       console.log("session", req.session);
-      publics.forEach(function (item, index) {
+      userDb.forEach(function (item, index) {
         if (item.email === res.data.email) {
           c = true;
         }
@@ -47,17 +48,19 @@ const createusers = async (req, res) => {
     });
 
   if (c) {
-    console.log("user exist, welcome");
+    console.log("user exist");
+    sendUser = await UserModel.find({ email: users.email });
   } else {
     if (bherror) {
-      const newUser = new UserModel(users);
-      await newUser.save();
-      console.log("publication added");
+      const tempUser = new UserModel(users);
+      await tempUser.save();
+      sendUser = await UserModel.find({ email: users.email });
     } else {
       console.log("error occured, user cant be added");
+      res.send({ message: "error" });
     }
   }
-  res.send(users);
+  res.send(sendUser[0]);
 };
 
 const getusers = async (req, res) => {

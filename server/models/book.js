@@ -46,6 +46,10 @@ const bookSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  permission: {
+    type: Number,
+    default: 0,
+  },
   rating: {
     type: Number,
     default: 0,
