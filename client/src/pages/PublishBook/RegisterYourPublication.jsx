@@ -88,8 +88,8 @@ export default function RegisterYourPublication() {
 
   return (
     <div className="pt-[100px]">
-      <div className=" mx-[5%] px-5 py-4 bg-red-700 rounded-md shadow-lg">
-        <div className="w-fit text-[30px] font-semibold capitalize mx-auto mb-6 underline text-slate-200">
+      <div className=" mx-[5%] px-5 py-4 bg-red-500 rounded-md shadow-lg">
+        <div className="w-fit text-[30px] font-bold capitalize mx-auto mb-3 text-slate-100">
           Register Your Publication
         </div>
         <div className="grid grid-cols-8 gap-7 text-[20px]">
@@ -147,7 +147,7 @@ export default function RegisterYourPublication() {
           </div>
         </div>
         <div
-          className="rounded-sm shadow-gray-800 shadow-md text-white hover:bg-red-500
+          className="rounded-sm shadow-gray-600 shadow-md text-white hover:bg-red-500
           hover:shadow-md w-fit px-4 py-3 mx-auto mt-3 cursor-pointer"
           onClick={Register}
         >
