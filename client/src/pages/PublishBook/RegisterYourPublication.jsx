@@ -88,8 +88,8 @@ export default function RegisterYourPublication() {
 
   return (
     <div className="pt-[100px]">
-      <div className=" mx-[5%] px-5 py-4 bg-red-500 rounded-md shadow-lg">
-        <div className="w-fit text-[30px] font-bold capitalize mx-auto mb-3 text-slate-100">
+      <div className=" mx-[5%] px-5 py-4 bg-red-700 rounded-md shadow-lg">
+        <div className="w-fit text-[30px] font-semibold capitalize mx-auto mb-6 underline text-slate-200">
           Register Your Publication
         </div>
         <div className="grid grid-cols-8 gap-7 text-[20px]">
