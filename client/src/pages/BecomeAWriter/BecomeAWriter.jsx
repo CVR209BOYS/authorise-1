@@ -30,44 +30,59 @@ const BecomeAWriter = (props) => {
 
   const submitHandler = async () => {
     // console.log(coverpageurl + "      " + bookurl);
-    const data = {
-      coverpageurl: coverpageurl,
-      description: formData.description,
-      bookurl: bookurl,
-      authorEmail: formData.authorEmail,
-      authorName: formData.authorName,
-      title: formData.title,
-      tags: selectedTags,
-      publicationId: formData.publicationId,
-    };
-    const book = await axios
-      .post("http://localhost:3001/bookupl/upload", data)
-      .then(async (response) => {
-        console.log(response);
-        if (response.data.status !== 403) {
-          console.log(45);
-          setFormData({
-            description: "",
-            authorEmail: "",
-            authorName: "",
-            title: "",
-            publicationId: "",
+    if (
+      coverpageurl !== null &&
+      (coverpageurl.substr(-3) === "jpg" ||
+        coverpageurl.substr(-3) === "png" ||
+        coverpageurl.substr(-4) === "jpeg")
+    ) {
+      if (bookurl !== null && bookurl.substr(-3) === "pdf") {
+        const data = {
+          coverpageurl: coverpageurl,
+          description: formData.description,
+          bookurl: bookurl,
+          authorEmail: formData.authorEmail,
+          authorName: formData.authorName,
+          title: formData.title,
+          tags: selectedTags,
+          publicationId: formData.publicationId,
+        };
+        const book = await axios
+          .post("http://localhost:3001/bookupl/upload", data)
+          .then(async (response) => {
+            console.log(response);
+            if (response.data.status !== 403) {
+              console.log(45);
+              setFormData({
+                description: "",
+                authorEmail: "",
+                authorName: "",
+                title: "",
+                publicationId: "",
+              });
+              setSelectedTags([]);
+              setCoverpageurl(null);
+              setBookurl(null);
+              await setAllBooks([...allBooks, response.data]);
+              console.log(response.data);
+              setTimeout(() => {
+                navigate("/");
+              }, 3000);
+            } else {
+              alert("Please fill the form again properly");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
           });
-          setSelectedTags([]);
-          setCoverpageurl(null);
-          setBookurl(null);
-          await setAllBooks([...allBooks, response.data]);
-          console.log(response.data);
-          setTimeout(() => {
-            navigate("/");
-          }, 3000);
-        } else {
-          alert("Please fill the form again properly");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } else {
+        alert("Please upload your book in PDF format.");
+        setBookurl(null);
+      }
+    } else {
+      alert("Please upload book's coverpage in JPG, JPEG or PNG format.");
+      setCoverpageurl(null);
+    }
   };
 
   useEffect(() => {

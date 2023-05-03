@@ -11,7 +11,7 @@ const { where } = require("../models/Publication");
 const createPub = async (req, res) => {
   const user = req.body;
   console.log(req.body);
-  console.log(req.body);
+
   // let redUser=[];
   const publisher = await pubModel
     .find({
@@ -22,7 +22,6 @@ const createPub = async (req, res) => {
     });
   console.log(publisher);
   if (publisher.length != 0) {
-    res.send({ status: 403, message: "email exist" });
     res.send({ status: 403, message: "email exist" });
   } else {
     const publication = {
