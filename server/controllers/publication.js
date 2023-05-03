@@ -10,6 +10,7 @@ const { where } = require("../models/Publication");
 
 const createPub = async (req, res) => {
   const user = req.body;
+  console.log(req.body);
   // let redUser=[];
   const publisher = await pubModel
     .find({
@@ -20,13 +21,12 @@ const createPub = async (req, res) => {
     });
   console.log(publisher);
   if (publisher.length != 0) {
-    res.send({ status: 403, message: " email exist" });
+    res.send({ status: 403, message: "email exist" });
   } else {
     const publication = {
       description: req.body.description,
-      password: req.body.password,
       email: req.body.email,
-      companyName: req.body.companyName,
+      companyName: req.body.name,
       employees: req.body.employees,
     };
     const newPub = new pubModel(publication);
@@ -48,7 +48,7 @@ const createPub = async (req, res) => {
 
             await UserModel.findOneAndUpdate(
               {
-                email: `${item}`,
+                email: item,
                 pid: null,
               },
               { pid: data._id },
@@ -98,6 +98,7 @@ const addEmp = async (req, res) => {
   const email = req.body.email;
   await UserModel.findOne({
     email: email,
+    pid: "",
   })
     .then((data) => {
       if (data == null) {

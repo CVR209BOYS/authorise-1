@@ -3,8 +3,8 @@ const { createPub, getPub, addEmp } = require("../controllers/publication.js");
 
 const router = express.Router();
 
-router.post("/", createPub);
+router.post("/createpublisher", createPub);
 router.get("/myPub", getPub);
-router.get("/check", addEmp);
+router.post("/check", addEmp);
 
 module.exports = router;
