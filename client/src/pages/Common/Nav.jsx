@@ -9,12 +9,10 @@ import { ReactSession } from "react-client-session";
 
 function Nav() {
   const history = useNavigate();
-  
-  const handleback=(()=>{
-    history(-1);
-  })
 
- 
+  const handleback = () => {
+    history(-1);
+  };
 
   const [user, setUser] = useState(undefined);
   const [user2, setUser2] = useState(undefined);
@@ -27,9 +25,8 @@ function Nav() {
     setUser(undefined);
     setUser2(undefined);
   };
-  const [opendetails,setopendetials]=useState(false);
-  const [authordata,setauthordata]=useState({});
-  
+  const [opendetails, setopendetials] = useState(false);
+  const [authordata, setauthordata] = useState({});
 
   return (
     <GoogleOAuthProvider clientId="959469014856-evue44rqpagjru2pe34irb4mvlk68s03.apps.googleusercontent.com">
@@ -95,7 +92,7 @@ function Nav() {
             )}
           </div>
         </div>
-        <div className=" bg-red-500  font-semibold text-white rounded-full border-white border-2 aspect-square absolute  mt-[50px] sm:mt-[80px] ml-[10px] px-2 text-[25px] z-50 hover:bg-opacity-100 hover:shadow-sm hover:shadow-white hover:bg-red-600 duration-100 hover:scale-110">
+        <div className=" bg-red-500  font-semibold text-white rounded-full border-white border-2 aspect-square fixed  mt-[50px] sm:mt-[80px] ml-[43px] px-2 text-[25px] z-50 hover:bg-opacity-100 hover:shadow-sm hover:shadow-white hover:bg-red-600 duration-100 hover:scale-110">
           <button onClick={handleback}> {"<-"} </button>
         </div>
       </div>

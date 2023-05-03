@@ -21,6 +21,7 @@ function BookDetails({ open }) {
   const [bookLoaded, setBookLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const pid = ReactSession.get("user").pid;
+  console.log(pid.length);
   // console.log(pid);
   const [openPdfReader, setOpenPdfReader] = useState(false);
   const [coverSectionLift, setCoverSectionLift] = useState(
@@ -212,7 +213,9 @@ function BookDetails({ open }) {
               </div>
               <div className="row-span-1">
                 {pid?.length === 0 ? (
-                  <div>
+                  <div></div>
+                ) : (
+                  <>
                     <button
                       onClick={() => {
                         open.setopendetails(true);
@@ -222,9 +225,7 @@ function BookDetails({ open }) {
                     >
                       Publish It!!
                     </button>
-                  </div>
-                ) : (
-                  <></>
+                  </>
                 )}
               </div>
             </div>

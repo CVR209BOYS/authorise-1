@@ -4,6 +4,10 @@ import Book from "./Home/Book";
 import Carousel from "../pages/Utils/Carousal";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import { MenuContext } from "../MenuContext";
+import { useContext } from "react";
+import NewCard from "../pages/Utils/NewCard";
+import { Link } from "react-router-dom";
 
 ReactSession.setStoreType("localStorage");
 
@@ -45,6 +49,29 @@ function Profile() {
     console.log(user);
     setUser2(user);
   };
+
+  //uplloaded books
+  const { allBooks } = useContext(MenuContext);
+  console.log(allBooks);
+
+  const uploadedBook = allBooks.filter((val) => {
+    if (val.authorName === userInformation[0]?.name) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  console.log(uploadedBook);
+
+  const publishedBook = uploadedBook.filter((val) => {
+    if (val.publicationId.length !== 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  console.log(publishedBook);
+
   return (
     <div className="pt-[100px] drop-shadow-xl bg-[#efefef] w-[80%] mx-auto">
       {user && (
@@ -75,17 +102,68 @@ function Profile() {
           </div>
         </div>
       )}
-      {!user && <div>koi user nhi h LAUDE</div>}
-      <br />
-
-      <div>Uploaded book</div>
-      <Carousel />
-      <Book />
-
-      <div>Published book</div>
-      <Carousel />
 
       <br />
+
+      {uploadedBook.length === 0 ? (
+        <div></div>
+      ) : (
+        <div>
+          <div className="font-bold text-center w-[100%] text-[25px]  md:text-[35px] md:ml-10">
+            Uploaded Book
+          </div>
+          <div className="w-[80%] mx-auto  p-5 flex flex-wrap justify-evenly">
+            {uploadedBook?.length &&
+              uploadedBook.map((book, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="carousel-item text-center relative w-[300px] h-fit mx-3 my-4 rounded-md snap-start z-50"
+                  >
+                    <Link
+                      to={{
+                        pathname: "/bookdetails",
+                      }}
+                      state={{ book }}
+                    >
+                      <NewCard book={book} />
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
+
+      {publishedBook.length === 0 ? (
+        <div></div>
+      ) : (
+        <div>
+          <div className="font-bold text-center w-[100%] text-[25px]  md:text-[35px] md:ml-10">
+            Published book
+          </div>
+          <div className="w-[80%] mx-auto  p-5 flex flex-wrap justify-evenly">
+            {publishedBook?.length &&
+              publishedBook.map((book, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="carousel-item text-center relative w-[300px] h-fit mx-3 my-4 rounded-md snap-start z-50"
+                  >
+                    <Link
+                      to={{
+                        pathname: "/bookdetails",
+                      }}
+                      state={{ book }}
+                    >
+                      <NewCard book={book} />
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

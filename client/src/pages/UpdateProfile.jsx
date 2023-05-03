@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { ReactSession } from "react-client-session";
+// import { bgimg } from "../images/123.png";
 
 export default function UpdateProfile() {
   const data = ReactSession.get("user");
@@ -33,8 +34,8 @@ export default function UpdateProfile() {
 
   console.log(credentials);
   return (
-    <div className=" w-[50%] mx-auto pt-[200px]">
-      <div className="bg-white p-4 drop-shadow-xl ">
+    <div className="w-[50%] mx-auto pt-[200px]">
+      <div className="bg-white p-1 drop-shadow-xl ">
         <div className=" mx-auto mb-5 font-bold text-[30px] text-center md:text-[40px] ">
           Update your Profile
         </div>
